@@ -6,8 +6,8 @@ db_filename='AuthDB.db'
 def process_code(uuid, code):
     with sqlite3.connect(db_filename) as conn:
         cursor = conn.cursor()
-
-        query = "select count (*) from students where code='"+code+"' and uuid='"+uuid+"'"
+	strCode = str(code)
+        query = "select count (*) from students where code='"+strCode+"' and uuid='"+uuid+"'"
         cursor.execute(query)
         count = cursor.fetchone()[0]
     

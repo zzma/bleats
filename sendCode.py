@@ -3,7 +3,7 @@ from random import randint
 import sqlite3
 
 def send(uuid):
-        code = str(randint(1111111,9999999))
+        code = str(randint(11111,65535))
 
         db_filename = 'AuthDB.db'
 

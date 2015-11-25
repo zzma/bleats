@@ -23,7 +23,7 @@ class Beacon(object):
 conn = sqlite3.connect('students.db')
 cursor = conn.cursor()
 
-service = BeaconService("hci1")
+service = BeaconService("hci0")
 devices = service.scan(2)
 
 for address, data in list(devices.items()):
@@ -34,7 +34,7 @@ for address, data in list(devices.items()):
         print(b)
         sendCode.send(b._uuid)
     else:
-        if (recieveCode.process_code(b._uuid,b._minor)):
+        if (receiveCode.process_code(b._uuid,b._minor)):
             print "The student is in class"
         else:
             print "The student's code is false, boooooo"
