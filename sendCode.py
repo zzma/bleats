@@ -2,15 +2,19 @@ import smtplib
 from random import randint
 import sqlite3
 
-def send(uuid):
+def send(uuid,time=0):
         code = str(randint(11111,65535))
-
+        
         db_filename = 'AuthDB.db'
 
         with sqlite3.connect(db_filename) as conn:
                 cursor = conn.cursor()
                 query = "update students set code='"+code+"' where uuid='"+uuid+"'"
-                cursor.execute(query) 
+                cursor.execute(query)
+                query = "update students set timeout='"+str(time)+"' where uuid='"+uuid+"'"
+                cursor.execute(query)
+                
+ 
 
 
         message = """From: UIUC Bleats <uiucbleats@gmail.com>

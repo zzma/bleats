@@ -2,6 +2,7 @@ from bluetooth.ble import BeaconService
 import sqlite3
 import receiveCode
 import sendCode
+import time
 
 class Beacon(object):
 
@@ -32,9 +33,9 @@ for address, data in list(devices.items()):
         cursor.execute("SELECT * FROM students WHERE uuid = '" + b._uuid + "' LIMIT 1")
         print(cursor.fetchone())
         print(b)
-        sendCode.send(b._uuid)
+        sendCode.send(b._uuid,time.time())
     else:
-        if (receiveCode.process_code(b._uuid,b._minor)):
+        if (receiveCode.process_code(b._uuid,b._minor,time.time())):
             print "The student is in class"
         else:
             print "The student's code is false, boooooo"
