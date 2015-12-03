@@ -13,6 +13,12 @@ def send(uuid,time=0):
                 cursor.execute(query)
                 query = "update students set timeout='"+str(time)+"' where uuid='"+uuid+"'"
                 cursor.execute(query)
+
+                query = "select attempts from students where code='"+strCode+"' and uuid='"+uuid+"'"
+                cursor.execute(query)
+                attempts = cursor.fetchone()[0] + 1
+                query = "update students set attempts = '"+attempts+"' where uuid = '"+uuid+"'"
+                cursor.execute(query)
                 
  
 
