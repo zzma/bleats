@@ -14,28 +14,28 @@ pybindgen.settings.error_handler = ErrorHandler()
 import sys
 
 def module_init():
-    root_module = Module('ns.lr_wpan', cpp_namespace='::ns3')
+    root_module = Module('ns.ble', cpp_namespace='::ns3')
     return root_module
 
 def register_types(module):
     root_module = module.get_root()
     
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanTxOption [enumeration]
-    module.add_enum('LrWpanTxOption', ['TX_OPTION_NONE', 'TX_OPTION_ACK', 'TX_OPTION_GTS', 'TX_OPTION_INDIRECT'])
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyOption [enumeration]
-    module.add_enum('LrWpanPhyOption', ['IEEE_802_15_4_868MHZ_BPSK', 'IEEE_802_15_4_915MHZ_BPSK', 'IEEE_802_15_4_868MHZ_ASK', 'IEEE_802_15_4_915MHZ_ASK', 'IEEE_802_15_4_868MHZ_OQPSK', 'IEEE_802_15_4_915MHZ_OQPSK', 'IEEE_802_15_4_2_4GHZ_OQPSK', 'IEEE_802_15_4_INVALID_PHY_OPTION'])
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyEnumeration [enumeration]
-    module.add_enum('LrWpanPhyEnumeration', ['IEEE_802_15_4_PHY_BUSY', 'IEEE_802_15_4_PHY_BUSY_RX', 'IEEE_802_15_4_PHY_BUSY_TX', 'IEEE_802_15_4_PHY_FORCE_TRX_OFF', 'IEEE_802_15_4_PHY_IDLE', 'IEEE_802_15_4_PHY_INVALID_PARAMETER', 'IEEE_802_15_4_PHY_RX_ON', 'IEEE_802_15_4_PHY_SUCCESS', 'IEEE_802_15_4_PHY_TRX_OFF', 'IEEE_802_15_4_PHY_TX_ON', 'IEEE_802_15_4_PHY_UNSUPPORTED_ATTRIBUTE', 'IEEE_802_15_4_PHY_READ_ONLY', 'IEEE_802_15_4_PHY_UNSPECIFIED'])
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMcpsDataConfirmStatus [enumeration]
-    module.add_enum('LrWpanMcpsDataConfirmStatus', ['IEEE_802_15_4_SUCCESS', 'IEEE_802_15_4_TRANSACTION_OVERFLOW', 'IEEE_802_15_4_TRANSACTION_EXPIRED', 'IEEE_802_15_4_CHANNEL_ACCESS_FAILURE', 'IEEE_802_15_4_INVALID_ADDRESS', 'IEEE_802_15_4_INVALID_GTS', 'IEEE_802_15_4_NO_ACK', 'IEEE_802_15_4_COUNTER_ERROR', 'IEEE_802_15_4_FRAME_TOO_LONG', 'IEEE_802_15_4_UNAVAILABLE_KEY', 'IEEE_802_15_4_UNSUPPORTED_SECURITY', 'IEEE_802_15_4_INVALID_PARAMETER'])
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanAssociationStatus [enumeration]
-    module.add_enum('LrWpanAssociationStatus', ['ASSOCIATED', 'PAN_AT_CAPACITY', 'PAN_ACCESS_DENIED', 'ASSOCIATED_WITHOUT_ADDRESS', 'DISASSOCIATED'])
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPibAttributeIdentifier [enumeration]
-    module.add_enum('LrWpanPibAttributeIdentifier', ['phyCurrentChannel', 'phyChannelsSupported', 'phyTransmitPower', 'phyCCAMode', 'phyCurrentPage', 'phyMaxFrameDuration', 'phySHRDuration', 'phySymbolsPerOctet'])
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMacState [enumeration]
-    module.add_enum('LrWpanMacState', ['MAC_IDLE', 'MAC_CSMA', 'MAC_SENDING', 'MAC_ACK_PENDING', 'CHANNEL_ACCESS_FAILURE', 'CHANNEL_IDLE', 'SET_PHY_TX_ON'])
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanAddressMode [enumeration]
-    module.add_enum('LrWpanAddressMode', ['NO_PANID_ADDR', 'ADDR_MODE_RESERVED', 'SHORT_ADDR', 'EXT_ADDR'])
+    ## ble-mac.h (module 'ble'): ns3::BleTxOption [enumeration]
+    module.add_enum('BleTxOption', ['TX_OPTION_NONE', 'TX_OPTION_ACK', 'TX_OPTION_GTS', 'TX_OPTION_INDIRECT'])
+    ## ble-phy.h (module 'ble'): ns3::BlePhyOption [enumeration]
+    module.add_enum('BlePhyOption', ['IEEE_802_15_4_868MHZ_BPSK', 'IEEE_802_15_4_915MHZ_BPSK', 'IEEE_802_15_4_868MHZ_ASK', 'IEEE_802_15_4_915MHZ_ASK', 'IEEE_802_15_4_868MHZ_OQPSK', 'IEEE_802_15_4_915MHZ_OQPSK', 'IEEE_802_15_4_2_4GHZ_OQPSK', 'IEEE_802_15_4_INVALID_PHY_OPTION'])
+    ## ble-phy.h (module 'ble'): ns3::BlePhyEnumeration [enumeration]
+    module.add_enum('BlePhyEnumeration', ['IEEE_802_15_4_PHY_BUSY', 'IEEE_802_15_4_PHY_BUSY_RX', 'IEEE_802_15_4_PHY_BUSY_TX', 'IEEE_802_15_4_PHY_FORCE_TRX_OFF', 'IEEE_802_15_4_PHY_IDLE', 'IEEE_802_15_4_PHY_INVALID_PARAMETER', 'IEEE_802_15_4_PHY_RX_ON', 'IEEE_802_15_4_PHY_SUCCESS', 'IEEE_802_15_4_PHY_TRX_OFF', 'IEEE_802_15_4_PHY_TX_ON', 'IEEE_802_15_4_PHY_UNSUPPORTED_ATTRIBUTE', 'IEEE_802_15_4_PHY_READ_ONLY', 'IEEE_802_15_4_PHY_UNSPECIFIED'])
+    ## ble-mac.h (module 'ble'): ns3::BleMcpsDataConfirmStatus [enumeration]
+    module.add_enum('BleMcpsDataConfirmStatus', ['IEEE_802_15_4_SUCCESS', 'IEEE_802_15_4_TRANSACTION_OVERFLOW', 'IEEE_802_15_4_TRANSACTION_EXPIRED', 'IEEE_802_15_4_CHANNEL_ACCESS_FAILURE', 'IEEE_802_15_4_INVALID_ADDRESS', 'IEEE_802_15_4_INVALID_GTS', 'IEEE_802_15_4_NO_ACK', 'IEEE_802_15_4_COUNTER_ERROR', 'IEEE_802_15_4_FRAME_TOO_LONG', 'IEEE_802_15_4_UNAVAILABLE_KEY', 'IEEE_802_15_4_UNSUPPORTED_SECURITY', 'IEEE_802_15_4_INVALID_PARAMETER'])
+    ## ble-mac.h (module 'ble'): ns3::BleAssociationStatus [enumeration]
+    module.add_enum('BleAssociationStatus', ['ASSOCIATED', 'PAN_AT_CAPACITY', 'PAN_ACCESS_DENIED', 'ASSOCIATED_WITHOUT_ADDRESS', 'DISASSOCIATED'])
+    ## ble-phy.h (module 'ble'): ns3::BlePibAttributeIdentifier [enumeration]
+    module.add_enum('BlePibAttributeIdentifier', ['phyCurrentChannel', 'phyChannelsSupported', 'phyTransmitPower', 'phyCCAMode', 'phyCurrentPage', 'phyMaxFrameDuration', 'phySHRDuration', 'phySymbolsPerOctet'])
+    ## ble-mac.h (module 'ble'): ns3::BleMacState [enumeration]
+    module.add_enum('BleMacState', ['MAC_IDLE', 'MAC_CSMA', 'MAC_SENDING', 'MAC_ACK_PENDING', 'CHANNEL_ACCESS_FAILURE', 'CHANNEL_IDLE', 'SET_PHY_TX_ON'])
+    ## ble-mac.h (module 'ble'): ns3::BleAddressMode [enumeration]
+    module.add_enum('BleAddressMode', ['NO_PANID_ADDR', 'ADDR_MODE_RESERVED', 'SHORT_ADDR', 'EXT_ADDR'])
     ## address.h (module 'network'): ns3::Address [class]
     module.add_class('Address', import_from_module='ns.network')
     ## address.h (module 'network'): ns3::Address::MaxSize_e [enumeration]
@@ -80,16 +80,16 @@ def register_types(module):
     root_module['ns3::Ipv6Address'].implicitly_converts_to(root_module['ns3::Address'])
     ## ipv6-address.h (module 'network'): ns3::Ipv6Prefix [class]
     module.add_class('Ipv6Prefix', import_from_module='ns.network')
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanEdPower [struct]
-    module.add_class('LrWpanEdPower')
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyDataAndSymbolRates [struct]
-    module.add_class('LrWpanPhyDataAndSymbolRates')
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPibAttributes [struct]
-    module.add_class('LrWpanPhyPibAttributes')
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPpduHeaderSymbolNumber [struct]
-    module.add_class('LrWpanPhyPpduHeaderSymbolNumber')
-    ## lr-wpan-spectrum-value-helper.h (module 'lr-wpan'): ns3::LrWpanSpectrumValueHelper [class]
-    module.add_class('LrWpanSpectrumValueHelper')
+    ## ble-phy.h (module 'ble'): ns3::BleEdPower [struct]
+    module.add_class('BleEdPower')
+    ## ble-phy.h (module 'ble'): ns3::BlePhyDataAndSymbolRates [struct]
+    module.add_class('BlePhyDataAndSymbolRates')
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPibAttributes [struct]
+    module.add_class('BlePhyPibAttributes')
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPpduHeaderSymbolNumber [struct]
+    module.add_class('BlePhyPpduHeaderSymbolNumber')
+    ## ble-spectrum-value-helper.h (module 'ble'): ns3::BleSpectrumValueHelper [class]
+    module.add_class('BleSpectrumValueHelper')
     ## mac16-address.h (module 'network'): ns3::Mac16Address [class]
     module.add_class('Mac16Address', import_from_module='ns.network')
     ## mac16-address.h (module 'network'): ns3::Mac16Address [class]
@@ -102,11 +102,11 @@ def register_types(module):
     module.add_class('Mac64Address', import_from_module='ns.network')
     ## mac64-address.h (module 'network'): ns3::Mac64Address [class]
     root_module['ns3::Mac64Address'].implicitly_converts_to(root_module['ns3::Address'])
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataConfirmParams [struct]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataConfirmParams [struct]
     module.add_class('McpsDataConfirmParams')
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataIndicationParams [struct]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataIndicationParams [struct]
     module.add_class('McpsDataIndicationParams')
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataRequestParams [struct]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataRequestParams [struct]
     module.add_class('McpsDataRequestParams')
     ## net-device-container.h (module 'network'): ns3::NetDeviceContainer [class]
     module.add_class('NetDeviceContainer', import_from_module='ns.network')
@@ -156,10 +156,10 @@ def register_types(module):
     module.add_class('TagBuffer', import_from_module='ns.network')
     ## nstime.h (module 'core'): ns3::TimeWithUnit [class]
     module.add_class('TimeWithUnit', import_from_module='ns.core')
-    ## traced-value.h (module 'core'): ns3::TracedValue<ns3::LrWpanMacState> [class]
-    module.add_class('TracedValue', template_parameters=['ns3::LrWpanMacState'])
-    ## traced-value.h (module 'core'): ns3::TracedValue<ns3::LrWpanPhyEnumeration> [class]
-    module.add_class('TracedValue', template_parameters=['ns3::LrWpanPhyEnumeration'])
+    ## traced-value.h (module 'core'): ns3::TracedValue<ns3::BleMacState> [class]
+    module.add_class('TracedValue', template_parameters=['ns3::BleMacState'])
+    ## traced-value.h (module 'core'): ns3::TracedValue<ns3::BlePhyEnumeration> [class]
+    module.add_class('TracedValue', template_parameters=['ns3::BlePhyEnumeration'])
     ## type-id.h (module 'core'): ns3::TypeId [class]
     module.add_class('TypeId', import_from_module='ns.core')
     ## type-id.h (module 'core'): ns3::TypeId::AttributeFlag [enumeration]
@@ -178,18 +178,18 @@ def register_types(module):
     module.add_class('Chunk', import_from_module='ns.network', parent=root_module['ns3::ObjectBase'])
     ## header.h (module 'network'): ns3::Header [class]
     module.add_class('Header', import_from_module='ns.network', parent=root_module['ns3::Chunk'])
-    ## lr-wpan-helper.h (module 'lr-wpan'): ns3::LrWpanHelper [class]
-    module.add_class('LrWpanHelper', parent=[root_module['ns3::PcapHelperForDevice'], root_module['ns3::AsciiTraceHelperForDevice']])
-    ## lr-wpan-lqi-tag.h (module 'lr-wpan'): ns3::LrWpanLqiTag [class]
-    module.add_class('LrWpanLqiTag', parent=root_module['ns3::Tag'])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): ns3::LrWpanMacHeader [class]
-    module.add_class('LrWpanMacHeader', parent=root_module['ns3::Header'])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): ns3::LrWpanMacHeader::LrWpanMacType [enumeration]
-    module.add_enum('LrWpanMacType', ['LRWPAN_MAC_BEACON', 'LRWPAN_MAC_DATA', 'LRWPAN_MAC_ACKNOWLEDGMENT', 'LRWPAN_MAC_COMMAND', 'LRWPAN_MAC_RESERVED'], outer_class=root_module['ns3::LrWpanMacHeader'])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): ns3::LrWpanMacHeader::AddrModeType [enumeration]
-    module.add_enum('AddrModeType', ['NOADDR', 'RESADDR', 'SHORTADDR', 'EXTADDR'], outer_class=root_module['ns3::LrWpanMacHeader'])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): ns3::LrWpanMacHeader::KeyIdModeType [enumeration]
-    module.add_enum('KeyIdModeType', ['IMPLICIT', 'NOKEYSOURCE', 'SHORTKEYSOURCE', 'LONGKEYSOURCE'], outer_class=root_module['ns3::LrWpanMacHeader'])
+    ## ble-helper.h (module 'ble'): ns3::BleHelper [class]
+    module.add_class('BleHelper', parent=[root_module['ns3::PcapHelperForDevice'], root_module['ns3::AsciiTraceHelperForDevice']])
+    ## ble-lqi-tag.h (module 'ble'): ns3::BleLqiTag [class]
+    module.add_class('BleLqiTag', parent=root_module['ns3::Tag'])
+    ## ble-mac-header.h (module 'ble'): ns3::BleMacHeader [class]
+    module.add_class('BleMacHeader', parent=root_module['ns3::Header'])
+    ## ble-mac-header.h (module 'ble'): ns3::BleMacHeader::BleMacType [enumeration]
+    module.add_enum('BleMacType', ['BLE_MAC_BEACON', 'BLE_MAC_DATA', 'BLE_MAC_ACKNOWLEDGMENT', 'BLE_MAC_COMMAND', 'BLE_MAC_RESERVED'], outer_class=root_module['ns3::BleMacHeader'])
+    ## ble-mac-header.h (module 'ble'): ns3::BleMacHeader::AddrModeType [enumeration]
+    module.add_enum('AddrModeType', ['NOADDR', 'RESADDR', 'SHORTADDR', 'EXTADDR'], outer_class=root_module['ns3::BleMacHeader'])
+    ## ble-mac-header.h (module 'ble'): ns3::BleMacHeader::KeyIdModeType [enumeration]
+    module.add_enum('KeyIdModeType', ['IMPLICIT', 'NOKEYSOURCE', 'SHORTKEYSOURCE', 'LONGKEYSOURCE'], outer_class=root_module['ns3::BleMacHeader'])
     ## object.h (module 'core'): ns3::Object [class]
     module.add_class('Object', import_from_module='ns.core', parent=root_module['ns3::SimpleRefCount< ns3::Object, ns3::ObjectBase, ns3::ObjectDeleter >'])
     ## object.h (module 'core'): ns3::Object::AggregateIterator [class]
@@ -208,8 +208,8 @@ def register_types(module):
     module.add_class('SimpleRefCount', automatic_type_narrowing=True, import_from_module='ns.core', template_parameters=['ns3::EventImpl', 'ns3::empty', 'ns3::DefaultDeleter<ns3::EventImpl>'], parent=root_module['ns3::empty'], memory_policy=cppclass.ReferenceCountingMethodsPolicy(incref_method='Ref', decref_method='Unref', peekref_method='GetReferenceCount'))
     ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::Hash::Implementation, ns3::empty, ns3::DefaultDeleter<ns3::Hash::Implementation> > [class]
     module.add_class('SimpleRefCount', automatic_type_narrowing=True, import_from_module='ns.core', template_parameters=['ns3::Hash::Implementation', 'ns3::empty', 'ns3::DefaultDeleter<ns3::Hash::Implementation>'], parent=root_module['ns3::empty'], memory_policy=cppclass.ReferenceCountingMethodsPolicy(incref_method='Ref', decref_method='Unref', peekref_method='GetReferenceCount'))
-    ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::LrWpanInterferenceHelper, ns3::empty, ns3::DefaultDeleter<ns3::LrWpanInterferenceHelper> > [class]
-    module.add_class('SimpleRefCount', automatic_type_narrowing=True, template_parameters=['ns3::LrWpanInterferenceHelper', 'ns3::empty', 'ns3::DefaultDeleter<ns3::LrWpanInterferenceHelper>'], parent=root_module['ns3::empty'], memory_policy=cppclass.ReferenceCountingMethodsPolicy(incref_method='Ref', decref_method='Unref', peekref_method='GetReferenceCount'))
+    ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::BleInterferenceHelper, ns3::empty, ns3::DefaultDeleter<ns3::BleInterferenceHelper> > [class]
+    module.add_class('SimpleRefCount', automatic_type_narrowing=True, template_parameters=['ns3::BleInterferenceHelper', 'ns3::empty', 'ns3::DefaultDeleter<ns3::BleInterferenceHelper>'], parent=root_module['ns3::empty'], memory_policy=cppclass.ReferenceCountingMethodsPolicy(incref_method='Ref', decref_method='Unref', peekref_method='GetReferenceCount'))
     ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::NixVector, ns3::empty, ns3::DefaultDeleter<ns3::NixVector> > [class]
     module.add_class('SimpleRefCount', automatic_type_narrowing=True, import_from_module='ns.core', template_parameters=['ns3::NixVector', 'ns3::empty', 'ns3::DefaultDeleter<ns3::NixVector>'], parent=root_module['ns3::empty'], memory_policy=cppclass.ReferenceCountingMethodsPolicy(incref_method='Ref', decref_method='Unref', peekref_method='GetReferenceCount'))
     ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::OutputStreamWrapper, ns3::empty, ns3::DefaultDeleter<ns3::OutputStreamWrapper> > [class]
@@ -278,20 +278,20 @@ def register_types(module):
     module.add_class('Ipv6PrefixChecker', import_from_module='ns.network', parent=root_module['ns3::AttributeChecker'])
     ## ipv6-address.h (module 'network'): ns3::Ipv6PrefixValue [class]
     module.add_class('Ipv6PrefixValue', import_from_module='ns.network', parent=root_module['ns3::AttributeValue'])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): ns3::LrWpanCsmaCa [class]
-    module.add_class('LrWpanCsmaCa', parent=root_module['ns3::Object'])
-    ## lr-wpan-error-model.h (module 'lr-wpan'): ns3::LrWpanErrorModel [class]
-    module.add_class('LrWpanErrorModel', parent=root_module['ns3::Object'])
-    ## lr-wpan-interference-helper.h (module 'lr-wpan'): ns3::LrWpanInterferenceHelper [class]
-    module.add_class('LrWpanInterferenceHelper', parent=root_module['ns3::SimpleRefCount< ns3::LrWpanInterferenceHelper, ns3::empty, ns3::DefaultDeleter<ns3::LrWpanInterferenceHelper> >'])
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMac [class]
-    module.add_class('LrWpanMac', parent=root_module['ns3::Object'])
-    ## lr-wpan-mac-trailer.h (module 'lr-wpan'): ns3::LrWpanMacTrailer [class]
-    module.add_class('LrWpanMacTrailer', parent=root_module['ns3::Trailer'])
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhy [class]
-    module.add_class('LrWpanPhy', parent=root_module['ns3::SpectrumPhy'])
-    ## lr-wpan-spectrum-signal-parameters.h (module 'lr-wpan'): ns3::LrWpanSpectrumSignalParameters [struct]
-    module.add_class('LrWpanSpectrumSignalParameters', parent=root_module['ns3::SpectrumSignalParameters'])
+    ## ble-csmaca.h (module 'ble'): ns3::BleCsmaCa [class]
+    module.add_class('BleCsmaCa', parent=root_module['ns3::Object'])
+    ## ble-error-model.h (module 'ble'): ns3::BleErrorModel [class]
+    module.add_class('BleErrorModel', parent=root_module['ns3::Object'])
+    ## ble-interference-helper.h (module 'ble'): ns3::BleInterferenceHelper [class]
+    module.add_class('BleInterferenceHelper', parent=root_module['ns3::SimpleRefCount< ns3::BleInterferenceHelper, ns3::empty, ns3::DefaultDeleter<ns3::BleInterferenceHelper> >'])
+    ## ble-mac.h (module 'ble'): ns3::BleMac [class]
+    module.add_class('BleMac', parent=root_module['ns3::Object'])
+    ## ble-mac-trailer.h (module 'ble'): ns3::BleMacTrailer [class]
+    module.add_class('BleMacTrailer', parent=root_module['ns3::Trailer'])
+    ## ble-phy.h (module 'ble'): ns3::BlePhy [class]
+    module.add_class('BlePhy', parent=root_module['ns3::SpectrumPhy'])
+    ## ble-spectrum-signal-parameters.h (module 'ble'): ns3::BleSpectrumSignalParameters [struct]
+    module.add_class('BleSpectrumSignalParameters', parent=root_module['ns3::SpectrumSignalParameters'])
     ## mac16-address.h (module 'network'): ns3::Mac16AddressChecker [class]
     module.add_class('Mac16AddressChecker', import_from_module='ns.network', parent=root_module['ns3::AttributeChecker'])
     ## mac16-address.h (module 'network'): ns3::Mac16AddressValue [class]
@@ -332,14 +332,14 @@ def register_types(module):
     module.add_class('AddressChecker', import_from_module='ns.network', parent=root_module['ns3::AttributeChecker'])
     ## address.h (module 'network'): ns3::AddressValue [class]
     module.add_class('AddressValue', import_from_module='ns.network', parent=root_module['ns3::AttributeValue'])
-    ## lr-wpan-net-device.h (module 'lr-wpan'): ns3::LrWpanNetDevice [class]
-    module.add_class('LrWpanNetDevice', parent=root_module['ns3::NetDevice'])
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', u'ns3::PlmeCcaConfirmCallback')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >*', u'ns3::PlmeCcaConfirmCallback*')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >&', u'ns3::PlmeCcaConfirmCallback&')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, unsigned char, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', u'ns3::PlmeEdConfirmCallback')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, unsigned char, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >*', u'ns3::PlmeEdConfirmCallback*')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, unsigned char, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >&', u'ns3::PlmeEdConfirmCallback&')
+    ## ble-net-device.h (module 'ble'): ns3::BleNetDevice [class]
+    module.add_class('BleNetDevice', parent=root_module['ns3::NetDevice'])
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', u'ns3::PlmeCcaConfirmCallback')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >*', u'ns3::PlmeCcaConfirmCallback*')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >&', u'ns3::PlmeCcaConfirmCallback&')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, unsigned char, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', u'ns3::PlmeEdConfirmCallback')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, unsigned char, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >*', u'ns3::PlmeEdConfirmCallback*')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, unsigned char, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >&', u'ns3::PlmeEdConfirmCallback&')
     typehandlers.add_type_alias(u'ns3::Callback< void, unsigned int, ns3::Ptr< ns3::Packet >, unsigned char, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', u'ns3::PdDataIndicationCallback')
     typehandlers.add_type_alias(u'ns3::Callback< void, unsigned int, ns3::Ptr< ns3::Packet >, unsigned char, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >*', u'ns3::PdDataIndicationCallback*')
     typehandlers.add_type_alias(u'ns3::Callback< void, unsigned int, ns3::Ptr< ns3::Packet >, unsigned char, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >&', u'ns3::PdDataIndicationCallback&')
@@ -349,15 +349,15 @@ def register_types(module):
     typehandlers.add_type_alias(u'ns3::SequenceNumber< unsigned int, int >', u'ns3::SequenceNumber32')
     typehandlers.add_type_alias(u'ns3::SequenceNumber< unsigned int, int >*', u'ns3::SequenceNumber32*')
     typehandlers.add_type_alias(u'ns3::SequenceNumber< unsigned int, int >&', u'ns3::SequenceNumber32&')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanMacState, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', u'ns3::LrWpanMacStateCallback')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanMacState, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >*', u'ns3::LrWpanMacStateCallback*')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanMacState, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >&', u'ns3::LrWpanMacStateCallback&')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, ns3::LrWpanPibAttributeIdentifier, ns3::LrWpanPhyPibAttributes *, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', u'ns3::PlmeGetAttributeConfirmCallback')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, ns3::LrWpanPibAttributeIdentifier, ns3::LrWpanPhyPibAttributes *, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >*', u'ns3::PlmeGetAttributeConfirmCallback*')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, ns3::LrWpanPibAttributeIdentifier, ns3::LrWpanPhyPibAttributes *, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >&', u'ns3::PlmeGetAttributeConfirmCallback&')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', u'ns3::PdDataConfirmCallback')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >*', u'ns3::PdDataConfirmCallback*')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >&', u'ns3::PdDataConfirmCallback&')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BleMacState, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', u'ns3::BleMacStateCallback')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BleMacState, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >*', u'ns3::BleMacStateCallback*')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BleMacState, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >&', u'ns3::BleMacStateCallback&')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, ns3::BlePibAttributeIdentifier, ns3::BlePhyPibAttributes *, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', u'ns3::PlmeGetAttributeConfirmCallback')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, ns3::BlePibAttributeIdentifier, ns3::BlePhyPibAttributes *, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >*', u'ns3::PlmeGetAttributeConfirmCallback*')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, ns3::BlePibAttributeIdentifier, ns3::BlePhyPibAttributes *, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >&', u'ns3::PlmeGetAttributeConfirmCallback&')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', u'ns3::PdDataConfirmCallback')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >*', u'ns3::PdDataConfirmCallback*')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >&', u'ns3::PdDataConfirmCallback&')
     typehandlers.add_type_alias(u'ns3::Callback< void, ns3::McpsDataIndicationParams, ns3::Ptr< ns3::Packet >, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', u'ns3::McpsDataIndicationCallback')
     typehandlers.add_type_alias(u'ns3::Callback< void, ns3::McpsDataIndicationParams, ns3::Ptr< ns3::Packet >, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >*', u'ns3::McpsDataIndicationCallback*')
     typehandlers.add_type_alias(u'ns3::Callback< void, ns3::McpsDataIndicationParams, ns3::Ptr< ns3::Packet >, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >&', u'ns3::McpsDataIndicationCallback&')
@@ -367,12 +367,12 @@ def register_types(module):
     typehandlers.add_type_alias(u'ns3::SequenceNumber< unsigned char, signed char >', u'ns3::SequenceNumber8')
     typehandlers.add_type_alias(u'ns3::SequenceNumber< unsigned char, signed char >*', u'ns3::SequenceNumber8*')
     typehandlers.add_type_alias(u'ns3::SequenceNumber< unsigned char, signed char >&', u'ns3::SequenceNumber8&')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, ns3::LrWpanPibAttributeIdentifier, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', u'ns3::PlmeSetAttributeConfirmCallback')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, ns3::LrWpanPibAttributeIdentifier, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >*', u'ns3::PlmeSetAttributeConfirmCallback*')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, ns3::LrWpanPibAttributeIdentifier, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >&', u'ns3::PlmeSetAttributeConfirmCallback&')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', u'ns3::PlmeSetTRXStateConfirmCallback')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >*', u'ns3::PlmeSetTRXStateConfirmCallback*')
-    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::LrWpanPhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >&', u'ns3::PlmeSetTRXStateConfirmCallback&')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, ns3::BlePibAttributeIdentifier, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', u'ns3::PlmeSetAttributeConfirmCallback')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, ns3::BlePibAttributeIdentifier, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >*', u'ns3::PlmeSetAttributeConfirmCallback*')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, ns3::BlePibAttributeIdentifier, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >&', u'ns3::PlmeSetAttributeConfirmCallback&')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', u'ns3::PlmeSetTRXStateConfirmCallback')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >*', u'ns3::PlmeSetTRXStateConfirmCallback*')
+    typehandlers.add_type_alias(u'ns3::Callback< void, ns3::BlePhyEnumeration, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >&', u'ns3::PlmeSetTRXStateConfirmCallback&')
     
     ## Register a nested module for the namespace FatalImpl
     
@@ -456,9 +456,9 @@ def register_types_ns3_TracedValueCallback(module):
     typehandlers.add_type_alias(u'void ( * ) ( int16_t, int16_t ) *', u'ns3::TracedValueCallback::Int16')
     typehandlers.add_type_alias(u'void ( * ) ( int16_t, int16_t ) **', u'ns3::TracedValueCallback::Int16*')
     typehandlers.add_type_alias(u'void ( * ) ( int16_t, int16_t ) *&', u'ns3::TracedValueCallback::Int16&')
-    typehandlers.add_type_alias(u'void ( * ) ( ns3::LrWpanPhyEnumeration, ns3::LrWpanPhyEnumeration ) *', u'ns3::TracedValueCallback::LrWpanPhyEnumeration')
-    typehandlers.add_type_alias(u'void ( * ) ( ns3::LrWpanPhyEnumeration, ns3::LrWpanPhyEnumeration ) **', u'ns3::TracedValueCallback::LrWpanPhyEnumeration*')
-    typehandlers.add_type_alias(u'void ( * ) ( ns3::LrWpanPhyEnumeration, ns3::LrWpanPhyEnumeration ) *&', u'ns3::TracedValueCallback::LrWpanPhyEnumeration&')
+    typehandlers.add_type_alias(u'void ( * ) ( ns3::BlePhyEnumeration, ns3::BlePhyEnumeration ) *', u'ns3::TracedValueCallback::BlePhyEnumeration')
+    typehandlers.add_type_alias(u'void ( * ) ( ns3::BlePhyEnumeration, ns3::BlePhyEnumeration ) **', u'ns3::TracedValueCallback::BlePhyEnumeration*')
+    typehandlers.add_type_alias(u'void ( * ) ( ns3::BlePhyEnumeration, ns3::BlePhyEnumeration ) *&', u'ns3::TracedValueCallback::BlePhyEnumeration&')
     typehandlers.add_type_alias(u'void ( * ) ( int32_t, int32_t ) *', u'ns3::TracedValueCallback::Int32')
     typehandlers.add_type_alias(u'void ( * ) ( int32_t, int32_t ) **', u'ns3::TracedValueCallback::Int32*')
     typehandlers.add_type_alias(u'void ( * ) ( int32_t, int32_t ) *&', u'ns3::TracedValueCallback::Int32&')
@@ -468,9 +468,9 @@ def register_types_ns3_TracedValueCallback(module):
     typehandlers.add_type_alias(u'void ( * ) ( uint16_t, uint16_t ) *', u'ns3::TracedValueCallback::Uint16')
     typehandlers.add_type_alias(u'void ( * ) ( uint16_t, uint16_t ) **', u'ns3::TracedValueCallback::Uint16*')
     typehandlers.add_type_alias(u'void ( * ) ( uint16_t, uint16_t ) *&', u'ns3::TracedValueCallback::Uint16&')
-    typehandlers.add_type_alias(u'void ( * ) ( ns3::LrWpanMacState, ns3::LrWpanMacState ) *', u'ns3::TracedValueCallback::LrWpanMacState')
-    typehandlers.add_type_alias(u'void ( * ) ( ns3::LrWpanMacState, ns3::LrWpanMacState ) **', u'ns3::TracedValueCallback::LrWpanMacState*')
-    typehandlers.add_type_alias(u'void ( * ) ( ns3::LrWpanMacState, ns3::LrWpanMacState ) *&', u'ns3::TracedValueCallback::LrWpanMacState&')
+    typehandlers.add_type_alias(u'void ( * ) ( ns3::BleMacState, ns3::BleMacState ) *', u'ns3::TracedValueCallback::BleMacState')
+    typehandlers.add_type_alias(u'void ( * ) ( ns3::BleMacState, ns3::BleMacState ) **', u'ns3::TracedValueCallback::BleMacState*')
+    typehandlers.add_type_alias(u'void ( * ) ( ns3::BleMacState, ns3::BleMacState ) *&', u'ns3::TracedValueCallback::BleMacState&')
 
 def register_types_ns3_internal(module):
     root_module = module.get_root()
@@ -496,11 +496,11 @@ def register_methods(root_module):
     register_Ns3Ipv4Mask_methods(root_module, root_module['ns3::Ipv4Mask'])
     register_Ns3Ipv6Address_methods(root_module, root_module['ns3::Ipv6Address'])
     register_Ns3Ipv6Prefix_methods(root_module, root_module['ns3::Ipv6Prefix'])
-    register_Ns3LrWpanEdPower_methods(root_module, root_module['ns3::LrWpanEdPower'])
-    register_Ns3LrWpanPhyDataAndSymbolRates_methods(root_module, root_module['ns3::LrWpanPhyDataAndSymbolRates'])
-    register_Ns3LrWpanPhyPibAttributes_methods(root_module, root_module['ns3::LrWpanPhyPibAttributes'])
-    register_Ns3LrWpanPhyPpduHeaderSymbolNumber_methods(root_module, root_module['ns3::LrWpanPhyPpduHeaderSymbolNumber'])
-    register_Ns3LrWpanSpectrumValueHelper_methods(root_module, root_module['ns3::LrWpanSpectrumValueHelper'])
+    register_Ns3BleEdPower_methods(root_module, root_module['ns3::BleEdPower'])
+    register_Ns3BlePhyDataAndSymbolRates_methods(root_module, root_module['ns3::BlePhyDataAndSymbolRates'])
+    register_Ns3BlePhyPibAttributes_methods(root_module, root_module['ns3::BlePhyPibAttributes'])
+    register_Ns3BlePhyPpduHeaderSymbolNumber_methods(root_module, root_module['ns3::BlePhyPpduHeaderSymbolNumber'])
+    register_Ns3BleSpectrumValueHelper_methods(root_module, root_module['ns3::BleSpectrumValueHelper'])
     register_Ns3Mac16Address_methods(root_module, root_module['ns3::Mac16Address'])
     register_Ns3Mac48Address_methods(root_module, root_module['ns3::Mac48Address'])
     register_Ns3Mac64Address_methods(root_module, root_module['ns3::Mac64Address'])
@@ -528,8 +528,8 @@ def register_methods(root_module):
     register_Ns3Tag_methods(root_module, root_module['ns3::Tag'])
     register_Ns3TagBuffer_methods(root_module, root_module['ns3::TagBuffer'])
     register_Ns3TimeWithUnit_methods(root_module, root_module['ns3::TimeWithUnit'])
-    register_Ns3TracedValue__Ns3LrWpanMacState_methods(root_module, root_module['ns3::TracedValue< ns3::LrWpanMacState >'])
-    register_Ns3TracedValue__Ns3LrWpanPhyEnumeration_methods(root_module, root_module['ns3::TracedValue< ns3::LrWpanPhyEnumeration >'])
+    register_Ns3TracedValue__Ns3BleMacState_methods(root_module, root_module['ns3::TracedValue< ns3::BleMacState >'])
+    register_Ns3TracedValue__Ns3BlePhyEnumeration_methods(root_module, root_module['ns3::TracedValue< ns3::BlePhyEnumeration >'])
     register_Ns3TypeId_methods(root_module, root_module['ns3::TypeId'])
     register_Ns3TypeIdAttributeInformation_methods(root_module, root_module['ns3::TypeId::AttributeInformation'])
     register_Ns3TypeIdTraceSourceInformation_methods(root_module, root_module['ns3::TypeId::TraceSourceInformation'])
@@ -537,9 +537,9 @@ def register_methods(root_module):
     register_Ns3Int64x64_t_methods(root_module, root_module['ns3::int64x64_t'])
     register_Ns3Chunk_methods(root_module, root_module['ns3::Chunk'])
     register_Ns3Header_methods(root_module, root_module['ns3::Header'])
-    register_Ns3LrWpanHelper_methods(root_module, root_module['ns3::LrWpanHelper'])
-    register_Ns3LrWpanLqiTag_methods(root_module, root_module['ns3::LrWpanLqiTag'])
-    register_Ns3LrWpanMacHeader_methods(root_module, root_module['ns3::LrWpanMacHeader'])
+    register_Ns3BleHelper_methods(root_module, root_module['ns3::BleHelper'])
+    register_Ns3BleLqiTag_methods(root_module, root_module['ns3::BleLqiTag'])
+    register_Ns3BleMacHeader_methods(root_module, root_module['ns3::BleMacHeader'])
     register_Ns3Object_methods(root_module, root_module['ns3::Object'])
     register_Ns3ObjectAggregateIterator_methods(root_module, root_module['ns3::Object::AggregateIterator'])
     register_Ns3PcapFileWrapper_methods(root_module, root_module['ns3::PcapFileWrapper'])
@@ -549,7 +549,7 @@ def register_methods(root_module):
     register_Ns3SimpleRefCount__Ns3CallbackImplBase_Ns3Empty_Ns3DefaultDeleter__lt__ns3CallbackImplBase__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::CallbackImplBase, ns3::empty, ns3::DefaultDeleter<ns3::CallbackImplBase> >'])
     register_Ns3SimpleRefCount__Ns3EventImpl_Ns3Empty_Ns3DefaultDeleter__lt__ns3EventImpl__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::EventImpl, ns3::empty, ns3::DefaultDeleter<ns3::EventImpl> >'])
     register_Ns3SimpleRefCount__Ns3HashImplementation_Ns3Empty_Ns3DefaultDeleter__lt__ns3HashImplementation__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::Hash::Implementation, ns3::empty, ns3::DefaultDeleter<ns3::Hash::Implementation> >'])
-    register_Ns3SimpleRefCount__Ns3LrWpanInterferenceHelper_Ns3Empty_Ns3DefaultDeleter__lt__ns3LrWpanInterferenceHelper__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::LrWpanInterferenceHelper, ns3::empty, ns3::DefaultDeleter<ns3::LrWpanInterferenceHelper> >'])
+    register_Ns3SimpleRefCount__Ns3BleInterferenceHelper_Ns3Empty_Ns3DefaultDeleter__lt__ns3BleInterferenceHelper__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::BleInterferenceHelper, ns3::empty, ns3::DefaultDeleter<ns3::BleInterferenceHelper> >'])
     register_Ns3SimpleRefCount__Ns3NixVector_Ns3Empty_Ns3DefaultDeleter__lt__ns3NixVector__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::NixVector, ns3::empty, ns3::DefaultDeleter<ns3::NixVector> >'])
     register_Ns3SimpleRefCount__Ns3OutputStreamWrapper_Ns3Empty_Ns3DefaultDeleter__lt__ns3OutputStreamWrapper__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::OutputStreamWrapper, ns3::empty, ns3::DefaultDeleter<ns3::OutputStreamWrapper> >'])
     register_Ns3SimpleRefCount__Ns3Packet_Ns3Empty_Ns3DefaultDeleter__lt__ns3Packet__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::Packet, ns3::empty, ns3::DefaultDeleter<ns3::Packet> >'])
@@ -582,13 +582,13 @@ def register_methods(root_module):
     register_Ns3Ipv6AddressValue_methods(root_module, root_module['ns3::Ipv6AddressValue'])
     register_Ns3Ipv6PrefixChecker_methods(root_module, root_module['ns3::Ipv6PrefixChecker'])
     register_Ns3Ipv6PrefixValue_methods(root_module, root_module['ns3::Ipv6PrefixValue'])
-    register_Ns3LrWpanCsmaCa_methods(root_module, root_module['ns3::LrWpanCsmaCa'])
-    register_Ns3LrWpanErrorModel_methods(root_module, root_module['ns3::LrWpanErrorModel'])
-    register_Ns3LrWpanInterferenceHelper_methods(root_module, root_module['ns3::LrWpanInterferenceHelper'])
-    register_Ns3LrWpanMac_methods(root_module, root_module['ns3::LrWpanMac'])
-    register_Ns3LrWpanMacTrailer_methods(root_module, root_module['ns3::LrWpanMacTrailer'])
-    register_Ns3LrWpanPhy_methods(root_module, root_module['ns3::LrWpanPhy'])
-    register_Ns3LrWpanSpectrumSignalParameters_methods(root_module, root_module['ns3::LrWpanSpectrumSignalParameters'])
+    register_Ns3BleCsmaCa_methods(root_module, root_module['ns3::BleCsmaCa'])
+    register_Ns3BleErrorModel_methods(root_module, root_module['ns3::BleErrorModel'])
+    register_Ns3BleInterferenceHelper_methods(root_module, root_module['ns3::BleInterferenceHelper'])
+    register_Ns3BleMac_methods(root_module, root_module['ns3::BleMac'])
+    register_Ns3BleMacTrailer_methods(root_module, root_module['ns3::BleMacTrailer'])
+    register_Ns3BlePhy_methods(root_module, root_module['ns3::BlePhy'])
+    register_Ns3BleSpectrumSignalParameters_methods(root_module, root_module['ns3::BleSpectrumSignalParameters'])
     register_Ns3Mac16AddressChecker_methods(root_module, root_module['ns3::Mac16AddressChecker'])
     register_Ns3Mac16AddressValue_methods(root_module, root_module['ns3::Mac16AddressValue'])
     register_Ns3Mac48AddressChecker_methods(root_module, root_module['ns3::Mac48AddressChecker'])
@@ -608,7 +608,7 @@ def register_methods(root_module):
     register_Ns3UintegerValue_methods(root_module, root_module['ns3::UintegerValue'])
     register_Ns3AddressChecker_methods(root_module, root_module['ns3::AddressChecker'])
     register_Ns3AddressValue_methods(root_module, root_module['ns3::AddressValue'])
-    register_Ns3LrWpanNetDevice_methods(root_module, root_module['ns3::LrWpanNetDevice'])
+    register_Ns3BleNetDevice_methods(root_module, root_module['ns3::BleNetDevice'])
     register_Ns3HashImplementation_methods(root_module, root_module['ns3::Hash::Implementation'])
     register_Ns3HashFunctionFnv1a_methods(root_module, root_module['ns3::Hash::Function::Fnv1a'])
     register_Ns3HashFunctionHash32_methods(root_module, root_module['ns3::Hash::Function::Hash32'])
@@ -1707,80 +1707,80 @@ def register_Ns3Ipv6Prefix_methods(root_module, cls):
                    is_const=True)
     return
 
-def register_Ns3LrWpanEdPower_methods(root_module, cls):
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanEdPower::LrWpanEdPower() [constructor]
+def register_Ns3BleEdPower_methods(root_module, cls):
+    ## ble-phy.h (module 'ble'): ns3::BleEdPower::BleEdPower() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanEdPower::LrWpanEdPower(ns3::LrWpanEdPower const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::LrWpanEdPower const &', 'arg0')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanEdPower::averagePower [variable]
+    ## ble-phy.h (module 'ble'): ns3::BleEdPower::BleEdPower(ns3::BleEdPower const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::BleEdPower const &', 'arg0')])
+    ## ble-phy.h (module 'ble'): ns3::BleEdPower::averagePower [variable]
     cls.add_instance_attribute('averagePower', 'double', is_const=False)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanEdPower::lastUpdate [variable]
+    ## ble-phy.h (module 'ble'): ns3::BleEdPower::lastUpdate [variable]
     cls.add_instance_attribute('lastUpdate', 'ns3::Time', is_const=False)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanEdPower::measurementLength [variable]
+    ## ble-phy.h (module 'ble'): ns3::BleEdPower::measurementLength [variable]
     cls.add_instance_attribute('measurementLength', 'ns3::Time', is_const=False)
     return
 
-def register_Ns3LrWpanPhyDataAndSymbolRates_methods(root_module, cls):
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyDataAndSymbolRates::LrWpanPhyDataAndSymbolRates() [constructor]
+def register_Ns3BlePhyDataAndSymbolRates_methods(root_module, cls):
+    ## ble-phy.h (module 'ble'): ns3::BlePhyDataAndSymbolRates::BlePhyDataAndSymbolRates() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyDataAndSymbolRates::LrWpanPhyDataAndSymbolRates(ns3::LrWpanPhyDataAndSymbolRates const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::LrWpanPhyDataAndSymbolRates const &', 'arg0')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyDataAndSymbolRates::bitRate [variable]
+    ## ble-phy.h (module 'ble'): ns3::BlePhyDataAndSymbolRates::BlePhyDataAndSymbolRates(ns3::BlePhyDataAndSymbolRates const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::BlePhyDataAndSymbolRates const &', 'arg0')])
+    ## ble-phy.h (module 'ble'): ns3::BlePhyDataAndSymbolRates::bitRate [variable]
     cls.add_instance_attribute('bitRate', 'double', is_const=False)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyDataAndSymbolRates::symbolRate [variable]
+    ## ble-phy.h (module 'ble'): ns3::BlePhyDataAndSymbolRates::symbolRate [variable]
     cls.add_instance_attribute('symbolRate', 'double', is_const=False)
     return
 
-def register_Ns3LrWpanPhyPibAttributes_methods(root_module, cls):
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPibAttributes::LrWpanPhyPibAttributes() [constructor]
+def register_Ns3BlePhyPibAttributes_methods(root_module, cls):
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPibAttributes::BlePhyPibAttributes() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPibAttributes::LrWpanPhyPibAttributes(ns3::LrWpanPhyPibAttributes const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::LrWpanPhyPibAttributes const &', 'arg0')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPibAttributes::phyCCAMode [variable]
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPibAttributes::BlePhyPibAttributes(ns3::BlePhyPibAttributes const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::BlePhyPibAttributes const &', 'arg0')])
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPibAttributes::phyCCAMode [variable]
     cls.add_instance_attribute('phyCCAMode', 'uint8_t', is_const=False)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPibAttributes::phyChannelsSupported [variable]
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPibAttributes::phyChannelsSupported [variable]
     cls.add_instance_attribute('phyChannelsSupported', 'uint32_t [ 32 ]', is_const=False)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPibAttributes::phyCurrentChannel [variable]
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPibAttributes::phyCurrentChannel [variable]
     cls.add_instance_attribute('phyCurrentChannel', 'uint8_t', is_const=False)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPibAttributes::phyCurrentPage [variable]
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPibAttributes::phyCurrentPage [variable]
     cls.add_instance_attribute('phyCurrentPage', 'uint32_t', is_const=False)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPibAttributes::phyMaxFrameDuration [variable]
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPibAttributes::phyMaxFrameDuration [variable]
     cls.add_instance_attribute('phyMaxFrameDuration', 'uint32_t', is_const=False)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPibAttributes::phySHRDuration [variable]
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPibAttributes::phySHRDuration [variable]
     cls.add_instance_attribute('phySHRDuration', 'uint32_t', is_const=False)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPibAttributes::phySymbolsPerOctet [variable]
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPibAttributes::phySymbolsPerOctet [variable]
     cls.add_instance_attribute('phySymbolsPerOctet', 'double', is_const=False)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPibAttributes::phyTransmitPower [variable]
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPibAttributes::phyTransmitPower [variable]
     cls.add_instance_attribute('phyTransmitPower', 'uint8_t', is_const=False)
     return
 
-def register_Ns3LrWpanPhyPpduHeaderSymbolNumber_methods(root_module, cls):
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPpduHeaderSymbolNumber::LrWpanPhyPpduHeaderSymbolNumber() [constructor]
+def register_Ns3BlePhyPpduHeaderSymbolNumber_methods(root_module, cls):
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPpduHeaderSymbolNumber::BlePhyPpduHeaderSymbolNumber() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPpduHeaderSymbolNumber::LrWpanPhyPpduHeaderSymbolNumber(ns3::LrWpanPhyPpduHeaderSymbolNumber const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::LrWpanPhyPpduHeaderSymbolNumber const &', 'arg0')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPpduHeaderSymbolNumber::phr [variable]
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPpduHeaderSymbolNumber::BlePhyPpduHeaderSymbolNumber(ns3::BlePhyPpduHeaderSymbolNumber const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::BlePhyPpduHeaderSymbolNumber const &', 'arg0')])
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPpduHeaderSymbolNumber::phr [variable]
     cls.add_instance_attribute('phr', 'double', is_const=False)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPpduHeaderSymbolNumber::shrPreamble [variable]
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPpduHeaderSymbolNumber::shrPreamble [variable]
     cls.add_instance_attribute('shrPreamble', 'double', is_const=False)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhyPpduHeaderSymbolNumber::shrSfd [variable]
+    ## ble-phy.h (module 'ble'): ns3::BlePhyPpduHeaderSymbolNumber::shrSfd [variable]
     cls.add_instance_attribute('shrSfd', 'double', is_const=False)
     return
 
-def register_Ns3LrWpanSpectrumValueHelper_methods(root_module, cls):
-    ## lr-wpan-spectrum-value-helper.h (module 'lr-wpan'): ns3::LrWpanSpectrumValueHelper::LrWpanSpectrumValueHelper(ns3::LrWpanSpectrumValueHelper const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::LrWpanSpectrumValueHelper const &', 'arg0')])
-    ## lr-wpan-spectrum-value-helper.h (module 'lr-wpan'): ns3::LrWpanSpectrumValueHelper::LrWpanSpectrumValueHelper() [constructor]
+def register_Ns3BleSpectrumValueHelper_methods(root_module, cls):
+    ## ble-spectrum-value-helper.h (module 'ble'): ns3::BleSpectrumValueHelper::BleSpectrumValueHelper(ns3::BleSpectrumValueHelper const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::BleSpectrumValueHelper const &', 'arg0')])
+    ## ble-spectrum-value-helper.h (module 'ble'): ns3::BleSpectrumValueHelper::BleSpectrumValueHelper() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-spectrum-value-helper.h (module 'lr-wpan'): ns3::Ptr<ns3::SpectrumValue> ns3::LrWpanSpectrumValueHelper::CreateNoisePowerSpectralDensity(uint32_t channel) [member function]
+    ## ble-spectrum-value-helper.h (module 'ble'): ns3::Ptr<ns3::SpectrumValue> ns3::BleSpectrumValueHelper::CreateNoisePowerSpectralDensity(uint32_t channel) [member function]
     cls.add_method('CreateNoisePowerSpectralDensity', 
                    'ns3::Ptr< ns3::SpectrumValue >', 
                    [param('uint32_t', 'channel')])
-    ## lr-wpan-spectrum-value-helper.h (module 'lr-wpan'): ns3::Ptr<ns3::SpectrumValue> ns3::LrWpanSpectrumValueHelper::CreateTxPowerSpectralDensity(double txPower, uint32_t channel) [member function]
+    ## ble-spectrum-value-helper.h (module 'ble'): ns3::Ptr<ns3::SpectrumValue> ns3::BleSpectrumValueHelper::CreateTxPowerSpectralDensity(double txPower, uint32_t channel) [member function]
     cls.add_method('CreateTxPowerSpectralDensity', 
                    'ns3::Ptr< ns3::SpectrumValue >', 
                    [param('double', 'txPower'), param('uint32_t', 'channel')])
-    ## lr-wpan-spectrum-value-helper.h (module 'lr-wpan'): static double ns3::LrWpanSpectrumValueHelper::TotalAvgPower(ns3::Ptr<ns3::SpectrumValue const> psd, uint32_t channel) [member function]
+    ## ble-spectrum-value-helper.h (module 'ble'): static double ns3::BleSpectrumValueHelper::TotalAvgPower(ns3::Ptr<ns3::SpectrumValue const> psd, uint32_t channel) [member function]
     cls.add_method('TotalAvgPower', 
                    'double', 
                    [param('ns3::Ptr< ns3::SpectrumValue const >', 'psd'), param('uint32_t', 'channel')], 
@@ -1934,55 +1934,55 @@ def register_Ns3Mac64Address_methods(root_module, cls):
     return
 
 def register_Ns3McpsDataConfirmParams_methods(root_module, cls):
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataConfirmParams::McpsDataConfirmParams() [constructor]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataConfirmParams::McpsDataConfirmParams() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataConfirmParams::McpsDataConfirmParams(ns3::McpsDataConfirmParams const & arg0) [copy constructor]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataConfirmParams::McpsDataConfirmParams(ns3::McpsDataConfirmParams const & arg0) [copy constructor]
     cls.add_constructor([param('ns3::McpsDataConfirmParams const &', 'arg0')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataConfirmParams::m_msduHandle [variable]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataConfirmParams::m_msduHandle [variable]
     cls.add_instance_attribute('m_msduHandle', 'uint8_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataConfirmParams::m_status [variable]
-    cls.add_instance_attribute('m_status', 'ns3::LrWpanMcpsDataConfirmStatus', is_const=False)
+    ## ble-mac.h (module 'ble'): ns3::McpsDataConfirmParams::m_status [variable]
+    cls.add_instance_attribute('m_status', 'ns3::BleMcpsDataConfirmStatus', is_const=False)
     return
 
 def register_Ns3McpsDataIndicationParams_methods(root_module, cls):
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataIndicationParams::McpsDataIndicationParams() [constructor]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataIndicationParams::McpsDataIndicationParams() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataIndicationParams::McpsDataIndicationParams(ns3::McpsDataIndicationParams const & arg0) [copy constructor]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataIndicationParams::McpsDataIndicationParams(ns3::McpsDataIndicationParams const & arg0) [copy constructor]
     cls.add_constructor([param('ns3::McpsDataIndicationParams const &', 'arg0')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataIndicationParams::m_dsn [variable]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataIndicationParams::m_dsn [variable]
     cls.add_instance_attribute('m_dsn', 'uint8_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataIndicationParams::m_dstAddr [variable]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataIndicationParams::m_dstAddr [variable]
     cls.add_instance_attribute('m_dstAddr', 'ns3::Mac16Address', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataIndicationParams::m_dstAddrMode [variable]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataIndicationParams::m_dstAddrMode [variable]
     cls.add_instance_attribute('m_dstAddrMode', 'uint8_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataIndicationParams::m_dstPanId [variable]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataIndicationParams::m_dstPanId [variable]
     cls.add_instance_attribute('m_dstPanId', 'uint16_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataIndicationParams::m_mpduLinkQuality [variable]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataIndicationParams::m_mpduLinkQuality [variable]
     cls.add_instance_attribute('m_mpduLinkQuality', 'uint8_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataIndicationParams::m_srcAddr [variable]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataIndicationParams::m_srcAddr [variable]
     cls.add_instance_attribute('m_srcAddr', 'ns3::Mac16Address', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataIndicationParams::m_srcAddrMode [variable]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataIndicationParams::m_srcAddrMode [variable]
     cls.add_instance_attribute('m_srcAddrMode', 'uint8_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataIndicationParams::m_srcPanId [variable]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataIndicationParams::m_srcPanId [variable]
     cls.add_instance_attribute('m_srcPanId', 'uint16_t', is_const=False)
     return
 
 def register_Ns3McpsDataRequestParams_methods(root_module, cls):
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataRequestParams::McpsDataRequestParams(ns3::McpsDataRequestParams const & arg0) [copy constructor]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataRequestParams::McpsDataRequestParams(ns3::McpsDataRequestParams const & arg0) [copy constructor]
     cls.add_constructor([param('ns3::McpsDataRequestParams const &', 'arg0')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataRequestParams::McpsDataRequestParams() [constructor]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataRequestParams::McpsDataRequestParams() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataRequestParams::m_dstAddr [variable]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataRequestParams::m_dstAddr [variable]
     cls.add_instance_attribute('m_dstAddr', 'ns3::Mac16Address', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataRequestParams::m_dstAddrMode [variable]
-    cls.add_instance_attribute('m_dstAddrMode', 'ns3::LrWpanAddressMode', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataRequestParams::m_dstPanId [variable]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataRequestParams::m_dstAddrMode [variable]
+    cls.add_instance_attribute('m_dstAddrMode', 'ns3::BleAddressMode', is_const=False)
+    ## ble-mac.h (module 'ble'): ns3::McpsDataRequestParams::m_dstPanId [variable]
     cls.add_instance_attribute('m_dstPanId', 'uint16_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataRequestParams::m_msduHandle [variable]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataRequestParams::m_msduHandle [variable]
     cls.add_instance_attribute('m_msduHandle', 'uint8_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataRequestParams::m_srcAddrMode [variable]
-    cls.add_instance_attribute('m_srcAddrMode', 'ns3::LrWpanAddressMode', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::McpsDataRequestParams::m_txOptions [variable]
+    ## ble-mac.h (module 'ble'): ns3::McpsDataRequestParams::m_srcAddrMode [variable]
+    cls.add_instance_attribute('m_srcAddrMode', 'ns3::BleAddressMode', is_const=False)
+    ## ble-mac.h (module 'ble'): ns3::McpsDataRequestParams::m_txOptions [variable]
     cls.add_instance_attribute('m_txOptions', 'uint8_t', is_const=False)
     return
 
@@ -2758,72 +2758,72 @@ def register_Ns3TimeWithUnit_methods(root_module, cls):
     cls.add_constructor([param('ns3::Time const', 'time'), param('ns3::Time::Unit const', 'unit')])
     return
 
-def register_Ns3TracedValue__Ns3LrWpanMacState_methods(root_module, cls):
-    ## traced-value.h (module 'core'): ns3::TracedValue<ns3::LrWpanMacState>::TracedValue() [constructor]
+def register_Ns3TracedValue__Ns3BleMacState_methods(root_module, cls):
+    ## traced-value.h (module 'core'): ns3::TracedValue<ns3::BleMacState>::TracedValue() [constructor]
     cls.add_constructor([])
-    ## traced-value.h (module 'core'): ns3::TracedValue<ns3::LrWpanMacState>::TracedValue(ns3::TracedValue<ns3::LrWpanMacState> const & o) [copy constructor]
-    cls.add_constructor([param('ns3::TracedValue< ns3::LrWpanMacState > const &', 'o')])
-    ## traced-value.h (module 'core'): ns3::TracedValue<ns3::LrWpanMacState>::TracedValue(ns3::LrWpanMacState const & v) [constructor]
-    cls.add_constructor([param('ns3::LrWpanMacState const &', 'v')])
-    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::LrWpanMacState>::Connect(ns3::CallbackBase const & cb, std::basic_string<char,std::char_traits<char>,std::allocator<char> > path) [member function]
+    ## traced-value.h (module 'core'): ns3::TracedValue<ns3::BleMacState>::TracedValue(ns3::TracedValue<ns3::BleMacState> const & o) [copy constructor]
+    cls.add_constructor([param('ns3::TracedValue< ns3::BleMacState > const &', 'o')])
+    ## traced-value.h (module 'core'): ns3::TracedValue<ns3::BleMacState>::TracedValue(ns3::BleMacState const & v) [constructor]
+    cls.add_constructor([param('ns3::BleMacState const &', 'v')])
+    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::BleMacState>::Connect(ns3::CallbackBase const & cb, std::basic_string<char,std::char_traits<char>,std::allocator<char> > path) [member function]
     cls.add_method('Connect', 
                    'void', 
                    [param('ns3::CallbackBase const &', 'cb'), param('std::string', 'path')])
-    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::LrWpanMacState>::ConnectWithoutContext(ns3::CallbackBase const & cb) [member function]
+    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::BleMacState>::ConnectWithoutContext(ns3::CallbackBase const & cb) [member function]
     cls.add_method('ConnectWithoutContext', 
                    'void', 
                    [param('ns3::CallbackBase const &', 'cb')])
-    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::LrWpanMacState>::Disconnect(ns3::CallbackBase const & cb, std::basic_string<char,std::char_traits<char>,std::allocator<char> > path) [member function]
+    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::BleMacState>::Disconnect(ns3::CallbackBase const & cb, std::basic_string<char,std::char_traits<char>,std::allocator<char> > path) [member function]
     cls.add_method('Disconnect', 
                    'void', 
                    [param('ns3::CallbackBase const &', 'cb'), param('std::string', 'path')])
-    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::LrWpanMacState>::DisconnectWithoutContext(ns3::CallbackBase const & cb) [member function]
+    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::BleMacState>::DisconnectWithoutContext(ns3::CallbackBase const & cb) [member function]
     cls.add_method('DisconnectWithoutContext', 
                    'void', 
                    [param('ns3::CallbackBase const &', 'cb')])
-    ## traced-value.h (module 'core'): ns3::LrWpanMacState ns3::TracedValue<ns3::LrWpanMacState>::Get() const [member function]
+    ## traced-value.h (module 'core'): ns3::BleMacState ns3::TracedValue<ns3::BleMacState>::Get() const [member function]
     cls.add_method('Get', 
-                   'ns3::LrWpanMacState', 
+                   'ns3::BleMacState', 
                    [], 
                    is_const=True)
-    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::LrWpanMacState>::Set(ns3::LrWpanMacState const & v) [member function]
+    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::BleMacState>::Set(ns3::BleMacState const & v) [member function]
     cls.add_method('Set', 
                    'void', 
-                   [param('ns3::LrWpanMacState const &', 'v')])
+                   [param('ns3::BleMacState const &', 'v')])
     return
 
-def register_Ns3TracedValue__Ns3LrWpanPhyEnumeration_methods(root_module, cls):
-    ## traced-value.h (module 'core'): ns3::TracedValue<ns3::LrWpanPhyEnumeration>::TracedValue() [constructor]
+def register_Ns3TracedValue__Ns3BlePhyEnumeration_methods(root_module, cls):
+    ## traced-value.h (module 'core'): ns3::TracedValue<ns3::BlePhyEnumeration>::TracedValue() [constructor]
     cls.add_constructor([])
-    ## traced-value.h (module 'core'): ns3::TracedValue<ns3::LrWpanPhyEnumeration>::TracedValue(ns3::TracedValue<ns3::LrWpanPhyEnumeration> const & o) [copy constructor]
-    cls.add_constructor([param('ns3::TracedValue< ns3::LrWpanPhyEnumeration > const &', 'o')])
-    ## traced-value.h (module 'core'): ns3::TracedValue<ns3::LrWpanPhyEnumeration>::TracedValue(ns3::LrWpanPhyEnumeration const & v) [constructor]
-    cls.add_constructor([param('ns3::LrWpanPhyEnumeration const &', 'v')])
-    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::LrWpanPhyEnumeration>::Connect(ns3::CallbackBase const & cb, std::basic_string<char,std::char_traits<char>,std::allocator<char> > path) [member function]
+    ## traced-value.h (module 'core'): ns3::TracedValue<ns3::BlePhyEnumeration>::TracedValue(ns3::TracedValue<ns3::BlePhyEnumeration> const & o) [copy constructor]
+    cls.add_constructor([param('ns3::TracedValue< ns3::BlePhyEnumeration > const &', 'o')])
+    ## traced-value.h (module 'core'): ns3::TracedValue<ns3::BlePhyEnumeration>::TracedValue(ns3::BlePhyEnumeration const & v) [constructor]
+    cls.add_constructor([param('ns3::BlePhyEnumeration const &', 'v')])
+    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::BlePhyEnumeration>::Connect(ns3::CallbackBase const & cb, std::basic_string<char,std::char_traits<char>,std::allocator<char> > path) [member function]
     cls.add_method('Connect', 
                    'void', 
                    [param('ns3::CallbackBase const &', 'cb'), param('std::string', 'path')])
-    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::LrWpanPhyEnumeration>::ConnectWithoutContext(ns3::CallbackBase const & cb) [member function]
+    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::BlePhyEnumeration>::ConnectWithoutContext(ns3::CallbackBase const & cb) [member function]
     cls.add_method('ConnectWithoutContext', 
                    'void', 
                    [param('ns3::CallbackBase const &', 'cb')])
-    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::LrWpanPhyEnumeration>::Disconnect(ns3::CallbackBase const & cb, std::basic_string<char,std::char_traits<char>,std::allocator<char> > path) [member function]
+    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::BlePhyEnumeration>::Disconnect(ns3::CallbackBase const & cb, std::basic_string<char,std::char_traits<char>,std::allocator<char> > path) [member function]
     cls.add_method('Disconnect', 
                    'void', 
                    [param('ns3::CallbackBase const &', 'cb'), param('std::string', 'path')])
-    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::LrWpanPhyEnumeration>::DisconnectWithoutContext(ns3::CallbackBase const & cb) [member function]
+    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::BlePhyEnumeration>::DisconnectWithoutContext(ns3::CallbackBase const & cb) [member function]
     cls.add_method('DisconnectWithoutContext', 
                    'void', 
                    [param('ns3::CallbackBase const &', 'cb')])
-    ## traced-value.h (module 'core'): ns3::LrWpanPhyEnumeration ns3::TracedValue<ns3::LrWpanPhyEnumeration>::Get() const [member function]
+    ## traced-value.h (module 'core'): ns3::BlePhyEnumeration ns3::TracedValue<ns3::BlePhyEnumeration>::Get() const [member function]
     cls.add_method('Get', 
-                   'ns3::LrWpanPhyEnumeration', 
+                   'ns3::BlePhyEnumeration', 
                    [], 
                    is_const=True)
-    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::LrWpanPhyEnumeration>::Set(ns3::LrWpanPhyEnumeration const & v) [member function]
+    ## traced-value.h (module 'core'): void ns3::TracedValue<ns3::BlePhyEnumeration>::Set(ns3::BlePhyEnumeration const & v) [member function]
     cls.add_method('Set', 
                    'void', 
-                   [param('ns3::LrWpanPhyEnumeration const &', 'v')])
+                   [param('ns3::BlePhyEnumeration const &', 'v')])
     return
 
 def register_Ns3TypeId_methods(root_module, cls):
@@ -3160,403 +3160,403 @@ def register_Ns3Header_methods(root_module, cls):
                    is_pure_virtual=True, is_const=True, is_virtual=True)
     return
 
-def register_Ns3LrWpanHelper_methods(root_module, cls):
-    ## lr-wpan-helper.h (module 'lr-wpan'): ns3::LrWpanHelper::LrWpanHelper() [constructor]
+def register_Ns3BleHelper_methods(root_module, cls):
+    ## ble-helper.h (module 'ble'): ns3::BleHelper::BleHelper() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-helper.h (module 'lr-wpan'): ns3::LrWpanHelper::LrWpanHelper(bool useMultiModelSpectrumChannel) [constructor]
+    ## ble-helper.h (module 'ble'): ns3::BleHelper::BleHelper(bool useMultiModelSpectrumChannel) [constructor]
     cls.add_constructor([param('bool', 'useMultiModelSpectrumChannel')])
-    ## lr-wpan-helper.h (module 'lr-wpan'): ns3::Ptr<ns3::SpectrumChannel> ns3::LrWpanHelper::GetChannel() [member function]
+    ## ble-helper.h (module 'ble'): ns3::Ptr<ns3::SpectrumChannel> ns3::BleHelper::GetChannel() [member function]
     cls.add_method('GetChannel', 
                    'ns3::Ptr< ns3::SpectrumChannel >', 
                    [])
-    ## lr-wpan-helper.h (module 'lr-wpan'): void ns3::LrWpanHelper::SetChannel(ns3::Ptr<ns3::SpectrumChannel> channel) [member function]
+    ## ble-helper.h (module 'ble'): void ns3::BleHelper::SetChannel(ns3::Ptr<ns3::SpectrumChannel> channel) [member function]
     cls.add_method('SetChannel', 
                    'void', 
                    [param('ns3::Ptr< ns3::SpectrumChannel >', 'channel')])
-    ## lr-wpan-helper.h (module 'lr-wpan'): void ns3::LrWpanHelper::SetChannel(std::string channelName) [member function]
+    ## ble-helper.h (module 'ble'): void ns3::BleHelper::SetChannel(std::string channelName) [member function]
     cls.add_method('SetChannel', 
                    'void', 
                    [param('std::string', 'channelName')])
-    ## lr-wpan-helper.h (module 'lr-wpan'): void ns3::LrWpanHelper::AddMobility(ns3::Ptr<ns3::LrWpanPhy> phy, ns3::Ptr<ns3::MobilityModel> m) [member function]
+    ## ble-helper.h (module 'ble'): void ns3::BleHelper::AddMobility(ns3::Ptr<ns3::BlePhy> phy, ns3::Ptr<ns3::MobilityModel> m) [member function]
     cls.add_method('AddMobility', 
                    'void', 
-                   [param('ns3::Ptr< ns3::LrWpanPhy >', 'phy'), param('ns3::Ptr< ns3::MobilityModel >', 'm')])
-    ## lr-wpan-helper.h (module 'lr-wpan'): ns3::NetDeviceContainer ns3::LrWpanHelper::Install(ns3::NodeContainer c) [member function]
+                   [param('ns3::Ptr< ns3::BlePhy >', 'phy'), param('ns3::Ptr< ns3::MobilityModel >', 'm')])
+    ## ble-helper.h (module 'ble'): ns3::NetDeviceContainer ns3::BleHelper::Install(ns3::NodeContainer c) [member function]
     cls.add_method('Install', 
                    'ns3::NetDeviceContainer', 
                    [param('ns3::NodeContainer', 'c')])
-    ## lr-wpan-helper.h (module 'lr-wpan'): void ns3::LrWpanHelper::AssociateToPan(ns3::NetDeviceContainer c, uint16_t panId) [member function]
+    ## ble-helper.h (module 'ble'): void ns3::BleHelper::AssociateToPan(ns3::NetDeviceContainer c, uint16_t panId) [member function]
     cls.add_method('AssociateToPan', 
                    'void', 
                    [param('ns3::NetDeviceContainer', 'c'), param('uint16_t', 'panId')])
-    ## lr-wpan-helper.h (module 'lr-wpan'): void ns3::LrWpanHelper::EnableLogComponents() [member function]
+    ## ble-helper.h (module 'ble'): void ns3::BleHelper::EnableLogComponents() [member function]
     cls.add_method('EnableLogComponents', 
                    'void', 
                    [])
-    ## lr-wpan-helper.h (module 'lr-wpan'): static std::string ns3::LrWpanHelper::LrWpanPhyEnumerationPrinter(ns3::LrWpanPhyEnumeration e) [member function]
-    cls.add_method('LrWpanPhyEnumerationPrinter', 
+    ## ble-helper.h (module 'ble'): static std::string ns3::BleHelper::BlePhyEnumerationPrinter(ns3::BlePhyEnumeration e) [member function]
+    cls.add_method('BlePhyEnumerationPrinter', 
                    'std::string', 
-                   [param('ns3::LrWpanPhyEnumeration', 'e')], 
+                   [param('ns3::BlePhyEnumeration', 'e')], 
                    is_static=True)
-    ## lr-wpan-helper.h (module 'lr-wpan'): static std::string ns3::LrWpanHelper::LrWpanMacStatePrinter(ns3::LrWpanMacState e) [member function]
-    cls.add_method('LrWpanMacStatePrinter', 
+    ## ble-helper.h (module 'ble'): static std::string ns3::BleHelper::BleMacStatePrinter(ns3::BleMacState e) [member function]
+    cls.add_method('BleMacStatePrinter', 
                    'std::string', 
-                   [param('ns3::LrWpanMacState', 'e')], 
+                   [param('ns3::BleMacState', 'e')], 
                    is_static=True)
-    ## lr-wpan-helper.h (module 'lr-wpan'): int64_t ns3::LrWpanHelper::AssignStreams(ns3::NetDeviceContainer c, int64_t stream) [member function]
+    ## ble-helper.h (module 'ble'): int64_t ns3::BleHelper::AssignStreams(ns3::NetDeviceContainer c, int64_t stream) [member function]
     cls.add_method('AssignStreams', 
                    'int64_t', 
                    [param('ns3::NetDeviceContainer', 'c'), param('int64_t', 'stream')])
-    ## lr-wpan-helper.h (module 'lr-wpan'): void ns3::LrWpanHelper::EnablePcapInternal(std::string prefix, ns3::Ptr<ns3::NetDevice> nd, bool promiscuous, bool explicitFilename) [member function]
+    ## ble-helper.h (module 'ble'): void ns3::BleHelper::EnablePcapInternal(std::string prefix, ns3::Ptr<ns3::NetDevice> nd, bool promiscuous, bool explicitFilename) [member function]
     cls.add_method('EnablePcapInternal', 
                    'void', 
                    [param('std::string', 'prefix'), param('ns3::Ptr< ns3::NetDevice >', 'nd'), param('bool', 'promiscuous'), param('bool', 'explicitFilename')], 
                    visibility='private', is_virtual=True)
-    ## lr-wpan-helper.h (module 'lr-wpan'): void ns3::LrWpanHelper::EnableAsciiInternal(ns3::Ptr<ns3::OutputStreamWrapper> stream, std::string prefix, ns3::Ptr<ns3::NetDevice> nd, bool explicitFilename) [member function]
+    ## ble-helper.h (module 'ble'): void ns3::BleHelper::EnableAsciiInternal(ns3::Ptr<ns3::OutputStreamWrapper> stream, std::string prefix, ns3::Ptr<ns3::NetDevice> nd, bool explicitFilename) [member function]
     cls.add_method('EnableAsciiInternal', 
                    'void', 
                    [param('ns3::Ptr< ns3::OutputStreamWrapper >', 'stream'), param('std::string', 'prefix'), param('ns3::Ptr< ns3::NetDevice >', 'nd'), param('bool', 'explicitFilename')], 
                    visibility='private', is_virtual=True)
     return
 
-def register_Ns3LrWpanLqiTag_methods(root_module, cls):
-    ## lr-wpan-lqi-tag.h (module 'lr-wpan'): ns3::LrWpanLqiTag::LrWpanLqiTag(ns3::LrWpanLqiTag const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::LrWpanLqiTag const &', 'arg0')])
-    ## lr-wpan-lqi-tag.h (module 'lr-wpan'): ns3::LrWpanLqiTag::LrWpanLqiTag() [constructor]
+def register_Ns3BleLqiTag_methods(root_module, cls):
+    ## ble-lqi-tag.h (module 'ble'): ns3::BleLqiTag::BleLqiTag(ns3::BleLqiTag const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::BleLqiTag const &', 'arg0')])
+    ## ble-lqi-tag.h (module 'ble'): ns3::BleLqiTag::BleLqiTag() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-lqi-tag.h (module 'lr-wpan'): ns3::LrWpanLqiTag::LrWpanLqiTag(uint8_t lqi) [constructor]
+    ## ble-lqi-tag.h (module 'ble'): ns3::BleLqiTag::BleLqiTag(uint8_t lqi) [constructor]
     cls.add_constructor([param('uint8_t', 'lqi')])
-    ## lr-wpan-lqi-tag.h (module 'lr-wpan'): void ns3::LrWpanLqiTag::Deserialize(ns3::TagBuffer i) [member function]
+    ## ble-lqi-tag.h (module 'ble'): void ns3::BleLqiTag::Deserialize(ns3::TagBuffer i) [member function]
     cls.add_method('Deserialize', 
                    'void', 
                    [param('ns3::TagBuffer', 'i')], 
                    is_virtual=True)
-    ## lr-wpan-lqi-tag.h (module 'lr-wpan'): uint8_t ns3::LrWpanLqiTag::Get() const [member function]
+    ## ble-lqi-tag.h (module 'ble'): uint8_t ns3::BleLqiTag::Get() const [member function]
     cls.add_method('Get', 
                    'uint8_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-lqi-tag.h (module 'lr-wpan'): ns3::TypeId ns3::LrWpanLqiTag::GetInstanceTypeId() const [member function]
+    ## ble-lqi-tag.h (module 'ble'): ns3::TypeId ns3::BleLqiTag::GetInstanceTypeId() const [member function]
     cls.add_method('GetInstanceTypeId', 
                    'ns3::TypeId', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-lqi-tag.h (module 'lr-wpan'): uint32_t ns3::LrWpanLqiTag::GetSerializedSize() const [member function]
+    ## ble-lqi-tag.h (module 'ble'): uint32_t ns3::BleLqiTag::GetSerializedSize() const [member function]
     cls.add_method('GetSerializedSize', 
                    'uint32_t', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-lqi-tag.h (module 'lr-wpan'): static ns3::TypeId ns3::LrWpanLqiTag::GetTypeId() [member function]
+    ## ble-lqi-tag.h (module 'ble'): static ns3::TypeId ns3::BleLqiTag::GetTypeId() [member function]
     cls.add_method('GetTypeId', 
                    'ns3::TypeId', 
                    [], 
                    is_static=True)
-    ## lr-wpan-lqi-tag.h (module 'lr-wpan'): void ns3::LrWpanLqiTag::Print(std::ostream & os) const [member function]
+    ## ble-lqi-tag.h (module 'ble'): void ns3::BleLqiTag::Print(std::ostream & os) const [member function]
     cls.add_method('Print', 
                    'void', 
                    [param('std::ostream &', 'os')], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-lqi-tag.h (module 'lr-wpan'): void ns3::LrWpanLqiTag::Serialize(ns3::TagBuffer i) const [member function]
+    ## ble-lqi-tag.h (module 'ble'): void ns3::BleLqiTag::Serialize(ns3::TagBuffer i) const [member function]
     cls.add_method('Serialize', 
                    'void', 
                    [param('ns3::TagBuffer', 'i')], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-lqi-tag.h (module 'lr-wpan'): void ns3::LrWpanLqiTag::Set(uint8_t lqi) [member function]
+    ## ble-lqi-tag.h (module 'ble'): void ns3::BleLqiTag::Set(uint8_t lqi) [member function]
     cls.add_method('Set', 
                    'void', 
                    [param('uint8_t', 'lqi')])
     return
 
-def register_Ns3LrWpanMacHeader_methods(root_module, cls):
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): ns3::LrWpanMacHeader::LrWpanMacHeader(ns3::LrWpanMacHeader const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::LrWpanMacHeader const &', 'arg0')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): ns3::LrWpanMacHeader::LrWpanMacHeader() [constructor]
+def register_Ns3BleMacHeader_methods(root_module, cls):
+    ## ble-mac-header.h (module 'ble'): ns3::BleMacHeader::BleMacHeader(ns3::BleMacHeader const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::BleMacHeader const &', 'arg0')])
+    ## ble-mac-header.h (module 'ble'): ns3::BleMacHeader::BleMacHeader() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): ns3::LrWpanMacHeader::LrWpanMacHeader(ns3::LrWpanMacHeader::LrWpanMacType wpanMacType, uint8_t seqNum) [constructor]
-    cls.add_constructor([param('ns3::LrWpanMacHeader::LrWpanMacType', 'wpanMacType'), param('uint8_t', 'seqNum')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint32_t ns3::LrWpanMacHeader::Deserialize(ns3::Buffer::Iterator start) [member function]
+    ## ble-mac-header.h (module 'ble'): ns3::BleMacHeader::BleMacHeader(ns3::BleMacHeader::BleMacType bleMacType, uint8_t seqNum) [constructor]
+    cls.add_constructor([param('ns3::BleMacHeader::BleMacType', 'bleMacType'), param('uint8_t', 'seqNum')])
+    ## ble-mac-header.h (module 'ble'): uint32_t ns3::BleMacHeader::Deserialize(ns3::Buffer::Iterator start) [member function]
     cls.add_method('Deserialize', 
                    'uint32_t', 
                    [param('ns3::Buffer::Iterator', 'start')], 
                    is_virtual=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint8_t ns3::LrWpanMacHeader::GetDstAddrMode() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint8_t ns3::BleMacHeader::GetDstAddrMode() const [member function]
     cls.add_method('GetDstAddrMode', 
                    'uint8_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint16_t ns3::LrWpanMacHeader::GetDstPanId() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint16_t ns3::BleMacHeader::GetDstPanId() const [member function]
     cls.add_method('GetDstPanId', 
                    'uint16_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): ns3::Mac64Address ns3::LrWpanMacHeader::GetExtDstAddr() const [member function]
+    ## ble-mac-header.h (module 'ble'): ns3::Mac64Address ns3::BleMacHeader::GetExtDstAddr() const [member function]
     cls.add_method('GetExtDstAddr', 
                    'ns3::Mac64Address', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): ns3::Mac64Address ns3::LrWpanMacHeader::GetExtSrcAddr() const [member function]
+    ## ble-mac-header.h (module 'ble'): ns3::Mac64Address ns3::BleMacHeader::GetExtSrcAddr() const [member function]
     cls.add_method('GetExtSrcAddr', 
                    'ns3::Mac64Address', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint16_t ns3::LrWpanMacHeader::GetFrameControl() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint16_t ns3::BleMacHeader::GetFrameControl() const [member function]
     cls.add_method('GetFrameControl', 
                    'uint16_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint8_t ns3::LrWpanMacHeader::GetFrameVer() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint8_t ns3::BleMacHeader::GetFrameVer() const [member function]
     cls.add_method('GetFrameVer', 
                    'uint8_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint32_t ns3::LrWpanMacHeader::GetFrmCounter() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint32_t ns3::BleMacHeader::GetFrmCounter() const [member function]
     cls.add_method('GetFrmCounter', 
                    'uint32_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint8_t ns3::LrWpanMacHeader::GetFrmCtrlRes() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint8_t ns3::BleMacHeader::GetFrmCtrlRes() const [member function]
     cls.add_method('GetFrmCtrlRes', 
                    'uint8_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): ns3::TypeId ns3::LrWpanMacHeader::GetInstanceTypeId() const [member function]
+    ## ble-mac-header.h (module 'ble'): ns3::TypeId ns3::BleMacHeader::GetInstanceTypeId() const [member function]
     cls.add_method('GetInstanceTypeId', 
                    'ns3::TypeId', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint8_t ns3::LrWpanMacHeader::GetKeyIdIndex() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint8_t ns3::BleMacHeader::GetKeyIdIndex() const [member function]
     cls.add_method('GetKeyIdIndex', 
                    'uint8_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint8_t ns3::LrWpanMacHeader::GetKeyIdMode() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint8_t ns3::BleMacHeader::GetKeyIdMode() const [member function]
     cls.add_method('GetKeyIdMode', 
                    'uint8_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint32_t ns3::LrWpanMacHeader::GetKeyIdSrc32() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint32_t ns3::BleMacHeader::GetKeyIdSrc32() const [member function]
     cls.add_method('GetKeyIdSrc32', 
                    'uint32_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint64_t ns3::LrWpanMacHeader::GetKeyIdSrc64() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint64_t ns3::BleMacHeader::GetKeyIdSrc64() const [member function]
     cls.add_method('GetKeyIdSrc64', 
                    'uint64_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint8_t ns3::LrWpanMacHeader::GetSecControl() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint8_t ns3::BleMacHeader::GetSecControl() const [member function]
     cls.add_method('GetSecControl', 
                    'uint8_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint8_t ns3::LrWpanMacHeader::GetSecCtrlReserved() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint8_t ns3::BleMacHeader::GetSecCtrlReserved() const [member function]
     cls.add_method('GetSecCtrlReserved', 
                    'uint8_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint8_t ns3::LrWpanMacHeader::GetSecLevel() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint8_t ns3::BleMacHeader::GetSecLevel() const [member function]
     cls.add_method('GetSecLevel', 
                    'uint8_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint8_t ns3::LrWpanMacHeader::GetSeqNum() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint8_t ns3::BleMacHeader::GetSeqNum() const [member function]
     cls.add_method('GetSeqNum', 
                    'uint8_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint32_t ns3::LrWpanMacHeader::GetSerializedSize() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint32_t ns3::BleMacHeader::GetSerializedSize() const [member function]
     cls.add_method('GetSerializedSize', 
                    'uint32_t', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): ns3::Mac16Address ns3::LrWpanMacHeader::GetShortDstAddr() const [member function]
+    ## ble-mac-header.h (module 'ble'): ns3::Mac16Address ns3::BleMacHeader::GetShortDstAddr() const [member function]
     cls.add_method('GetShortDstAddr', 
                    'ns3::Mac16Address', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): ns3::Mac16Address ns3::LrWpanMacHeader::GetShortSrcAddr() const [member function]
+    ## ble-mac-header.h (module 'ble'): ns3::Mac16Address ns3::BleMacHeader::GetShortSrcAddr() const [member function]
     cls.add_method('GetShortSrcAddr', 
                    'ns3::Mac16Address', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint8_t ns3::LrWpanMacHeader::GetSrcAddrMode() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint8_t ns3::BleMacHeader::GetSrcAddrMode() const [member function]
     cls.add_method('GetSrcAddrMode', 
                    'uint8_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): uint16_t ns3::LrWpanMacHeader::GetSrcPanId() const [member function]
+    ## ble-mac-header.h (module 'ble'): uint16_t ns3::BleMacHeader::GetSrcPanId() const [member function]
     cls.add_method('GetSrcPanId', 
                    'uint16_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): ns3::LrWpanMacHeader::LrWpanMacType ns3::LrWpanMacHeader::GetType() const [member function]
+    ## ble-mac-header.h (module 'ble'): ns3::BleMacHeader::BleMacType ns3::BleMacHeader::GetType() const [member function]
     cls.add_method('GetType', 
-                   'ns3::LrWpanMacHeader::LrWpanMacType', 
+                   'ns3::BleMacHeader::BleMacType', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): static ns3::TypeId ns3::LrWpanMacHeader::GetTypeId() [member function]
+    ## ble-mac-header.h (module 'ble'): static ns3::TypeId ns3::BleMacHeader::GetTypeId() [member function]
     cls.add_method('GetTypeId', 
                    'ns3::TypeId', 
                    [], 
                    is_static=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): bool ns3::LrWpanMacHeader::IsAckReq() const [member function]
+    ## ble-mac-header.h (module 'ble'): bool ns3::BleMacHeader::IsAckReq() const [member function]
     cls.add_method('IsAckReq', 
                    'bool', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): bool ns3::LrWpanMacHeader::IsAcknowledgment() const [member function]
+    ## ble-mac-header.h (module 'ble'): bool ns3::BleMacHeader::IsAcknowledgment() const [member function]
     cls.add_method('IsAcknowledgment', 
                    'bool', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): bool ns3::LrWpanMacHeader::IsBeacon() const [member function]
+    ## ble-mac-header.h (module 'ble'): bool ns3::BleMacHeader::IsBeacon() const [member function]
     cls.add_method('IsBeacon', 
                    'bool', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): bool ns3::LrWpanMacHeader::IsCommand() const [member function]
+    ## ble-mac-header.h (module 'ble'): bool ns3::BleMacHeader::IsCommand() const [member function]
     cls.add_method('IsCommand', 
                    'bool', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): bool ns3::LrWpanMacHeader::IsData() const [member function]
+    ## ble-mac-header.h (module 'ble'): bool ns3::BleMacHeader::IsData() const [member function]
     cls.add_method('IsData', 
                    'bool', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): bool ns3::LrWpanMacHeader::IsFrmPend() const [member function]
+    ## ble-mac-header.h (module 'ble'): bool ns3::BleMacHeader::IsFrmPend() const [member function]
     cls.add_method('IsFrmPend', 
                    'bool', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): bool ns3::LrWpanMacHeader::IsPanIdComp() const [member function]
+    ## ble-mac-header.h (module 'ble'): bool ns3::BleMacHeader::IsPanIdComp() const [member function]
     cls.add_method('IsPanIdComp', 
                    'bool', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): bool ns3::LrWpanMacHeader::IsSecEnable() const [member function]
+    ## ble-mac-header.h (module 'ble'): bool ns3::BleMacHeader::IsSecEnable() const [member function]
     cls.add_method('IsSecEnable', 
                    'bool', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::Print(std::ostream & os) const [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::Print(std::ostream & os) const [member function]
     cls.add_method('Print', 
                    'void', 
                    [param('std::ostream &', 'os')], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::Serialize(ns3::Buffer::Iterator start) const [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::Serialize(ns3::Buffer::Iterator start) const [member function]
     cls.add_method('Serialize', 
                    'void', 
                    [param('ns3::Buffer::Iterator', 'start')], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetAckReq() [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetAckReq() [member function]
     cls.add_method('SetAckReq', 
                    'void', 
                    [])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetDstAddrFields(uint16_t panId, ns3::Mac16Address addr) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetDstAddrFields(uint16_t panId, ns3::Mac16Address addr) [member function]
     cls.add_method('SetDstAddrFields', 
                    'void', 
                    [param('uint16_t', 'panId'), param('ns3::Mac16Address', 'addr')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetDstAddrFields(uint16_t panId, ns3::Mac64Address addr) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetDstAddrFields(uint16_t panId, ns3::Mac64Address addr) [member function]
     cls.add_method('SetDstAddrFields', 
                    'void', 
                    [param('uint16_t', 'panId'), param('ns3::Mac64Address', 'addr')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetDstAddrMode(uint8_t addrMode) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetDstAddrMode(uint8_t addrMode) [member function]
     cls.add_method('SetDstAddrMode', 
                    'void', 
                    [param('uint8_t', 'addrMode')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetFrameControl(uint16_t frameControl) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetFrameControl(uint16_t frameControl) [member function]
     cls.add_method('SetFrameControl', 
                    'void', 
                    [param('uint16_t', 'frameControl')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetFrameVer(uint8_t ver) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetFrameVer(uint8_t ver) [member function]
     cls.add_method('SetFrameVer', 
                    'void', 
                    [param('uint8_t', 'ver')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetFrmCounter(uint32_t frmCntr) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetFrmCounter(uint32_t frmCntr) [member function]
     cls.add_method('SetFrmCounter', 
                    'void', 
                    [param('uint32_t', 'frmCntr')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetFrmCtrlRes(uint8_t res) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetFrmCtrlRes(uint8_t res) [member function]
     cls.add_method('SetFrmCtrlRes', 
                    'void', 
                    [param('uint8_t', 'res')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetFrmPend() [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetFrmPend() [member function]
     cls.add_method('SetFrmPend', 
                    'void', 
                    [])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetKeyId(uint8_t keyIndex) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetKeyId(uint8_t keyIndex) [member function]
     cls.add_method('SetKeyId', 
                    'void', 
                    [param('uint8_t', 'keyIndex')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetKeyId(uint32_t keySrc, uint8_t keyIndex) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetKeyId(uint32_t keySrc, uint8_t keyIndex) [member function]
     cls.add_method('SetKeyId', 
                    'void', 
                    [param('uint32_t', 'keySrc'), param('uint8_t', 'keyIndex')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetKeyId(uint64_t keySrc, uint8_t keyIndex) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetKeyId(uint64_t keySrc, uint8_t keyIndex) [member function]
     cls.add_method('SetKeyId', 
                    'void', 
                    [param('uint64_t', 'keySrc'), param('uint8_t', 'keyIndex')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetKeyIdMode(uint8_t keyIdMode) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetKeyIdMode(uint8_t keyIdMode) [member function]
     cls.add_method('SetKeyIdMode', 
                    'void', 
                    [param('uint8_t', 'keyIdMode')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetNoAckReq() [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetNoAckReq() [member function]
     cls.add_method('SetNoAckReq', 
                    'void', 
                    [])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetNoFrmPend() [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetNoFrmPend() [member function]
     cls.add_method('SetNoFrmPend', 
                    'void', 
                    [])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetNoPanIdComp() [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetNoPanIdComp() [member function]
     cls.add_method('SetNoPanIdComp', 
                    'void', 
                    [])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetPanIdComp() [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetPanIdComp() [member function]
     cls.add_method('SetPanIdComp', 
                    'void', 
                    [])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetSecControl(uint8_t secLevel) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetSecControl(uint8_t secLevel) [member function]
     cls.add_method('SetSecControl', 
                    'void', 
                    [param('uint8_t', 'secLevel')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetSecCtrlReserved(uint8_t res) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetSecCtrlReserved(uint8_t res) [member function]
     cls.add_method('SetSecCtrlReserved', 
                    'void', 
                    [param('uint8_t', 'res')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetSecDisable() [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetSecDisable() [member function]
     cls.add_method('SetSecDisable', 
                    'void', 
                    [])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetSecEnable() [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetSecEnable() [member function]
     cls.add_method('SetSecEnable', 
                    'void', 
                    [])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetSecLevel(uint8_t secLevel) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetSecLevel(uint8_t secLevel) [member function]
     cls.add_method('SetSecLevel', 
                    'void', 
                    [param('uint8_t', 'secLevel')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetSeqNum(uint8_t seqNum) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetSeqNum(uint8_t seqNum) [member function]
     cls.add_method('SetSeqNum', 
                    'void', 
                    [param('uint8_t', 'seqNum')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetSrcAddrFields(uint16_t panId, ns3::Mac16Address addr) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetSrcAddrFields(uint16_t panId, ns3::Mac16Address addr) [member function]
     cls.add_method('SetSrcAddrFields', 
                    'void', 
                    [param('uint16_t', 'panId'), param('ns3::Mac16Address', 'addr')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetSrcAddrFields(uint16_t panId, ns3::Mac64Address addr) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetSrcAddrFields(uint16_t panId, ns3::Mac64Address addr) [member function]
     cls.add_method('SetSrcAddrFields', 
                    'void', 
                    [param('uint16_t', 'panId'), param('ns3::Mac64Address', 'addr')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetSrcAddrMode(uint8_t addrMode) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetSrcAddrMode(uint8_t addrMode) [member function]
     cls.add_method('SetSrcAddrMode', 
                    'void', 
                    [param('uint8_t', 'addrMode')])
-    ## lr-wpan-mac-header.h (module 'lr-wpan'): void ns3::LrWpanMacHeader::SetType(ns3::LrWpanMacHeader::LrWpanMacType wpanMacType) [member function]
+    ## ble-mac-header.h (module 'ble'): void ns3::BleMacHeader::SetType(ns3::BleMacHeader::BleMacType bleMacType) [member function]
     cls.add_method('SetType', 
                    'void', 
-                   [param('ns3::LrWpanMacHeader::LrWpanMacType', 'wpanMacType')])
+                   [param('ns3::BleMacHeader::BleMacType', 'bleMacType')])
     return
 
 def register_Ns3Object_methods(root_module, cls):
@@ -3773,12 +3773,12 @@ def register_Ns3SimpleRefCount__Ns3HashImplementation_Ns3Empty_Ns3DefaultDeleter
                    is_static=True)
     return
 
-def register_Ns3SimpleRefCount__Ns3LrWpanInterferenceHelper_Ns3Empty_Ns3DefaultDeleter__lt__ns3LrWpanInterferenceHelper__gt___methods(root_module, cls):
-    ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::LrWpanInterferenceHelper, ns3::empty, ns3::DefaultDeleter<ns3::LrWpanInterferenceHelper> >::SimpleRefCount() [constructor]
+def register_Ns3SimpleRefCount__Ns3BleInterferenceHelper_Ns3Empty_Ns3DefaultDeleter__lt__ns3BleInterferenceHelper__gt___methods(root_module, cls):
+    ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::BleInterferenceHelper, ns3::empty, ns3::DefaultDeleter<ns3::BleInterferenceHelper> >::SimpleRefCount() [constructor]
     cls.add_constructor([])
-    ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::LrWpanInterferenceHelper, ns3::empty, ns3::DefaultDeleter<ns3::LrWpanInterferenceHelper> >::SimpleRefCount(ns3::SimpleRefCount<ns3::LrWpanInterferenceHelper, ns3::empty, ns3::DefaultDeleter<ns3::LrWpanInterferenceHelper> > const & o) [copy constructor]
-    cls.add_constructor([param('ns3::SimpleRefCount< ns3::LrWpanInterferenceHelper, ns3::empty, ns3::DefaultDeleter< ns3::LrWpanInterferenceHelper > > const &', 'o')])
-    ## simple-ref-count.h (module 'core'): static void ns3::SimpleRefCount<ns3::LrWpanInterferenceHelper, ns3::empty, ns3::DefaultDeleter<ns3::LrWpanInterferenceHelper> >::Cleanup() [member function]
+    ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::BleInterferenceHelper, ns3::empty, ns3::DefaultDeleter<ns3::BleInterferenceHelper> >::SimpleRefCount(ns3::SimpleRefCount<ns3::BleInterferenceHelper, ns3::empty, ns3::DefaultDeleter<ns3::BleInterferenceHelper> > const & o) [copy constructor]
+    cls.add_constructor([param('ns3::SimpleRefCount< ns3::BleInterferenceHelper, ns3::empty, ns3::DefaultDeleter< ns3::BleInterferenceHelper > > const &', 'o')])
+    ## simple-ref-count.h (module 'core'): static void ns3::SimpleRefCount<ns3::BleInterferenceHelper, ns3::empty, ns3::DefaultDeleter<ns3::BleInterferenceHelper> >::Cleanup() [member function]
     cls.add_method('Cleanup', 
                    'void', 
                    [], 
@@ -4712,560 +4712,560 @@ def register_Ns3Ipv6PrefixValue_methods(root_module, cls):
                    [param('ns3::Ipv6Prefix const &', 'value')])
     return
 
-def register_Ns3LrWpanCsmaCa_methods(root_module, cls):
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): static ns3::TypeId ns3::LrWpanCsmaCa::GetTypeId() [member function]
+def register_Ns3BleCsmaCa_methods(root_module, cls):
+    ## ble-csmaca.h (module 'ble'): static ns3::TypeId ns3::BleCsmaCa::GetTypeId() [member function]
     cls.add_method('GetTypeId', 
                    'ns3::TypeId', 
                    [], 
                    is_static=True)
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): ns3::LrWpanCsmaCa::LrWpanCsmaCa() [constructor]
+    ## ble-csmaca.h (module 'ble'): ns3::BleCsmaCa::BleCsmaCa() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): void ns3::LrWpanCsmaCa::SetMac(ns3::Ptr<ns3::LrWpanMac> mac) [member function]
+    ## ble-csmaca.h (module 'ble'): void ns3::BleCsmaCa::SetMac(ns3::Ptr<ns3::BleMac> mac) [member function]
     cls.add_method('SetMac', 
                    'void', 
-                   [param('ns3::Ptr< ns3::LrWpanMac >', 'mac')])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): ns3::Ptr<ns3::LrWpanMac> ns3::LrWpanCsmaCa::GetMac() const [member function]
+                   [param('ns3::Ptr< ns3::BleMac >', 'mac')])
+    ## ble-csmaca.h (module 'ble'): ns3::Ptr<ns3::BleMac> ns3::BleCsmaCa::GetMac() const [member function]
     cls.add_method('GetMac', 
-                   'ns3::Ptr< ns3::LrWpanMac >', 
+                   'ns3::Ptr< ns3::BleMac >', 
                    [], 
                    is_const=True)
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): void ns3::LrWpanCsmaCa::SetSlottedCsmaCa() [member function]
+    ## ble-csmaca.h (module 'ble'): void ns3::BleCsmaCa::SetSlottedCsmaCa() [member function]
     cls.add_method('SetSlottedCsmaCa', 
                    'void', 
                    [])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): void ns3::LrWpanCsmaCa::SetUnSlottedCsmaCa() [member function]
+    ## ble-csmaca.h (module 'ble'): void ns3::BleCsmaCa::SetUnSlottedCsmaCa() [member function]
     cls.add_method('SetUnSlottedCsmaCa', 
                    'void', 
                    [])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): bool ns3::LrWpanCsmaCa::IsSlottedCsmaCa() const [member function]
+    ## ble-csmaca.h (module 'ble'): bool ns3::BleCsmaCa::IsSlottedCsmaCa() const [member function]
     cls.add_method('IsSlottedCsmaCa', 
                    'bool', 
                    [], 
                    is_const=True)
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): bool ns3::LrWpanCsmaCa::IsUnSlottedCsmaCa() const [member function]
+    ## ble-csmaca.h (module 'ble'): bool ns3::BleCsmaCa::IsUnSlottedCsmaCa() const [member function]
     cls.add_method('IsUnSlottedCsmaCa', 
                    'bool', 
                    [], 
                    is_const=True)
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): void ns3::LrWpanCsmaCa::SetMacMinBE(uint8_t macMinBE) [member function]
+    ## ble-csmaca.h (module 'ble'): void ns3::BleCsmaCa::SetMacMinBE(uint8_t macMinBE) [member function]
     cls.add_method('SetMacMinBE', 
                    'void', 
                    [param('uint8_t', 'macMinBE')])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): uint8_t ns3::LrWpanCsmaCa::GetMacMinBE() const [member function]
+    ## ble-csmaca.h (module 'ble'): uint8_t ns3::BleCsmaCa::GetMacMinBE() const [member function]
     cls.add_method('GetMacMinBE', 
                    'uint8_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): void ns3::LrWpanCsmaCa::SetMacMaxBE(uint8_t macMaxBE) [member function]
+    ## ble-csmaca.h (module 'ble'): void ns3::BleCsmaCa::SetMacMaxBE(uint8_t macMaxBE) [member function]
     cls.add_method('SetMacMaxBE', 
                    'void', 
                    [param('uint8_t', 'macMaxBE')])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): uint8_t ns3::LrWpanCsmaCa::GetMacMaxBE() const [member function]
+    ## ble-csmaca.h (module 'ble'): uint8_t ns3::BleCsmaCa::GetMacMaxBE() const [member function]
     cls.add_method('GetMacMaxBE', 
                    'uint8_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): void ns3::LrWpanCsmaCa::SetMacMaxCSMABackoffs(uint8_t macMaxCSMABackoffs) [member function]
+    ## ble-csmaca.h (module 'ble'): void ns3::BleCsmaCa::SetMacMaxCSMABackoffs(uint8_t macMaxCSMABackoffs) [member function]
     cls.add_method('SetMacMaxCSMABackoffs', 
                    'void', 
                    [param('uint8_t', 'macMaxCSMABackoffs')])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): uint8_t ns3::LrWpanCsmaCa::GetMacMaxCSMABackoffs() const [member function]
+    ## ble-csmaca.h (module 'ble'): uint8_t ns3::BleCsmaCa::GetMacMaxCSMABackoffs() const [member function]
     cls.add_method('GetMacMaxCSMABackoffs', 
                    'uint8_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): void ns3::LrWpanCsmaCa::SetUnitBackoffPeriod(uint64_t unitBackoffPeriod) [member function]
+    ## ble-csmaca.h (module 'ble'): void ns3::BleCsmaCa::SetUnitBackoffPeriod(uint64_t unitBackoffPeriod) [member function]
     cls.add_method('SetUnitBackoffPeriod', 
                    'void', 
                    [param('uint64_t', 'unitBackoffPeriod')])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): uint64_t ns3::LrWpanCsmaCa::GetUnitBackoffPeriod() const [member function]
+    ## ble-csmaca.h (module 'ble'): uint64_t ns3::BleCsmaCa::GetUnitBackoffPeriod() const [member function]
     cls.add_method('GetUnitBackoffPeriod', 
                    'uint64_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): ns3::Time ns3::LrWpanCsmaCa::GetTimeToNextSlot() const [member function]
+    ## ble-csmaca.h (module 'ble'): ns3::Time ns3::BleCsmaCa::GetTimeToNextSlot() const [member function]
     cls.add_method('GetTimeToNextSlot', 
                    'ns3::Time', 
                    [], 
                    is_const=True)
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): void ns3::LrWpanCsmaCa::Start() [member function]
+    ## ble-csmaca.h (module 'ble'): void ns3::BleCsmaCa::Start() [member function]
     cls.add_method('Start', 
                    'void', 
                    [])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): void ns3::LrWpanCsmaCa::Cancel() [member function]
+    ## ble-csmaca.h (module 'ble'): void ns3::BleCsmaCa::Cancel() [member function]
     cls.add_method('Cancel', 
                    'void', 
                    [])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): void ns3::LrWpanCsmaCa::RandomBackoffDelay() [member function]
+    ## ble-csmaca.h (module 'ble'): void ns3::BleCsmaCa::RandomBackoffDelay() [member function]
     cls.add_method('RandomBackoffDelay', 
                    'void', 
                    [])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): void ns3::LrWpanCsmaCa::CanProceed() [member function]
+    ## ble-csmaca.h (module 'ble'): void ns3::BleCsmaCa::CanProceed() [member function]
     cls.add_method('CanProceed', 
                    'void', 
                    [])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): void ns3::LrWpanCsmaCa::RequestCCA() [member function]
+    ## ble-csmaca.h (module 'ble'): void ns3::BleCsmaCa::RequestCCA() [member function]
     cls.add_method('RequestCCA', 
                    'void', 
                    [])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): void ns3::LrWpanCsmaCa::PlmeCcaConfirm(ns3::LrWpanPhyEnumeration status) [member function]
+    ## ble-csmaca.h (module 'ble'): void ns3::BleCsmaCa::PlmeCcaConfirm(ns3::BlePhyEnumeration status) [member function]
     cls.add_method('PlmeCcaConfirm', 
                    'void', 
-                   [param('ns3::LrWpanPhyEnumeration', 'status')])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): void ns3::LrWpanCsmaCa::SetLrWpanMacStateCallback(ns3::LrWpanMacStateCallback macState) [member function]
-    cls.add_method('SetLrWpanMacStateCallback', 
+                   [param('ns3::BlePhyEnumeration', 'status')])
+    ## ble-csmaca.h (module 'ble'): void ns3::BleCsmaCa::SetBleMacStateCallback(ns3::BleMacStateCallback macState) [member function]
+    cls.add_method('SetBleMacStateCallback', 
                    'void', 
-                   [param('ns3::LrWpanMacStateCallback', 'macState')])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): int64_t ns3::LrWpanCsmaCa::AssignStreams(int64_t stream) [member function]
+                   [param('ns3::BleMacStateCallback', 'macState')])
+    ## ble-csmaca.h (module 'ble'): int64_t ns3::BleCsmaCa::AssignStreams(int64_t stream) [member function]
     cls.add_method('AssignStreams', 
                    'int64_t', 
                    [param('int64_t', 'stream')])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): uint8_t ns3::LrWpanCsmaCa::GetNB() [member function]
+    ## ble-csmaca.h (module 'ble'): uint8_t ns3::BleCsmaCa::GetNB() [member function]
     cls.add_method('GetNB', 
                    'uint8_t', 
                    [])
-    ## lr-wpan-csmaca.h (module 'lr-wpan'): void ns3::LrWpanCsmaCa::DoDispose() [member function]
+    ## ble-csmaca.h (module 'ble'): void ns3::BleCsmaCa::DoDispose() [member function]
     cls.add_method('DoDispose', 
                    'void', 
                    [], 
                    visibility='private', is_virtual=True)
     return
 
-def register_Ns3LrWpanErrorModel_methods(root_module, cls):
-    ## lr-wpan-error-model.h (module 'lr-wpan'): ns3::LrWpanErrorModel::LrWpanErrorModel(ns3::LrWpanErrorModel const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::LrWpanErrorModel const &', 'arg0')])
-    ## lr-wpan-error-model.h (module 'lr-wpan'): ns3::LrWpanErrorModel::LrWpanErrorModel() [constructor]
+def register_Ns3BleErrorModel_methods(root_module, cls):
+    ## ble-error-model.h (module 'ble'): ns3::BleErrorModel::BleErrorModel(ns3::BleErrorModel const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::BleErrorModel const &', 'arg0')])
+    ## ble-error-model.h (module 'ble'): ns3::BleErrorModel::BleErrorModel() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-error-model.h (module 'lr-wpan'): double ns3::LrWpanErrorModel::GetChunkSuccessRate(double snr, uint32_t nbits) const [member function]
+    ## ble-error-model.h (module 'ble'): double ns3::BleErrorModel::GetChunkSuccessRate(double snr, uint32_t nbits) const [member function]
     cls.add_method('GetChunkSuccessRate', 
                    'double', 
                    [param('double', 'snr'), param('uint32_t', 'nbits')], 
                    is_const=True)
-    ## lr-wpan-error-model.h (module 'lr-wpan'): static ns3::TypeId ns3::LrWpanErrorModel::GetTypeId() [member function]
+    ## ble-error-model.h (module 'ble'): static ns3::TypeId ns3::BleErrorModel::GetTypeId() [member function]
     cls.add_method('GetTypeId', 
                    'ns3::TypeId', 
                    [], 
                    is_static=True)
     return
 
-def register_Ns3LrWpanInterferenceHelper_methods(root_module, cls):
-    ## lr-wpan-interference-helper.h (module 'lr-wpan'): ns3::LrWpanInterferenceHelper::LrWpanInterferenceHelper(ns3::Ptr<ns3::SpectrumModel const> spectrumModel) [constructor]
+def register_Ns3BleInterferenceHelper_methods(root_module, cls):
+    ## ble-interference-helper.h (module 'ble'): ns3::BleInterferenceHelper::BleInterferenceHelper(ns3::Ptr<ns3::SpectrumModel const> spectrumModel) [constructor]
     cls.add_constructor([param('ns3::Ptr< ns3::SpectrumModel const >', 'spectrumModel')])
-    ## lr-wpan-interference-helper.h (module 'lr-wpan'): bool ns3::LrWpanInterferenceHelper::AddSignal(ns3::Ptr<ns3::SpectrumValue const> signal) [member function]
+    ## ble-interference-helper.h (module 'ble'): bool ns3::BleInterferenceHelper::AddSignal(ns3::Ptr<ns3::SpectrumValue const> signal) [member function]
     cls.add_method('AddSignal', 
                    'bool', 
                    [param('ns3::Ptr< ns3::SpectrumValue const >', 'signal')])
-    ## lr-wpan-interference-helper.h (module 'lr-wpan'): bool ns3::LrWpanInterferenceHelper::RemoveSignal(ns3::Ptr<ns3::SpectrumValue const> signal) [member function]
+    ## ble-interference-helper.h (module 'ble'): bool ns3::BleInterferenceHelper::RemoveSignal(ns3::Ptr<ns3::SpectrumValue const> signal) [member function]
     cls.add_method('RemoveSignal', 
                    'bool', 
                    [param('ns3::Ptr< ns3::SpectrumValue const >', 'signal')])
-    ## lr-wpan-interference-helper.h (module 'lr-wpan'): void ns3::LrWpanInterferenceHelper::ClearSignals() [member function]
+    ## ble-interference-helper.h (module 'ble'): void ns3::BleInterferenceHelper::ClearSignals() [member function]
     cls.add_method('ClearSignals', 
                    'void', 
                    [])
-    ## lr-wpan-interference-helper.h (module 'lr-wpan'): ns3::Ptr<ns3::SpectrumValue> ns3::LrWpanInterferenceHelper::GetSignalPsd() const [member function]
+    ## ble-interference-helper.h (module 'ble'): ns3::Ptr<ns3::SpectrumValue> ns3::BleInterferenceHelper::GetSignalPsd() const [member function]
     cls.add_method('GetSignalPsd', 
                    'ns3::Ptr< ns3::SpectrumValue >', 
                    [], 
                    is_const=True)
-    ## lr-wpan-interference-helper.h (module 'lr-wpan'): ns3::Ptr<ns3::SpectrumModel const> ns3::LrWpanInterferenceHelper::GetSpectrumModel() const [member function]
+    ## ble-interference-helper.h (module 'ble'): ns3::Ptr<ns3::SpectrumModel const> ns3::BleInterferenceHelper::GetSpectrumModel() const [member function]
     cls.add_method('GetSpectrumModel', 
                    'ns3::Ptr< ns3::SpectrumModel const >', 
                    [], 
                    is_const=True)
     return
 
-def register_Ns3LrWpanMac_methods(root_module, cls):
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMac::LrWpanMac(ns3::LrWpanMac const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::LrWpanMac const &', 'arg0')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMac::LrWpanMac() [constructor]
+def register_Ns3BleMac_methods(root_module, cls):
+    ## ble-mac.h (module 'ble'): ns3::BleMac::BleMac(ns3::BleMac const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::BleMac const &', 'arg0')])
+    ## ble-mac.h (module 'ble'): ns3::BleMac::BleMac() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanAssociationStatus ns3::LrWpanMac::GetAssociationStatus() const [member function]
+    ## ble-mac.h (module 'ble'): ns3::BleAssociationStatus ns3::BleMac::GetAssociationStatus() const [member function]
     cls.add_method('GetAssociationStatus', 
-                   'ns3::LrWpanAssociationStatus', 
+                   'ns3::BleAssociationStatus', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::Mac64Address ns3::LrWpanMac::GetExtendedAddress() const [member function]
+    ## ble-mac.h (module 'ble'): ns3::Mac64Address ns3::BleMac::GetExtendedAddress() const [member function]
     cls.add_method('GetExtendedAddress', 
                    'ns3::Mac64Address', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac.h (module 'lr-wpan'): uint64_t ns3::LrWpanMac::GetMacAckWaitDuration() const [member function]
+    ## ble-mac.h (module 'ble'): uint64_t ns3::BleMac::GetMacAckWaitDuration() const [member function]
     cls.add_method('GetMacAckWaitDuration', 
                    'uint64_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac.h (module 'lr-wpan'): uint8_t ns3::LrWpanMac::GetMacMaxFrameRetries() const [member function]
+    ## ble-mac.h (module 'ble'): uint8_t ns3::BleMac::GetMacMaxFrameRetries() const [member function]
     cls.add_method('GetMacMaxFrameRetries', 
                    'uint8_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac.h (module 'lr-wpan'): uint16_t ns3::LrWpanMac::GetPanId() const [member function]
+    ## ble-mac.h (module 'ble'): uint16_t ns3::BleMac::GetPanId() const [member function]
     cls.add_method('GetPanId', 
                    'uint16_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::Ptr<ns3::LrWpanPhy> ns3::LrWpanMac::GetPhy() [member function]
+    ## ble-mac.h (module 'ble'): ns3::Ptr<ns3::BlePhy> ns3::BleMac::GetPhy() [member function]
     cls.add_method('GetPhy', 
-                   'ns3::Ptr< ns3::LrWpanPhy >', 
+                   'ns3::Ptr< ns3::BlePhy >', 
                    [])
-    ## lr-wpan-mac.h (module 'lr-wpan'): bool ns3::LrWpanMac::GetRxOnWhenIdle() [member function]
+    ## ble-mac.h (module 'ble'): bool ns3::BleMac::GetRxOnWhenIdle() [member function]
     cls.add_method('GetRxOnWhenIdle', 
                    'bool', 
                    [])
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::Mac16Address ns3::LrWpanMac::GetShortAddress() const [member function]
+    ## ble-mac.h (module 'ble'): ns3::Mac16Address ns3::BleMac::GetShortAddress() const [member function]
     cls.add_method('GetShortAddress', 
                    'ns3::Mac16Address', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac.h (module 'lr-wpan'): static ns3::TypeId ns3::LrWpanMac::GetTypeId() [member function]
+    ## ble-mac.h (module 'ble'): static ns3::TypeId ns3::BleMac::GetTypeId() [member function]
     cls.add_method('GetTypeId', 
                    'ns3::TypeId', 
                    [], 
                    is_static=True)
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::McpsDataRequest(ns3::McpsDataRequestParams params, ns3::Ptr<ns3::Packet> p) [member function]
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::McpsDataRequest(ns3::McpsDataRequestParams params, ns3::Ptr<ns3::Packet> p) [member function]
     cls.add_method('McpsDataRequest', 
                    'void', 
                    [param('ns3::McpsDataRequestParams', 'params'), param('ns3::Ptr< ns3::Packet >', 'p')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::PdDataConfirm(ns3::LrWpanPhyEnumeration status) [member function]
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::PdDataConfirm(ns3::BlePhyEnumeration status) [member function]
     cls.add_method('PdDataConfirm', 
                    'void', 
-                   [param('ns3::LrWpanPhyEnumeration', 'status')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::PdDataIndication(uint32_t psduLength, ns3::Ptr<ns3::Packet> p, uint8_t lqi) [member function]
+                   [param('ns3::BlePhyEnumeration', 'status')])
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::PdDataIndication(uint32_t psduLength, ns3::Ptr<ns3::Packet> p, uint8_t lqi) [member function]
     cls.add_method('PdDataIndication', 
                    'void', 
                    [param('uint32_t', 'psduLength'), param('ns3::Ptr< ns3::Packet >', 'p'), param('uint8_t', 'lqi')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::PlmeCcaConfirm(ns3::LrWpanPhyEnumeration status) [member function]
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::PlmeCcaConfirm(ns3::BlePhyEnumeration status) [member function]
     cls.add_method('PlmeCcaConfirm', 
                    'void', 
-                   [param('ns3::LrWpanPhyEnumeration', 'status')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::PlmeEdConfirm(ns3::LrWpanPhyEnumeration status, uint8_t energyLevel) [member function]
+                   [param('ns3::BlePhyEnumeration', 'status')])
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::PlmeEdConfirm(ns3::BlePhyEnumeration status, uint8_t energyLevel) [member function]
     cls.add_method('PlmeEdConfirm', 
                    'void', 
-                   [param('ns3::LrWpanPhyEnumeration', 'status'), param('uint8_t', 'energyLevel')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::PlmeGetAttributeConfirm(ns3::LrWpanPhyEnumeration status, ns3::LrWpanPibAttributeIdentifier id, ns3::LrWpanPhyPibAttributes * attribute) [member function]
+                   [param('ns3::BlePhyEnumeration', 'status'), param('uint8_t', 'energyLevel')])
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::PlmeGetAttributeConfirm(ns3::BlePhyEnumeration status, ns3::BlePibAttributeIdentifier id, ns3::BlePhyPibAttributes * attribute) [member function]
     cls.add_method('PlmeGetAttributeConfirm', 
                    'void', 
-                   [param('ns3::LrWpanPhyEnumeration', 'status'), param('ns3::LrWpanPibAttributeIdentifier', 'id'), param('ns3::LrWpanPhyPibAttributes *', 'attribute')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::PlmeSetAttributeConfirm(ns3::LrWpanPhyEnumeration status, ns3::LrWpanPibAttributeIdentifier id) [member function]
+                   [param('ns3::BlePhyEnumeration', 'status'), param('ns3::BlePibAttributeIdentifier', 'id'), param('ns3::BlePhyPibAttributes *', 'attribute')])
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::PlmeSetAttributeConfirm(ns3::BlePhyEnumeration status, ns3::BlePibAttributeIdentifier id) [member function]
     cls.add_method('PlmeSetAttributeConfirm', 
                    'void', 
-                   [param('ns3::LrWpanPhyEnumeration', 'status'), param('ns3::LrWpanPibAttributeIdentifier', 'id')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::PlmeSetTRXStateConfirm(ns3::LrWpanPhyEnumeration status) [member function]
+                   [param('ns3::BlePhyEnumeration', 'status'), param('ns3::BlePibAttributeIdentifier', 'id')])
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::PlmeSetTRXStateConfirm(ns3::BlePhyEnumeration status) [member function]
     cls.add_method('PlmeSetTRXStateConfirm', 
                    'void', 
-                   [param('ns3::LrWpanPhyEnumeration', 'status')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::SetAssociationStatus(ns3::LrWpanAssociationStatus status) [member function]
+                   [param('ns3::BlePhyEnumeration', 'status')])
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::SetAssociationStatus(ns3::BleAssociationStatus status) [member function]
     cls.add_method('SetAssociationStatus', 
                    'void', 
-                   [param('ns3::LrWpanAssociationStatus', 'status')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::SetCsmaCa(ns3::Ptr<ns3::LrWpanCsmaCa> csmaCa) [member function]
+                   [param('ns3::BleAssociationStatus', 'status')])
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::SetCsmaCa(ns3::Ptr<ns3::BleCsmaCa> csmaCa) [member function]
     cls.add_method('SetCsmaCa', 
                    'void', 
-                   [param('ns3::Ptr< ns3::LrWpanCsmaCa >', 'csmaCa')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::SetExtendedAddress(ns3::Mac64Address address) [member function]
+                   [param('ns3::Ptr< ns3::BleCsmaCa >', 'csmaCa')])
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::SetExtendedAddress(ns3::Mac64Address address) [member function]
     cls.add_method('SetExtendedAddress', 
                    'void', 
                    [param('ns3::Mac64Address', 'address')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::SetLrWpanMacState(ns3::LrWpanMacState macState) [member function]
-    cls.add_method('SetLrWpanMacState', 
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::SetBleMacState(ns3::BleMacState macState) [member function]
+    cls.add_method('SetBleMacState', 
                    'void', 
-                   [param('ns3::LrWpanMacState', 'macState')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::SetMacMaxFrameRetries(uint8_t retries) [member function]
+                   [param('ns3::BleMacState', 'macState')])
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::SetMacMaxFrameRetries(uint8_t retries) [member function]
     cls.add_method('SetMacMaxFrameRetries', 
                    'void', 
                    [param('uint8_t', 'retries')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::SetMcpsDataConfirmCallback(ns3::McpsDataConfirmCallback c) [member function]
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::SetMcpsDataConfirmCallback(ns3::McpsDataConfirmCallback c) [member function]
     cls.add_method('SetMcpsDataConfirmCallback', 
                    'void', 
                    [param('ns3::McpsDataConfirmCallback', 'c')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::SetMcpsDataIndicationCallback(ns3::McpsDataIndicationCallback c) [member function]
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::SetMcpsDataIndicationCallback(ns3::McpsDataIndicationCallback c) [member function]
     cls.add_method('SetMcpsDataIndicationCallback', 
                    'void', 
                    [param('ns3::McpsDataIndicationCallback', 'c')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::SetPanId(uint16_t panId) [member function]
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::SetPanId(uint16_t panId) [member function]
     cls.add_method('SetPanId', 
                    'void', 
                    [param('uint16_t', 'panId')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::SetPhy(ns3::Ptr<ns3::LrWpanPhy> phy) [member function]
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::SetPhy(ns3::Ptr<ns3::BlePhy> phy) [member function]
     cls.add_method('SetPhy', 
                    'void', 
-                   [param('ns3::Ptr< ns3::LrWpanPhy >', 'phy')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::SetRxOnWhenIdle(bool rxOnWhenIdle) [member function]
+                   [param('ns3::Ptr< ns3::BlePhy >', 'phy')])
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::SetRxOnWhenIdle(bool rxOnWhenIdle) [member function]
     cls.add_method('SetRxOnWhenIdle', 
                    'void', 
                    [param('bool', 'rxOnWhenIdle')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::SetShortAddress(ns3::Mac16Address address) [member function]
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::SetShortAddress(ns3::Mac16Address address) [member function]
     cls.add_method('SetShortAddress', 
                    'void', 
                    [param('ns3::Mac16Address', 'address')])
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMac::aMinMPDUOverhead [variable]
+    ## ble-mac.h (module 'ble'): ns3::BleMac::aMinMPDUOverhead [variable]
     cls.add_static_attribute('aMinMPDUOverhead', 'uint32_t const', is_const=True)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMac::m_aBaseSlotDuration [variable]
+    ## ble-mac.h (module 'ble'): ns3::BleMac::m_aBaseSlotDuration [variable]
     cls.add_instance_attribute('m_aBaseSlotDuration', 'uint64_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMac::m_aBaseSuperframeDuration [variable]
+    ## ble-mac.h (module 'ble'): ns3::BleMac::m_aBaseSuperframeDuration [variable]
     cls.add_instance_attribute('m_aBaseSuperframeDuration', 'uint64_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMac::m_aNumSuperframeSlots [variable]
+    ## ble-mac.h (module 'ble'): ns3::BleMac::m_aNumSuperframeSlots [variable]
     cls.add_instance_attribute('m_aNumSuperframeSlots', 'uint64_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMac::m_macBeaconOrder [variable]
+    ## ble-mac.h (module 'ble'): ns3::BleMac::m_macBeaconOrder [variable]
     cls.add_instance_attribute('m_macBeaconOrder', 'uint64_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMac::m_macBeaconTxTime [variable]
+    ## ble-mac.h (module 'ble'): ns3::BleMac::m_macBeaconTxTime [variable]
     cls.add_instance_attribute('m_macBeaconTxTime', 'uint64_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMac::m_macDsn [variable]
+    ## ble-mac.h (module 'ble'): ns3::BleMac::m_macDsn [variable]
     cls.add_instance_attribute('m_macDsn', 'ns3::SequenceNumber8', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMac::m_macMaxFrameRetries [variable]
+    ## ble-mac.h (module 'ble'): ns3::BleMac::m_macMaxFrameRetries [variable]
     cls.add_instance_attribute('m_macMaxFrameRetries', 'uint8_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMac::m_macPanId [variable]
+    ## ble-mac.h (module 'ble'): ns3::BleMac::m_macPanId [variable]
     cls.add_instance_attribute('m_macPanId', 'uint16_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMac::m_macPromiscuousMode [variable]
+    ## ble-mac.h (module 'ble'): ns3::BleMac::m_macPromiscuousMode [variable]
     cls.add_instance_attribute('m_macPromiscuousMode', 'bool', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMac::m_macRxOnWhenIdle [variable]
+    ## ble-mac.h (module 'ble'): ns3::BleMac::m_macRxOnWhenIdle [variable]
     cls.add_instance_attribute('m_macRxOnWhenIdle', 'bool', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMac::m_macSuperframeOrder [variable]
+    ## ble-mac.h (module 'ble'): ns3::BleMac::m_macSuperframeOrder [variable]
     cls.add_instance_attribute('m_macSuperframeOrder', 'uint64_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): ns3::LrWpanMac::m_macSyncSymbolOffset [variable]
+    ## ble-mac.h (module 'ble'): ns3::BleMac::m_macSyncSymbolOffset [variable]
     cls.add_instance_attribute('m_macSyncSymbolOffset', 'uint64_t', is_const=False)
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::DoDispose() [member function]
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::DoDispose() [member function]
     cls.add_method('DoDispose', 
                    'void', 
                    [], 
                    visibility='protected', is_virtual=True)
-    ## lr-wpan-mac.h (module 'lr-wpan'): void ns3::LrWpanMac::DoInitialize() [member function]
+    ## ble-mac.h (module 'ble'): void ns3::BleMac::DoInitialize() [member function]
     cls.add_method('DoInitialize', 
                    'void', 
                    [], 
                    visibility='protected', is_virtual=True)
     return
 
-def register_Ns3LrWpanMacTrailer_methods(root_module, cls):
-    ## lr-wpan-mac-trailer.h (module 'lr-wpan'): ns3::LrWpanMacTrailer::LrWpanMacTrailer(ns3::LrWpanMacTrailer const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::LrWpanMacTrailer const &', 'arg0')])
-    ## lr-wpan-mac-trailer.h (module 'lr-wpan'): ns3::LrWpanMacTrailer::LrWpanMacTrailer() [constructor]
+def register_Ns3BleMacTrailer_methods(root_module, cls):
+    ## ble-mac-trailer.h (module 'ble'): ns3::BleMacTrailer::BleMacTrailer(ns3::BleMacTrailer const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::BleMacTrailer const &', 'arg0')])
+    ## ble-mac-trailer.h (module 'ble'): ns3::BleMacTrailer::BleMacTrailer() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-mac-trailer.h (module 'lr-wpan'): bool ns3::LrWpanMacTrailer::CheckFcs(ns3::Ptr<const ns3::Packet> p) [member function]
+    ## ble-mac-trailer.h (module 'ble'): bool ns3::BleMacTrailer::CheckFcs(ns3::Ptr<const ns3::Packet> p) [member function]
     cls.add_method('CheckFcs', 
                    'bool', 
                    [param('ns3::Ptr< ns3::Packet const >', 'p')])
-    ## lr-wpan-mac-trailer.h (module 'lr-wpan'): uint32_t ns3::LrWpanMacTrailer::Deserialize(ns3::Buffer::Iterator start) [member function]
+    ## ble-mac-trailer.h (module 'ble'): uint32_t ns3::BleMacTrailer::Deserialize(ns3::Buffer::Iterator start) [member function]
     cls.add_method('Deserialize', 
                    'uint32_t', 
                    [param('ns3::Buffer::Iterator', 'start')], 
                    is_virtual=True)
-    ## lr-wpan-mac-trailer.h (module 'lr-wpan'): void ns3::LrWpanMacTrailer::EnableFcs(bool enable) [member function]
+    ## ble-mac-trailer.h (module 'ble'): void ns3::BleMacTrailer::EnableFcs(bool enable) [member function]
     cls.add_method('EnableFcs', 
                    'void', 
                    [param('bool', 'enable')])
-    ## lr-wpan-mac-trailer.h (module 'lr-wpan'): uint16_t ns3::LrWpanMacTrailer::GetFcs() const [member function]
+    ## ble-mac-trailer.h (module 'ble'): uint16_t ns3::BleMacTrailer::GetFcs() const [member function]
     cls.add_method('GetFcs', 
                    'uint16_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-mac-trailer.h (module 'lr-wpan'): ns3::TypeId ns3::LrWpanMacTrailer::GetInstanceTypeId() const [member function]
+    ## ble-mac-trailer.h (module 'ble'): ns3::TypeId ns3::BleMacTrailer::GetInstanceTypeId() const [member function]
     cls.add_method('GetInstanceTypeId', 
                    'ns3::TypeId', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-mac-trailer.h (module 'lr-wpan'): uint32_t ns3::LrWpanMacTrailer::GetSerializedSize() const [member function]
+    ## ble-mac-trailer.h (module 'ble'): uint32_t ns3::BleMacTrailer::GetSerializedSize() const [member function]
     cls.add_method('GetSerializedSize', 
                    'uint32_t', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-mac-trailer.h (module 'lr-wpan'): static ns3::TypeId ns3::LrWpanMacTrailer::GetTypeId() [member function]
+    ## ble-mac-trailer.h (module 'ble'): static ns3::TypeId ns3::BleMacTrailer::GetTypeId() [member function]
     cls.add_method('GetTypeId', 
                    'ns3::TypeId', 
                    [], 
                    is_static=True)
-    ## lr-wpan-mac-trailer.h (module 'lr-wpan'): bool ns3::LrWpanMacTrailer::IsFcsEnabled() [member function]
+    ## ble-mac-trailer.h (module 'ble'): bool ns3::BleMacTrailer::IsFcsEnabled() [member function]
     cls.add_method('IsFcsEnabled', 
                    'bool', 
                    [])
-    ## lr-wpan-mac-trailer.h (module 'lr-wpan'): void ns3::LrWpanMacTrailer::Print(std::ostream & os) const [member function]
+    ## ble-mac-trailer.h (module 'ble'): void ns3::BleMacTrailer::Print(std::ostream & os) const [member function]
     cls.add_method('Print', 
                    'void', 
                    [param('std::ostream &', 'os')], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-mac-trailer.h (module 'lr-wpan'): void ns3::LrWpanMacTrailer::Serialize(ns3::Buffer::Iterator start) const [member function]
+    ## ble-mac-trailer.h (module 'ble'): void ns3::BleMacTrailer::Serialize(ns3::Buffer::Iterator start) const [member function]
     cls.add_method('Serialize', 
                    'void', 
                    [param('ns3::Buffer::Iterator', 'start')], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-mac-trailer.h (module 'lr-wpan'): void ns3::LrWpanMacTrailer::SetFcs(ns3::Ptr<const ns3::Packet> p) [member function]
+    ## ble-mac-trailer.h (module 'ble'): void ns3::BleMacTrailer::SetFcs(ns3::Ptr<const ns3::Packet> p) [member function]
     cls.add_method('SetFcs', 
                    'void', 
                    [param('ns3::Ptr< ns3::Packet const >', 'p')])
-    ## lr-wpan-mac-trailer.h (module 'lr-wpan'): ns3::LrWpanMacTrailer::LR_WPAN_MAC_FCS_LENGTH [variable]
-    cls.add_static_attribute('LR_WPAN_MAC_FCS_LENGTH', 'uint16_t const', is_const=True)
+    ## ble-mac-trailer.h (module 'ble'): ns3::BleMacTrailer::BLE_MAC_FCS_LENGTH [variable]
+    cls.add_static_attribute('BLE_MAC_FCS_LENGTH', 'uint16_t const', is_const=True)
     return
 
-def register_Ns3LrWpanPhy_methods(root_module, cls):
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhy::aMaxPhyPacketSize [variable]
+def register_Ns3BlePhy_methods(root_module, cls):
+    ## ble-phy.h (module 'ble'): ns3::BlePhy::aMaxPhyPacketSize [variable]
     cls.add_static_attribute('aMaxPhyPacketSize', 'uint32_t const', is_const=True)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhy::aTurnaroundTime [variable]
+    ## ble-phy.h (module 'ble'): ns3::BlePhy::aTurnaroundTime [variable]
     cls.add_static_attribute('aTurnaroundTime', 'uint32_t const', is_const=True)
-    ## lr-wpan-phy.h (module 'lr-wpan'): static ns3::TypeId ns3::LrWpanPhy::GetTypeId() [member function]
+    ## ble-phy.h (module 'ble'): static ns3::TypeId ns3::BlePhy::GetTypeId() [member function]
     cls.add_method('GetTypeId', 
                    'ns3::TypeId', 
                    [], 
                    is_static=True)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::LrWpanPhy::LrWpanPhy() [constructor]
+    ## ble-phy.h (module 'ble'): ns3::BlePhy::BlePhy() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::SetMobility(ns3::Ptr<ns3::MobilityModel> m) [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::SetMobility(ns3::Ptr<ns3::MobilityModel> m) [member function]
     cls.add_method('SetMobility', 
                    'void', 
                    [param('ns3::Ptr< ns3::MobilityModel >', 'm')], 
                    is_virtual=True)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::Ptr<ns3::MobilityModel> ns3::LrWpanPhy::GetMobility() [member function]
+    ## ble-phy.h (module 'ble'): ns3::Ptr<ns3::MobilityModel> ns3::BlePhy::GetMobility() [member function]
     cls.add_method('GetMobility', 
                    'ns3::Ptr< ns3::MobilityModel >', 
                    [], 
                    is_virtual=True)
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::SetChannel(ns3::Ptr<ns3::SpectrumChannel> c) [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::SetChannel(ns3::Ptr<ns3::SpectrumChannel> c) [member function]
     cls.add_method('SetChannel', 
                    'void', 
                    [param('ns3::Ptr< ns3::SpectrumChannel >', 'c')], 
                    is_virtual=True)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::Ptr<ns3::SpectrumChannel> ns3::LrWpanPhy::GetChannel() [member function]
+    ## ble-phy.h (module 'ble'): ns3::Ptr<ns3::SpectrumChannel> ns3::BlePhy::GetChannel() [member function]
     cls.add_method('GetChannel', 
                    'ns3::Ptr< ns3::SpectrumChannel >', 
                    [])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::SetDevice(ns3::Ptr<ns3::NetDevice> d) [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::SetDevice(ns3::Ptr<ns3::NetDevice> d) [member function]
     cls.add_method('SetDevice', 
                    'void', 
                    [param('ns3::Ptr< ns3::NetDevice >', 'd')], 
                    is_virtual=True)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::Ptr<ns3::NetDevice> ns3::LrWpanPhy::GetDevice() const [member function]
+    ## ble-phy.h (module 'ble'): ns3::Ptr<ns3::NetDevice> ns3::BlePhy::GetDevice() const [member function]
     cls.add_method('GetDevice', 
                    'ns3::Ptr< ns3::NetDevice >', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::SetAntenna(ns3::Ptr<ns3::AntennaModel> a) [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::SetAntenna(ns3::Ptr<ns3::AntennaModel> a) [member function]
     cls.add_method('SetAntenna', 
                    'void', 
                    [param('ns3::Ptr< ns3::AntennaModel >', 'a')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::Ptr<ns3::AntennaModel> ns3::LrWpanPhy::GetRxAntenna() [member function]
+    ## ble-phy.h (module 'ble'): ns3::Ptr<ns3::AntennaModel> ns3::BlePhy::GetRxAntenna() [member function]
     cls.add_method('GetRxAntenna', 
                    'ns3::Ptr< ns3::AntennaModel >', 
                    [], 
                    is_virtual=True)
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::Ptr<ns3::SpectrumModel const> ns3::LrWpanPhy::GetRxSpectrumModel() const [member function]
+    ## ble-phy.h (module 'ble'): ns3::Ptr<ns3::SpectrumModel const> ns3::BlePhy::GetRxSpectrumModel() const [member function]
     cls.add_method('GetRxSpectrumModel', 
                    'ns3::Ptr< ns3::SpectrumModel const >', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::SetTxPowerSpectralDensity(ns3::Ptr<ns3::SpectrumValue> txPsd) [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::SetTxPowerSpectralDensity(ns3::Ptr<ns3::SpectrumValue> txPsd) [member function]
     cls.add_method('SetTxPowerSpectralDensity', 
                    'void', 
                    [param('ns3::Ptr< ns3::SpectrumValue >', 'txPsd')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::SetNoisePowerSpectralDensity(ns3::Ptr<ns3::SpectrumValue const> noisePsd) [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::SetNoisePowerSpectralDensity(ns3::Ptr<ns3::SpectrumValue const> noisePsd) [member function]
     cls.add_method('SetNoisePowerSpectralDensity', 
                    'void', 
                    [param('ns3::Ptr< ns3::SpectrumValue const >', 'noisePsd')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::Ptr<ns3::SpectrumValue const> ns3::LrWpanPhy::GetNoisePowerSpectralDensity() [member function]
+    ## ble-phy.h (module 'ble'): ns3::Ptr<ns3::SpectrumValue const> ns3::BlePhy::GetNoisePowerSpectralDensity() [member function]
     cls.add_method('GetNoisePowerSpectralDensity', 
                    'ns3::Ptr< ns3::SpectrumValue const >', 
                    [])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::StartRx(ns3::Ptr<ns3::SpectrumSignalParameters> params) [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::StartRx(ns3::Ptr<ns3::SpectrumSignalParameters> params) [member function]
     cls.add_method('StartRx', 
                    'void', 
                    [param('ns3::Ptr< ns3::SpectrumSignalParameters >', 'params')], 
                    is_virtual=True)
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::PdDataRequest(uint32_t const psduLength, ns3::Ptr<ns3::Packet> p) [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::PdDataRequest(uint32_t const psduLength, ns3::Ptr<ns3::Packet> p) [member function]
     cls.add_method('PdDataRequest', 
                    'void', 
                    [param('uint32_t const', 'psduLength'), param('ns3::Ptr< ns3::Packet >', 'p')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::PlmeCcaRequest() [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::PlmeCcaRequest() [member function]
     cls.add_method('PlmeCcaRequest', 
                    'void', 
                    [])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::PlmeEdRequest() [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::PlmeEdRequest() [member function]
     cls.add_method('PlmeEdRequest', 
                    'void', 
                    [])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::PlmeGetAttributeRequest(ns3::LrWpanPibAttributeIdentifier id) [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::PlmeGetAttributeRequest(ns3::BlePibAttributeIdentifier id) [member function]
     cls.add_method('PlmeGetAttributeRequest', 
                    'void', 
-                   [param('ns3::LrWpanPibAttributeIdentifier', 'id')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::PlmeSetTRXStateRequest(ns3::LrWpanPhyEnumeration state) [member function]
+                   [param('ns3::BlePibAttributeIdentifier', 'id')])
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::PlmeSetTRXStateRequest(ns3::BlePhyEnumeration state) [member function]
     cls.add_method('PlmeSetTRXStateRequest', 
                    'void', 
-                   [param('ns3::LrWpanPhyEnumeration', 'state')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::PlmeSetAttributeRequest(ns3::LrWpanPibAttributeIdentifier id, ns3::LrWpanPhyPibAttributes * attribute) [member function]
+                   [param('ns3::BlePhyEnumeration', 'state')])
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::PlmeSetAttributeRequest(ns3::BlePibAttributeIdentifier id, ns3::BlePhyPibAttributes * attribute) [member function]
     cls.add_method('PlmeSetAttributeRequest', 
                    'void', 
-                   [param('ns3::LrWpanPibAttributeIdentifier', 'id'), param('ns3::LrWpanPhyPibAttributes *', 'attribute')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::SetPdDataIndicationCallback(ns3::PdDataIndicationCallback c) [member function]
+                   [param('ns3::BlePibAttributeIdentifier', 'id'), param('ns3::BlePhyPibAttributes *', 'attribute')])
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::SetPdDataIndicationCallback(ns3::PdDataIndicationCallback c) [member function]
     cls.add_method('SetPdDataIndicationCallback', 
                    'void', 
                    [param('ns3::PdDataIndicationCallback', 'c')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::SetPdDataConfirmCallback(ns3::PdDataConfirmCallback c) [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::SetPdDataConfirmCallback(ns3::PdDataConfirmCallback c) [member function]
     cls.add_method('SetPdDataConfirmCallback', 
                    'void', 
                    [param('ns3::PdDataConfirmCallback', 'c')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::SetPlmeCcaConfirmCallback(ns3::PlmeCcaConfirmCallback c) [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::SetPlmeCcaConfirmCallback(ns3::PlmeCcaConfirmCallback c) [member function]
     cls.add_method('SetPlmeCcaConfirmCallback', 
                    'void', 
                    [param('ns3::PlmeCcaConfirmCallback', 'c')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::SetPlmeEdConfirmCallback(ns3::PlmeEdConfirmCallback c) [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::SetPlmeEdConfirmCallback(ns3::PlmeEdConfirmCallback c) [member function]
     cls.add_method('SetPlmeEdConfirmCallback', 
                    'void', 
                    [param('ns3::PlmeEdConfirmCallback', 'c')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::SetPlmeGetAttributeConfirmCallback(ns3::PlmeGetAttributeConfirmCallback c) [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::SetPlmeGetAttributeConfirmCallback(ns3::PlmeGetAttributeConfirmCallback c) [member function]
     cls.add_method('SetPlmeGetAttributeConfirmCallback', 
                    'void', 
                    [param('ns3::PlmeGetAttributeConfirmCallback', 'c')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::SetPlmeSetTRXStateConfirmCallback(ns3::PlmeSetTRXStateConfirmCallback c) [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::SetPlmeSetTRXStateConfirmCallback(ns3::PlmeSetTRXStateConfirmCallback c) [member function]
     cls.add_method('SetPlmeSetTRXStateConfirmCallback', 
                    'void', 
                    [param('ns3::PlmeSetTRXStateConfirmCallback', 'c')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::SetPlmeSetAttributeConfirmCallback(ns3::PlmeSetAttributeConfirmCallback c) [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::SetPlmeSetAttributeConfirmCallback(ns3::PlmeSetAttributeConfirmCallback c) [member function]
     cls.add_method('SetPlmeSetAttributeConfirmCallback', 
                    'void', 
                    [param('ns3::PlmeSetAttributeConfirmCallback', 'c')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): double ns3::LrWpanPhy::GetDataOrSymbolRate(bool isData) [member function]
+    ## ble-phy.h (module 'ble'): double ns3::BlePhy::GetDataOrSymbolRate(bool isData) [member function]
     cls.add_method('GetDataOrSymbolRate', 
                    'double', 
                    [param('bool', 'isData')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::SetErrorModel(ns3::Ptr<ns3::LrWpanErrorModel> e) [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::SetErrorModel(ns3::Ptr<ns3::BleErrorModel> e) [member function]
     cls.add_method('SetErrorModel', 
                    'void', 
-                   [param('ns3::Ptr< ns3::LrWpanErrorModel >', 'e')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): ns3::Ptr<ns3::LrWpanErrorModel> ns3::LrWpanPhy::GetErrorModel() const [member function]
+                   [param('ns3::Ptr< ns3::BleErrorModel >', 'e')])
+    ## ble-phy.h (module 'ble'): ns3::Ptr<ns3::BleErrorModel> ns3::BlePhy::GetErrorModel() const [member function]
     cls.add_method('GetErrorModel', 
-                   'ns3::Ptr< ns3::LrWpanErrorModel >', 
+                   'ns3::Ptr< ns3::BleErrorModel >', 
                    [], 
                    is_const=True)
-    ## lr-wpan-phy.h (module 'lr-wpan'): uint64_t ns3::LrWpanPhy::GetPhySHRDuration() const [member function]
+    ## ble-phy.h (module 'ble'): uint64_t ns3::BlePhy::GetPhySHRDuration() const [member function]
     cls.add_method('GetPhySHRDuration', 
                    'uint64_t', 
                    [], 
                    is_const=True)
-    ## lr-wpan-phy.h (module 'lr-wpan'): double ns3::LrWpanPhy::GetPhySymbolsPerOctet() const [member function]
+    ## ble-phy.h (module 'ble'): double ns3::BlePhy::GetPhySymbolsPerOctet() const [member function]
     cls.add_method('GetPhySymbolsPerOctet', 
                    'double', 
                    [], 
                    is_const=True)
-    ## lr-wpan-phy.h (module 'lr-wpan'): int64_t ns3::LrWpanPhy::AssignStreams(int64_t stream) [member function]
+    ## ble-phy.h (module 'ble'): int64_t ns3::BlePhy::AssignStreams(int64_t stream) [member function]
     cls.add_method('AssignStreams', 
                    'int64_t', 
                    [param('int64_t', 'stream')])
-    ## lr-wpan-phy.h (module 'lr-wpan'): void ns3::LrWpanPhy::DoDispose() [member function]
+    ## ble-phy.h (module 'ble'): void ns3::BlePhy::DoDispose() [member function]
     cls.add_method('DoDispose', 
                    'void', 
                    [], 
                    visibility='private', is_virtual=True)
     return
 
-def register_Ns3LrWpanSpectrumSignalParameters_methods(root_module, cls):
-    ## lr-wpan-spectrum-signal-parameters.h (module 'lr-wpan'): ns3::LrWpanSpectrumSignalParameters::LrWpanSpectrumSignalParameters() [constructor]
+def register_Ns3BleSpectrumSignalParameters_methods(root_module, cls):
+    ## ble-spectrum-signal-parameters.h (module 'ble'): ns3::BleSpectrumSignalParameters::BleSpectrumSignalParameters() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-spectrum-signal-parameters.h (module 'lr-wpan'): ns3::LrWpanSpectrumSignalParameters::LrWpanSpectrumSignalParameters(ns3::LrWpanSpectrumSignalParameters const & p) [copy constructor]
-    cls.add_constructor([param('ns3::LrWpanSpectrumSignalParameters const &', 'p')])
-    ## lr-wpan-spectrum-signal-parameters.h (module 'lr-wpan'): ns3::Ptr<ns3::SpectrumSignalParameters> ns3::LrWpanSpectrumSignalParameters::Copy() [member function]
+    ## ble-spectrum-signal-parameters.h (module 'ble'): ns3::BleSpectrumSignalParameters::BleSpectrumSignalParameters(ns3::BleSpectrumSignalParameters const & p) [copy constructor]
+    cls.add_constructor([param('ns3::BleSpectrumSignalParameters const &', 'p')])
+    ## ble-spectrum-signal-parameters.h (module 'ble'): ns3::Ptr<ns3::SpectrumSignalParameters> ns3::BleSpectrumSignalParameters::Copy() [member function]
     cls.add_method('Copy', 
                    'ns3::Ptr< ns3::SpectrumSignalParameters >', 
                    [], 
                    is_virtual=True)
-    ## lr-wpan-spectrum-signal-parameters.h (module 'lr-wpan'): ns3::LrWpanSpectrumSignalParameters::packetBurst [variable]
+    ## ble-spectrum-signal-parameters.h (module 'ble'): ns3::BleSpectrumSignalParameters::packetBurst [variable]
     cls.add_instance_attribute('packetBurst', 'ns3::Ptr< ns3::PacketBurst >', is_const=False)
     return
 
@@ -6032,181 +6032,181 @@ def register_Ns3AddressValue_methods(root_module, cls):
                    [param('ns3::Address const &', 'value')])
     return
 
-def register_Ns3LrWpanNetDevice_methods(root_module, cls):
-    ## lr-wpan-net-device.h (module 'lr-wpan'): ns3::LrWpanNetDevice::LrWpanNetDevice(ns3::LrWpanNetDevice const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::LrWpanNetDevice const &', 'arg0')])
-    ## lr-wpan-net-device.h (module 'lr-wpan'): ns3::LrWpanNetDevice::LrWpanNetDevice() [constructor]
+def register_Ns3BleNetDevice_methods(root_module, cls):
+    ## ble-net-device.h (module 'ble'): ns3::BleNetDevice::BleNetDevice(ns3::BleNetDevice const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::BleNetDevice const &', 'arg0')])
+    ## ble-net-device.h (module 'ble'): ns3::BleNetDevice::BleNetDevice() [constructor]
     cls.add_constructor([])
-    ## lr-wpan-net-device.h (module 'lr-wpan'): void ns3::LrWpanNetDevice::AddLinkChangeCallback(ns3::Callback<void,ns3::empty,ns3::empty,ns3::empty,ns3::empty,ns3::empty,ns3::empty,ns3::empty,ns3::empty,ns3::empty> callback) [member function]
+    ## ble-net-device.h (module 'ble'): void ns3::BleNetDevice::AddLinkChangeCallback(ns3::Callback<void,ns3::empty,ns3::empty,ns3::empty,ns3::empty,ns3::empty,ns3::empty,ns3::empty,ns3::empty,ns3::empty> callback) [member function]
     cls.add_method('AddLinkChangeCallback', 
                    'void', 
                    [param('ns3::Callback< void, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', 'callback')], 
                    is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): int64_t ns3::LrWpanNetDevice::AssignStreams(int64_t stream) [member function]
+    ## ble-net-device.h (module 'ble'): int64_t ns3::BleNetDevice::AssignStreams(int64_t stream) [member function]
     cls.add_method('AssignStreams', 
                    'int64_t', 
                    [param('int64_t', 'stream')])
-    ## lr-wpan-net-device.h (module 'lr-wpan'): ns3::Address ns3::LrWpanNetDevice::GetAddress() const [member function]
+    ## ble-net-device.h (module 'ble'): ns3::Address ns3::BleNetDevice::GetAddress() const [member function]
     cls.add_method('GetAddress', 
                    'ns3::Address', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): ns3::Address ns3::LrWpanNetDevice::GetBroadcast() const [member function]
+    ## ble-net-device.h (module 'ble'): ns3::Address ns3::BleNetDevice::GetBroadcast() const [member function]
     cls.add_method('GetBroadcast', 
                    'ns3::Address', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): ns3::Ptr<ns3::Channel> ns3::LrWpanNetDevice::GetChannel() const [member function]
+    ## ble-net-device.h (module 'ble'): ns3::Ptr<ns3::Channel> ns3::BleNetDevice::GetChannel() const [member function]
     cls.add_method('GetChannel', 
                    'ns3::Ptr< ns3::Channel >', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): ns3::Ptr<ns3::LrWpanCsmaCa> ns3::LrWpanNetDevice::GetCsmaCa() const [member function]
+    ## ble-net-device.h (module 'ble'): ns3::Ptr<ns3::BleCsmaCa> ns3::BleNetDevice::GetCsmaCa() const [member function]
     cls.add_method('GetCsmaCa', 
-                   'ns3::Ptr< ns3::LrWpanCsmaCa >', 
+                   'ns3::Ptr< ns3::BleCsmaCa >', 
                    [], 
                    is_const=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): uint32_t ns3::LrWpanNetDevice::GetIfIndex() const [member function]
+    ## ble-net-device.h (module 'ble'): uint32_t ns3::BleNetDevice::GetIfIndex() const [member function]
     cls.add_method('GetIfIndex', 
                    'uint32_t', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): ns3::Ptr<ns3::LrWpanMac> ns3::LrWpanNetDevice::GetMac() const [member function]
+    ## ble-net-device.h (module 'ble'): ns3::Ptr<ns3::BleMac> ns3::BleNetDevice::GetMac() const [member function]
     cls.add_method('GetMac', 
-                   'ns3::Ptr< ns3::LrWpanMac >', 
+                   'ns3::Ptr< ns3::BleMac >', 
                    [], 
                    is_const=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): uint16_t ns3::LrWpanNetDevice::GetMtu() const [member function]
+    ## ble-net-device.h (module 'ble'): uint16_t ns3::BleNetDevice::GetMtu() const [member function]
     cls.add_method('GetMtu', 
                    'uint16_t', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): ns3::Address ns3::LrWpanNetDevice::GetMulticast(ns3::Ipv4Address multicastGroup) const [member function]
+    ## ble-net-device.h (module 'ble'): ns3::Address ns3::BleNetDevice::GetMulticast(ns3::Ipv4Address multicastGroup) const [member function]
     cls.add_method('GetMulticast', 
                    'ns3::Address', 
                    [param('ns3::Ipv4Address', 'multicastGroup')], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): ns3::Address ns3::LrWpanNetDevice::GetMulticast(ns3::Ipv6Address addr) const [member function]
+    ## ble-net-device.h (module 'ble'): ns3::Address ns3::BleNetDevice::GetMulticast(ns3::Ipv6Address addr) const [member function]
     cls.add_method('GetMulticast', 
                    'ns3::Address', 
                    [param('ns3::Ipv6Address', 'addr')], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): ns3::Ptr<ns3::Node> ns3::LrWpanNetDevice::GetNode() const [member function]
+    ## ble-net-device.h (module 'ble'): ns3::Ptr<ns3::Node> ns3::BleNetDevice::GetNode() const [member function]
     cls.add_method('GetNode', 
                    'ns3::Ptr< ns3::Node >', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): ns3::Ptr<ns3::LrWpanPhy> ns3::LrWpanNetDevice::GetPhy() const [member function]
+    ## ble-net-device.h (module 'ble'): ns3::Ptr<ns3::BlePhy> ns3::BleNetDevice::GetPhy() const [member function]
     cls.add_method('GetPhy', 
-                   'ns3::Ptr< ns3::LrWpanPhy >', 
+                   'ns3::Ptr< ns3::BlePhy >', 
                    [], 
                    is_const=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): static ns3::TypeId ns3::LrWpanNetDevice::GetTypeId() [member function]
+    ## ble-net-device.h (module 'ble'): static ns3::TypeId ns3::BleNetDevice::GetTypeId() [member function]
     cls.add_method('GetTypeId', 
                    'ns3::TypeId', 
                    [], 
                    is_static=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): bool ns3::LrWpanNetDevice::IsBridge() const [member function]
+    ## ble-net-device.h (module 'ble'): bool ns3::BleNetDevice::IsBridge() const [member function]
     cls.add_method('IsBridge', 
                    'bool', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): bool ns3::LrWpanNetDevice::IsBroadcast() const [member function]
+    ## ble-net-device.h (module 'ble'): bool ns3::BleNetDevice::IsBroadcast() const [member function]
     cls.add_method('IsBroadcast', 
                    'bool', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): bool ns3::LrWpanNetDevice::IsLinkUp() const [member function]
+    ## ble-net-device.h (module 'ble'): bool ns3::BleNetDevice::IsLinkUp() const [member function]
     cls.add_method('IsLinkUp', 
                    'bool', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): bool ns3::LrWpanNetDevice::IsMulticast() const [member function]
+    ## ble-net-device.h (module 'ble'): bool ns3::BleNetDevice::IsMulticast() const [member function]
     cls.add_method('IsMulticast', 
                    'bool', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): bool ns3::LrWpanNetDevice::IsPointToPoint() const [member function]
+    ## ble-net-device.h (module 'ble'): bool ns3::BleNetDevice::IsPointToPoint() const [member function]
     cls.add_method('IsPointToPoint', 
                    'bool', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): void ns3::LrWpanNetDevice::McpsDataIndication(ns3::McpsDataIndicationParams params, ns3::Ptr<ns3::Packet> pkt) [member function]
+    ## ble-net-device.h (module 'ble'): void ns3::BleNetDevice::McpsDataIndication(ns3::McpsDataIndicationParams params, ns3::Ptr<ns3::Packet> pkt) [member function]
     cls.add_method('McpsDataIndication', 
                    'void', 
                    [param('ns3::McpsDataIndicationParams', 'params'), param('ns3::Ptr< ns3::Packet >', 'pkt')])
-    ## lr-wpan-net-device.h (module 'lr-wpan'): bool ns3::LrWpanNetDevice::NeedsArp() const [member function]
+    ## ble-net-device.h (module 'ble'): bool ns3::BleNetDevice::NeedsArp() const [member function]
     cls.add_method('NeedsArp', 
                    'bool', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): bool ns3::LrWpanNetDevice::Send(ns3::Ptr<ns3::Packet> packet, ns3::Address const & dest, uint16_t protocolNumber) [member function]
+    ## ble-net-device.h (module 'ble'): bool ns3::BleNetDevice::Send(ns3::Ptr<ns3::Packet> packet, ns3::Address const & dest, uint16_t protocolNumber) [member function]
     cls.add_method('Send', 
                    'bool', 
                    [param('ns3::Ptr< ns3::Packet >', 'packet'), param('ns3::Address const &', 'dest'), param('uint16_t', 'protocolNumber')], 
                    is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): bool ns3::LrWpanNetDevice::SendFrom(ns3::Ptr<ns3::Packet> packet, ns3::Address const & source, ns3::Address const & dest, uint16_t protocolNumber) [member function]
+    ## ble-net-device.h (module 'ble'): bool ns3::BleNetDevice::SendFrom(ns3::Ptr<ns3::Packet> packet, ns3::Address const & source, ns3::Address const & dest, uint16_t protocolNumber) [member function]
     cls.add_method('SendFrom', 
                    'bool', 
                    [param('ns3::Ptr< ns3::Packet >', 'packet'), param('ns3::Address const &', 'source'), param('ns3::Address const &', 'dest'), param('uint16_t', 'protocolNumber')], 
                    is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): void ns3::LrWpanNetDevice::SetAddress(ns3::Address address) [member function]
+    ## ble-net-device.h (module 'ble'): void ns3::BleNetDevice::SetAddress(ns3::Address address) [member function]
     cls.add_method('SetAddress', 
                    'void', 
                    [param('ns3::Address', 'address')], 
                    is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): void ns3::LrWpanNetDevice::SetChannel(ns3::Ptr<ns3::SpectrumChannel> channel) [member function]
+    ## ble-net-device.h (module 'ble'): void ns3::BleNetDevice::SetChannel(ns3::Ptr<ns3::SpectrumChannel> channel) [member function]
     cls.add_method('SetChannel', 
                    'void', 
                    [param('ns3::Ptr< ns3::SpectrumChannel >', 'channel')])
-    ## lr-wpan-net-device.h (module 'lr-wpan'): void ns3::LrWpanNetDevice::SetCsmaCa(ns3::Ptr<ns3::LrWpanCsmaCa> csmaca) [member function]
+    ## ble-net-device.h (module 'ble'): void ns3::BleNetDevice::SetCsmaCa(ns3::Ptr<ns3::BleCsmaCa> csmaca) [member function]
     cls.add_method('SetCsmaCa', 
                    'void', 
-                   [param('ns3::Ptr< ns3::LrWpanCsmaCa >', 'csmaca')])
-    ## lr-wpan-net-device.h (module 'lr-wpan'): void ns3::LrWpanNetDevice::SetIfIndex(uint32_t const index) [member function]
+                   [param('ns3::Ptr< ns3::BleCsmaCa >', 'csmaca')])
+    ## ble-net-device.h (module 'ble'): void ns3::BleNetDevice::SetIfIndex(uint32_t const index) [member function]
     cls.add_method('SetIfIndex', 
                    'void', 
                    [param('uint32_t const', 'index')], 
                    is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): void ns3::LrWpanNetDevice::SetMac(ns3::Ptr<ns3::LrWpanMac> mac) [member function]
+    ## ble-net-device.h (module 'ble'): void ns3::BleNetDevice::SetMac(ns3::Ptr<ns3::BleMac> mac) [member function]
     cls.add_method('SetMac', 
                    'void', 
-                   [param('ns3::Ptr< ns3::LrWpanMac >', 'mac')])
-    ## lr-wpan-net-device.h (module 'lr-wpan'): bool ns3::LrWpanNetDevice::SetMtu(uint16_t const mtu) [member function]
+                   [param('ns3::Ptr< ns3::BleMac >', 'mac')])
+    ## ble-net-device.h (module 'ble'): bool ns3::BleNetDevice::SetMtu(uint16_t const mtu) [member function]
     cls.add_method('SetMtu', 
                    'bool', 
                    [param('uint16_t const', 'mtu')], 
                    is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): void ns3::LrWpanNetDevice::SetNode(ns3::Ptr<ns3::Node> node) [member function]
+    ## ble-net-device.h (module 'ble'): void ns3::BleNetDevice::SetNode(ns3::Ptr<ns3::Node> node) [member function]
     cls.add_method('SetNode', 
                    'void', 
                    [param('ns3::Ptr< ns3::Node >', 'node')], 
                    is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): void ns3::LrWpanNetDevice::SetPhy(ns3::Ptr<ns3::LrWpanPhy> phy) [member function]
+    ## ble-net-device.h (module 'ble'): void ns3::BleNetDevice::SetPhy(ns3::Ptr<ns3::BlePhy> phy) [member function]
     cls.add_method('SetPhy', 
                    'void', 
-                   [param('ns3::Ptr< ns3::LrWpanPhy >', 'phy')])
-    ## lr-wpan-net-device.h (module 'lr-wpan'): void ns3::LrWpanNetDevice::SetPromiscReceiveCallback(ns3::Callback<bool,ns3::Ptr<ns3::NetDevice>,ns3::Ptr<const ns3::Packet>,short unsigned int,const ns3::Address&,const ns3::Address&,ns3::NetDevice::PacketType,ns3::empty,ns3::empty,ns3::empty> cb) [member function]
+                   [param('ns3::Ptr< ns3::BlePhy >', 'phy')])
+    ## ble-net-device.h (module 'ble'): void ns3::BleNetDevice::SetPromiscReceiveCallback(ns3::Callback<bool,ns3::Ptr<ns3::NetDevice>,ns3::Ptr<const ns3::Packet>,short unsigned int,const ns3::Address&,const ns3::Address&,ns3::NetDevice::PacketType,ns3::empty,ns3::empty,ns3::empty> cb) [member function]
     cls.add_method('SetPromiscReceiveCallback', 
                    'void', 
                    [param('ns3::Callback< bool, ns3::Ptr< ns3::NetDevice >, ns3::Ptr< ns3::Packet const >, short unsigned int, ns3::Address const &, ns3::Address const &, ns3::NetDevice::PacketType, ns3::empty, ns3::empty, ns3::empty >', 'cb')], 
                    is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): void ns3::LrWpanNetDevice::SetReceiveCallback(ns3::Callback<bool, ns3::Ptr<ns3::NetDevice>, ns3::Ptr<ns3::Packet const>, unsigned short, ns3::Address const&, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty> cb) [member function]
+    ## ble-net-device.h (module 'ble'): void ns3::BleNetDevice::SetReceiveCallback(ns3::Callback<bool, ns3::Ptr<ns3::NetDevice>, ns3::Ptr<ns3::Packet const>, unsigned short, ns3::Address const&, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty> cb) [member function]
     cls.add_method('SetReceiveCallback', 
                    'void', 
                    [param('ns3::Callback< bool, ns3::Ptr< ns3::NetDevice >, ns3::Ptr< ns3::Packet const >, unsigned short, ns3::Address const &, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', 'cb')], 
                    is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): bool ns3::LrWpanNetDevice::SupportsSendFrom() const [member function]
+    ## ble-net-device.h (module 'ble'): bool ns3::BleNetDevice::SupportsSendFrom() const [member function]
     cls.add_method('SupportsSendFrom', 
                    'bool', 
                    [], 
                    is_const=True, is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): void ns3::LrWpanNetDevice::DoDispose() [member function]
+    ## ble-net-device.h (module 'ble'): void ns3::BleNetDevice::DoDispose() [member function]
     cls.add_method('DoDispose', 
                    'void', 
                    [], 
                    visibility='private', is_virtual=True)
-    ## lr-wpan-net-device.h (module 'lr-wpan'): void ns3::LrWpanNetDevice::DoInitialize() [member function]
+    ## ble-net-device.h (module 'ble'): void ns3::BleNetDevice::DoInitialize() [member function]
     cls.add_method('DoInitialize', 
                    'void', 
                    [], 
