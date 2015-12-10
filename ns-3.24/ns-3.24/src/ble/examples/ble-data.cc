@@ -141,9 +141,9 @@ int main (int argc, char *argv[])
   params.m_srcAddrMode = SHORT_ADDR;
   params.m_dstAddrMode = SHORT_ADDR;
   params.m_dstPanId = 0;
-  params.m_dstAddr = Mac16Address ("00:02");
+  params.m_dstAddr = Mac16Address ("ff:ff");
   params.m_msduHandle = 0;
-  params.m_txOptions = TX_OPTION_ACK;
+  params.m_txOptions = TX_OPTION_NONE;
 //  dev0->GetMac ()->McpsDataRequest (params, p0);
   Simulator::ScheduleWithContext (1, Seconds (0.0),
                                   &BleMac::McpsDataRequest,
@@ -151,7 +151,7 @@ int main (int argc, char *argv[])
 
   // Send a packet back at time 2 seconds
   Ptr<Packet> p2 = Create<Packet> (60);  // 60 bytes of dummy data
-  params.m_dstAddr = Mac16Address ("00:01");
+  params.m_dstAddr = Mac16Address ("ff:ff");
   Simulator::ScheduleWithContext (2, Seconds (2.0),
                                   &BleMac::McpsDataRequest,
                                   dev1->GetMac (), params, p2);

@@ -134,38 +134,20 @@ BleCollisionTestCase::DoRun (void)
   // First case: concurrent tx and no ACKs
   std::cout << "*** First test " << std::endl;
   m_rxPackets = 0;
-  params.m_dstAddr = Mac16Address ("00:02");
+  params.m_dstAddr = Mac16Address ("ff:ff");
   Simulator::Schedule (Seconds (0.1),
                        &BleMac::McpsDataRequest,
                        dev0->GetMac (), params, p0);
 
-  params.m_dstAddr = Mac16Address ("00:01");
+  params.m_dstAddr = Mac16Address ("ff:ff");
   Simulator::Schedule (Seconds (0.1),
                        &BleMac::McpsDataRequest,
                        dev1->GetMac (), params, p1);
 
   Simulator::Run ();
 
+  //Expect 0 packets received since you cannot receive while transmitting
   NS_TEST_EXPECT_MSG_EQ (m_rxPackets, 0, "Not received a packet (as expected)");
-
-  // Second case: concurrent tx and ACKs
-  std::cout << "*** Second test " << std::endl;
-  m_rxPackets = 0;
-  params.m_txOptions = TX_OPTION_ACK;
-
-  params.m_dstAddr = Mac16Address ("00:02");
-  Simulator::Schedule (Seconds (0.1),
-                       &BleMac::McpsDataRequest,
-                       dev0->GetMac (), params, p0);
-
-  params.m_dstAddr = Mac16Address ("00:01");
-  Simulator::Schedule (Seconds (0.1),
-                       &BleMac::McpsDataRequest,
-                       dev1->GetMac (), params, p1);
-
-  Simulator::Run ();
-
-  NS_TEST_EXPECT_MSG_EQ (m_rxPackets, 1, "Received a packet (as expected)");
 
   // Third case: two concurrent tx and no ACKs
   std::cout << "*** Third test " << std::endl;
@@ -176,12 +158,12 @@ BleCollisionTestCase::DoRun (void)
 //  LogComponentEnable("BlePhy",LOG_LEVEL_ALL);
 //  LogComponentEnableAll (LOG_PREFIX_TIME);
 
-  params.m_dstAddr = Mac16Address ("00:01");
+  params.m_dstAddr = Mac16Address ("ff:ff");
   Simulator::Schedule (Seconds (0.0001),
                        &BleMac::McpsDataRequest,
                        dev2->GetMac (), params, p2);
 
-  params.m_dstAddr = Mac16Address ("00:01");
+  params.m_dstAddr = Mac16Address ("ff:ff");
   Simulator::Schedule (Seconds (0.0002),
                        &BleMac::McpsDataRequest,
                        dev1->GetMac (), params, p0);
@@ -189,6 +171,7 @@ BleCollisionTestCase::DoRun (void)
   Simulator::Run ();
 
   std::cout << "m_rxPackets = " << int(m_rxPackets) << std::endl;
+  // Expect to receive one packet, the other is dropped to the floor
   NS_TEST_EXPECT_MSG_EQ (m_rxPackets, 1, "Received a packet (as expected)");
 
   // Fourth case: two concurrent tx and ACKs
@@ -196,18 +179,19 @@ BleCollisionTestCase::DoRun (void)
   m_rxPackets = 0;
   params.m_txOptions = TX_OPTION_ACK;
 
-  params.m_dstAddr = Mac16Address ("00:01");
+  params.m_dstAddr = Mac16Address ("ff:ff");
   Simulator::Schedule (Seconds (0.1),
                        &BleMac::McpsDataRequest,
                        dev1->GetMac (), params, p0);
 
-  params.m_dstAddr = Mac16Address ("00:01");
-  Simulator::Schedule (Seconds (0.1),
+  params.m_dstAddr = Mac16Address ("ff:ff");
+  Simulator::Schedule (Seconds (0.2),
                        &BleMac::McpsDataRequest,
                        dev2->GetMac (), params, p1);
 
   Simulator::Run ();
 
+  //expect both packets to be received, since they are transmitted at different times
   std::cout << "m_rxPackets = " << int(m_rxPackets) << std::endl;
   NS_TEST_EXPECT_MSG_EQ (m_rxPackets, 2, "Received two packets (as expected)");
 
