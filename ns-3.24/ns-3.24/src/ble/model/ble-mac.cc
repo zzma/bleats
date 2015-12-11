@@ -523,8 +523,8 @@ BleMac::PdDataIndication (uint32_t psduLength, Ptr<Packet> p, uint8_t lqi)
           if (acceptFrame
               && (receivedMacHdr.GetDstAddrMode () == 2))
             {
-              acceptFrame = receivedMacHdr.GetShortDstAddr () == m_shortAddress
-                || receivedMacHdr.GetShortDstAddr () == Mac16Address ("ff:ff");        // check for broadcast addrs
+              acceptFrame = receivedMacHdr.GetShortSrcAddr () != m_shortAddress
+                && receivedMacHdr.GetShortDstAddr () == Mac16Address ("ff:ff");        // check for broadcast addrs
             }
 
           if (acceptFrame
