@@ -72,9 +72,6 @@ BleMacHeader::GetType (void) const
     case 1:
       return BLE_MAC_DATA;
       break;
-    case 2:
-      return BLE_MAC_ACKNOWLEDGMENT;
-      break;
     case 3:
       return BLE_MAC_COMMAND;
       break;
@@ -272,7 +269,7 @@ BleMacHeader::IsData (void) const
 bool
 BleMacHeader::IsAcknowledgment (void) const
 {
-  return(m_fctrlFrmType == BLE_MAC_ACKNOWLEDGMENT);
+  return(false);
 }
 
 

@@ -23,7 +23,6 @@
  *  Erwan Livolant <erwan.livolant@inria.fr>
  */
 #include "ble-mac.h"
-#include "ble-csmaca.h"
 #include "ble-mac-header.h"
 #include "ble-mac-trailer.h"
 #include <ns3/simulator.h>
@@ -141,8 +140,6 @@ BleMac::BleMac ()
   m_selfExt = Mac64Address::Allocate ();
   m_macPromiscuousMode = false;
   m_macMaxFrameRetries = 3;
-  m_retransmission = 0;
-  m_numCsmacaRetry = 0;
   m_txPkt = 0;
 
   Ptr<UniformRandomVariable> uniformVar = CreateObject<UniformRandomVariable> ();
@@ -174,11 +171,6 @@ BleMac::DoInitialize ()
 void
 BleMac::DoDispose ()
 {
-  if (m_csmaCa != 0)
-    {
-      m_csmaCa->Dispose ();
-      m_csmaCa = 0;
-    }
   m_txPkt = 0;
   for (uint32_t i = 0; i < m_txQueue.size (); i++)
     {
@@ -343,42 +335,19 @@ BleMac::McpsDataRequest (McpsDataRequestParams params, Ptr<Packet> p)
         }
       return;
     }
+  
 
-  //if is Slotted CSMA means its beacon enabled
-  if (m_csmaCa->IsSlottedCsmaCa ())
+  if (b1 != 0)
     {
-      if (b1 == TX_OPTION_GTS)
+      NS_LOG_ERROR (this << "for non-beacon-enables PAN, bit 1 should always be set to 0");
+      confirmParams.m_status = IEEE_802_15_4_INVALID_PARAMETER;
+      if (!m_mcpsDataConfirmCallback.IsNull ())
         {
-          //TODO:GTS Transmission
+          m_mcpsDataConfirmCallback (confirmParams);
         }
-      else if (b1 == 0)
-        {
-          //TODO:CAP Transmission
-        }
-      else
-        {
-          NS_LOG_ERROR (this << "Incorrect TxOptions bit 1 not 0/1");
-          confirmParams.m_status = IEEE_802_15_4_INVALID_PARAMETER;
-          if (!m_mcpsDataConfirmCallback.IsNull ())
-            {
-              m_mcpsDataConfirmCallback (confirmParams);
-            }
-          return;
-        }
+      return;
     }
-  else
-    {
-      if (b1 != 0)
-        {
-          NS_LOG_ERROR (this << "for non-beacon-enables PAN, bit 1 should always be set to 0");
-          confirmParams.m_status = IEEE_802_15_4_INVALID_PARAMETER;
-          if (!m_mcpsDataConfirmCallback.IsNull ())
-            {
-              m_mcpsDataConfirmCallback (confirmParams);
-            }
-          return;
-        }
-    }
+
 
   if (b2 == TX_OPTION_INDIRECT)
     {
@@ -432,12 +401,6 @@ BleMac::CheckQueue ()
       m_txPkt = txQElement->txQPkt;
       m_setMacState = Simulator::ScheduleNow (&BleMac::SetBleMacState, this, MAC_CSMA);
     }
-}
-
-void
-BleMac::SetCsmaCa (Ptr<BleCsmaCa> csmaCa)
-{
-  m_csmaCa = csmaCa;
 }
 
 void
@@ -571,20 +534,6 @@ BleMac::PdDataIndication (uint32_t psduLength, Ptr<Packet> p, uint8_t lqi)
             }
 
           if (acceptFrame
-              && (receivedMacHdr.GetType () == BleMacHeader::BLE_MAC_BEACON))
-            {
-              if (m_macPanId == 0xffff)
-                {
-                  // TODO: Accept only if the frame version field is valid
-                  acceptFrame = true;
-                }
-              else
-                {
-                  acceptFrame = receivedMacHdr.GetSrcPanId () == m_macPanId;
-                }
-            }
-
-          if (acceptFrame
               && ((receivedMacHdr.GetType () == BleMacHeader::BLE_MAC_DATA)
                   || (receivedMacHdr.GetType () == BleMacHeader::BLE_MAC_COMMAND))
               && (receivedMacHdr.GetSrcAddrMode () > 1))
@@ -595,36 +544,6 @@ BleMac::PdDataIndication (uint32_t psduLength, Ptr<Packet> p, uint8_t lqi)
           if (acceptFrame)
             {
               m_macRxTrace (originalPkt);
-              // \todo: What should we do if we receive a frame while waiting for an ACK?
-              //        Especially if this frame has the ACK request bit set, should we reply with an ACK, possibly missing the pending ACK?
-
-              // If the received frame is a frame with the ACK request bit set, we immediately send back an ACK.
-              // If we are currently waiting for a pending ACK, we assume the ACK was lost and trigger a retransmission after sending the ACK.
-              if ((receivedMacHdr.IsData () || receivedMacHdr.IsCommand ()) && receivedMacHdr.IsAckReq ()
-                  && !(receivedMacHdr.GetDstAddrMode () == SHORT_ADDR && receivedMacHdr.GetShortDstAddr () == "ff:ff"))
-                {
-                  // If this is a data or mac command frame, which is not a broadcast,
-                  // with ack req set, generate and send an ack frame.
-                  // If there is a CSMA medium access in progress we cancel the medium access
-                  // for sending the ACK frame. A new transmission attempt will be started
-                  // after the ACK was send.
-                  if (m_bleMacState == MAC_ACK_PENDING)
-                    {
-                      m_ackWaitTimeout.Cancel ();
-                      PrepareRetransmission ();
-                    }
-                  else if (m_bleMacState == MAC_CSMA)
-                    {
-                      // \todo: If we receive a packet while doing CSMA/CA, should  we drop the packet because of channel busy,
-                      //        or should we restart CSMA/CA for the packet after sending the ACK?
-                      // Currently we simply restart CSMA/CA after sending the ACK.
-                      m_csmaCa->Cancel ();
-                    }
-                  // Cancel any pending MAC state change, ACKs have higher priority.
-                  m_setMacState.Cancel ();
-                  ChangeMacState (MAC_IDLE);
-                  m_setMacState = Simulator::ScheduleNow (&BleMac::SendAck, this, receivedMacHdr.GetSeqNum ());
-                }
 
               if (receivedMacHdr.IsData () && !m_mcpsDataIndicationCallback.IsNull ())
                 {
@@ -641,7 +560,6 @@ BleMac::PdDataIndication (uint32_t psduLength, Ptr<Packet> p, uint8_t lqi)
                       m_macTxOkTrace (m_txPkt);
                       // If it is an ACK with the expected sequence number, finish the transmission
                       // and notify the upper layer.
-                      m_ackWaitTimeout.Cancel ();
                       if (!m_mcpsDataConfirmCallback.IsNull ())
                         {
                           TxQueueElement *txQElement = m_txQueue.front ();
@@ -656,18 +574,8 @@ BleMac::PdDataIndication (uint32_t psduLength, Ptr<Packet> p, uint8_t lqi)
                     }
                   else
                     {
-                      // If it is an ACK with an unexpected sequence number, mark the current transmission as failed and start a retransmit. (cf 7.5.6.4.3)
-                      m_ackWaitTimeout.Cancel ();
-                      if (!PrepareRetransmission ())
-                        {
-                          m_setMacState.Cancel ();
-                          m_setMacState = Simulator::ScheduleNow (&BleMac::SetBleMacState, this, MAC_IDLE);
-                        }
-                      else
-                        {
-                          m_setMacState.Cancel ();
-                          m_setMacState = Simulator::ScheduleNow (&BleMac::SetBleMacState, this, MAC_CSMA);
-                        }
+                        m_setMacState.Cancel ();
+                        m_setMacState = Simulator::ScheduleNow (&BleMac::SetBleMacState, this, MAC_CSMA);
                     }
                 }
             }
@@ -680,104 +588,20 @@ BleMac::PdDataIndication (uint32_t psduLength, Ptr<Packet> p, uint8_t lqi)
 }
 
 void
-BleMac::SendAck (uint8_t seqno)
-{
-  NS_LOG_FUNCTION (this << static_cast<uint32_t> (seqno));
-
-  NS_ASSERT (m_bleMacState == MAC_IDLE);
-
-  // Generate a corresponding ACK Frame.
-  BleMacHeader macHdr (BleMacHeader::BLE_MAC_ACKNOWLEDGMENT, seqno);
-  BleMacTrailer macTrailer;
-  Ptr<Packet> ackPacket = Create<Packet> (0);
-  ackPacket->AddHeader (macHdr);
-  // Calculate FCS if the global attribute ChecksumEnable is set.
-  if (Node::ChecksumEnabled ())
-    {
-      macTrailer.EnableFcs (true);
-      macTrailer.SetFcs (ackPacket);
-    }
-  ackPacket->AddTrailer (macTrailer);
-
-  // Enqueue the ACK packet for further processing
-  // when the transmitter is activated.
-  m_txPkt = ackPacket;
-
-  // Switch transceiver to TX mode. Proceed sending the Ack on confirm.
-  ChangeMacState (MAC_SENDING);
-  m_phy->PlmeSetTRXStateRequest (IEEE_802_15_4_PHY_TX_ON);
-}
-
-void
 BleMac::RemoveFirstTxQElement ()
 {
   TxQueueElement *txQElement = m_txQueue.front ();
   Ptr<const Packet> p = txQElement->txQPkt;
-  m_numCsmacaRetry += m_csmaCa->GetNB () + 1;
 
   Ptr<Packet> pkt = p->Copy ();
   BleMacHeader hdr;
   pkt->RemoveHeader (hdr);
-  if (hdr.GetShortDstAddr () != Mac16Address ("ff:ff"))
-    {
-      m_sentPktTrace (p, m_retransmission + 1, m_numCsmacaRetry);
-    }
 
   txQElement->txQPkt = 0;
   delete txQElement;
   m_txQueue.pop_front ();
   m_txPkt = 0;
-  m_retransmission = 0;
-  m_numCsmacaRetry = 0;
   m_macTxDequeueTrace (p);
-}
-
-void
-BleMac::AckWaitTimeout (void)
-{
-  NS_LOG_FUNCTION (this);
-
-  // TODO: If we are a PAN coordinator and this was an indirect transmission,
-  //       we will not initiate a retransmission. Instead we wait for the data
-  //       being extracted after a new data request command.
-  if (!PrepareRetransmission ())
-    {
-      SetBleMacState (MAC_IDLE);
-    }
-  else
-    {
-      SetBleMacState (MAC_CSMA);
-    }
-}
-
-bool
-BleMac::PrepareRetransmission (void)
-{
-  NS_LOG_FUNCTION (this);
-
-  if (m_retransmission >= m_macMaxFrameRetries)
-    {
-      // Maximum number of retransmissions has been reached.
-      // remove the copy of the packet that was just sent
-      TxQueueElement *txQElement = m_txQueue.front ();
-      m_macTxDropTrace (txQElement->txQPkt);
-      if (!m_mcpsDataConfirmCallback.IsNull ())
-        {
-          McpsDataConfirmParams confirmParams;
-          confirmParams.m_msduHandle = txQElement->txQMsduHandle;
-          confirmParams.m_status = IEEE_802_15_4_NO_ACK;
-          m_mcpsDataConfirmCallback (confirmParams);
-        }
-      RemoveFirstTxQElement ();
-      return false;
-    }
-  else
-    {
-      m_retransmission++;
-      m_numCsmacaRetry += m_csmaCa->GetNB () + 1;
-      // Start next CCA process for this packet.
-      return true;
-    }
 }
 
 void
@@ -793,34 +617,21 @@ BleMac::PdDataConfirm (BlePhyEnumeration status)
     {
       if (!macHdr.IsAcknowledgment ())
         {
-          // We have just send a regular data packet, check if we have to wait
-          // for an ACK.
-          if (macHdr.IsAckReq ())
+          
+
+          m_macTxOkTrace (m_txPkt);
+          // remove the copy of the packet that was just sent
+          if (!m_mcpsDataConfirmCallback.IsNull ())
             {
-              // wait for the ack or the next retransmission timeout
-              // start retransmission timer
-              Time waitTime = MicroSeconds (GetMacAckWaitDuration () * 1000 * 1000 / m_phy->GetDataOrSymbolRate (false));
-              NS_ASSERT (m_ackWaitTimeout.IsExpired ());
-              m_ackWaitTimeout = Simulator::Schedule (waitTime, &BleMac::AckWaitTimeout, this);
-              m_setMacState.Cancel ();
-              m_setMacState = Simulator::ScheduleNow (&BleMac::SetBleMacState, this, MAC_ACK_PENDING);
-              return;
+              McpsDataConfirmParams confirmParams;
+              NS_ASSERT_MSG (m_txQueue.size () > 0, "TxQsize = 0");
+              TxQueueElement *txQElement = m_txQueue.front ();
+              confirmParams.m_msduHandle = txQElement->txQMsduHandle;
+              confirmParams.m_status = IEEE_802_15_4_SUCCESS;
+              m_mcpsDataConfirmCallback (confirmParams);
             }
-          else
-            {
-              m_macTxOkTrace (m_txPkt);
-              // remove the copy of the packet that was just sent
-              if (!m_mcpsDataConfirmCallback.IsNull ())
-                {
-                  McpsDataConfirmParams confirmParams;
-                  NS_ASSERT_MSG (m_txQueue.size () > 0, "TxQsize = 0");
-                  TxQueueElement *txQElement = m_txQueue.front ();
-                  confirmParams.m_msduHandle = txQElement->txQMsduHandle;
-                  confirmParams.m_status = IEEE_802_15_4_SUCCESS;
-                  m_mcpsDataConfirmCallback (confirmParams);
-                }
-              RemoveFirstTxQElement ();
-            }
+          RemoveFirstTxQElement ();
+
         }
       else
         {
@@ -862,14 +673,6 @@ BleMac::PdDataConfirm (BlePhyEnumeration status)
 }
 
 void
-BleMac::PlmeCcaConfirm (BlePhyEnumeration status)
-{
-  NS_LOG_FUNCTION (this << status);
-  // Direct this call through the csmaCa object
-  m_csmaCa->PlmeCcaConfirm (status);
-}
-
-void
 BleMac::PlmeEdConfirm (BlePhyEnumeration status, uint8_t energyLevel)
 {
   NS_LOG_FUNCTION (this << status << energyLevel);
@@ -887,7 +690,7 @@ BleMac::PlmeGetAttributeConfirm (BlePhyEnumeration status,
 void
 BleMac::PlmeSetTRXStateConfirm (BlePhyEnumeration status)
 {
-  NS_LOG_FUNCTION (this << status);
+  NS_LOG_FUNCTION (this << status << m_bleMacState);
 
   if (m_bleMacState == MAC_SENDING && (status == IEEE_802_15_4_PHY_TX_ON || status == IEEE_802_15_4_PHY_SUCCESS))
     {
@@ -901,8 +704,8 @@ BleMac::PlmeSetTRXStateConfirm (BlePhyEnumeration status)
     }
   else if (m_bleMacState == MAC_CSMA && (status == IEEE_802_15_4_PHY_RX_ON || status == IEEE_802_15_4_PHY_SUCCESS))
     {
-      // Start the CSMA algorithm as soon as the receiver is enabled.
-      m_csmaCa->Start ();
+      ChangeMacState (MAC_SENDING);
+      m_phy->PlmeSetTRXStateRequest (IEEE_802_15_4_PHY_TX_ON);
     }
   else if (m_bleMacState == MAC_IDLE)
     {
@@ -1021,13 +824,6 @@ BleMac::ChangeMacState (BleMacState newState)
                      << newState);
   m_macStateLogger (m_bleMacState, newState);
   m_bleMacState = newState;
-}
-
-uint64_t
-BleMac::GetMacAckWaitDuration (void) const
-{
-  return m_csmaCa->GetUnitBackoffPeriod () + m_phy->aTurnaroundTime + m_phy->GetPhySHRDuration ()
-         + ceil (6 * m_phy->GetPhySymbolsPerOctet ());
 }
 
 uint8_t

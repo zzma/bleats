@@ -115,11 +115,6 @@ BleCollisionTestCase::DoRun (void)
 
   dev0->GetMac ()->SetMcpsDataIndicationCallback (MakeCallback (&BleCollisionTestCase::DataIndication, this));
 
-  // Disable first backoff
-  dev0->GetCsmaCa ()->SetMacMinBE (0);
-  dev1->GetCsmaCa ()->SetMacMinBE (0);
-  dev2->GetCsmaCa ()->SetMacMinBE (0);
-
   Ptr<Packet> p0 = Create<Packet> (20);
   Ptr<Packet> p1 = Create<Packet> (60);
   Ptr<Packet> p2 = Create<Packet> (100);
@@ -146,11 +141,12 @@ BleCollisionTestCase::DoRun (void)
 
   Simulator::Run ();
 
+  std::cout << "m_rxPackets = " << int(m_rxPackets) << std::endl;
   //Expect 0 packets received since you cannot receive while transmitting
   NS_TEST_EXPECT_MSG_EQ (m_rxPackets, 0, "Not received a packet (as expected)");
 
   // Third case: two concurrent tx and no ACKs
-  std::cout << "*** Third test " << std::endl;
+  std::cout << "*** Second test " << std::endl;
   m_rxPackets = 0;
   params.m_txOptions = 0;
 
@@ -171,11 +167,11 @@ BleCollisionTestCase::DoRun (void)
   Simulator::Run ();
 
   std::cout << "m_rxPackets = " << int(m_rxPackets) << std::endl;
-  // Expect to receive one packet, the other is dropped to the floor
+  //Both requests collide - NO CARRIER SENSING! 
   NS_TEST_EXPECT_MSG_EQ (m_rxPackets, 1, "Received a packet (as expected)");
 
-  // Fourth case: two concurrent tx and ACKs
-  std::cout << "*** Fourth test " << std::endl;
+  // Third case: two non-concurrent tx
+  std::cout << "*** Third test " << std::endl;
   m_rxPackets = 0;
   params.m_txOptions = TX_OPTION_ACK;
 

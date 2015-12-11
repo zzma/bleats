@@ -9,7 +9,6 @@ def build(bld):
         'model/ble-mac.cc',
         'model/ble-mac-header.cc',
         'model/ble-mac-trailer.cc',
-        'model/ble-csmaca.cc',
         'model/ble-net-device.cc',
         'model/ble-spectrum-value-helper.cc',
         'model/ble-spectrum-signal-parameters.cc',
@@ -20,7 +19,6 @@ def build(bld):
     module_test = bld.create_ns3_module_test_library('ble')
     module_test.source = [
         'test/ble-ack-test.cc',
-        'test/ble-cca-test.cc',
         'test/ble-collision-test.cc',
         'test/ble-ed-test.cc',
         'test/ble-error-model-test.cc',
@@ -38,7 +36,6 @@ def build(bld):
         'model/ble-mac.h',
         'model/ble-mac-header.h',
         'model/ble-mac-trailer.h',
-        'model/ble-csmaca.h',
         'model/ble-net-device.h',
         'model/ble-spectrum-value-helper.h',
         'model/ble-spectrum-signal-parameters.h',

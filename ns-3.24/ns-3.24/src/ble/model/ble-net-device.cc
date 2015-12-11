@@ -22,7 +22,6 @@
  */
 #include "ble-net-device.h"
 #include "ble-phy.h"
-#include "ble-csmaca.h"
 #include "ble-error-model.h"
 #include <ns3/abort.h>
 #include <ns3/node.h>
@@ -75,7 +74,6 @@ BleNetDevice::BleNetDevice ()
   NS_LOG_FUNCTION (this);
   m_mac = CreateObject<BleMac> ();
   m_phy = CreateObject<BlePhy> ();
-  m_csmaca = CreateObject<BleCsmaCa> ();
   CompleteConfig ();
 }
 
@@ -91,10 +89,8 @@ BleNetDevice::DoDispose (void)
   NS_LOG_FUNCTION (this);
   m_mac->Dispose ();
   m_phy->Dispose ();
-  m_csmaca->Dispose ();
   m_phy = 0;
   m_mac = 0;
-  m_csmaca = 0;
   m_node = 0;
   // chain up.
   NetDevice::DoDispose ();
@@ -117,16 +113,13 @@ BleNetDevice::CompleteConfig (void)
   NS_LOG_FUNCTION (this);
   if (m_mac == 0
       || m_phy == 0
-      || m_csmaca == 0
       || m_node == 0
       || m_configComplete)
     {
       return;
     }
   m_mac->SetPhy (m_phy);
-  m_mac->SetCsmaCa (m_csmaca);
   m_mac->SetMcpsDataIndicationCallback (MakeCallback (&BleNetDevice::McpsDataIndication, this));
-  m_csmaca->SetMac (m_mac);
 
   Ptr<MobilityModel> mobility = m_node->GetObject<MobilityModel> ();
   if (!mobility)
@@ -145,8 +138,6 @@ BleNetDevice::CompleteConfig (void)
   m_phy->SetPlmeSetTRXStateConfirmCallback (MakeCallback (&BleMac::PlmeSetTRXStateConfirm, m_mac));
   m_phy->SetPlmeSetAttributeConfirmCallback (MakeCallback (&BleMac::PlmeSetAttributeConfirm, m_mac));
 
-  m_csmaca->SetBleMacStateCallback (MakeCallback (&BleMac::SetBleMacState, m_mac));
-  m_phy->SetPlmeCcaConfirmCallback (MakeCallback (&BleCsmaCa::PlmeCcaConfirm, m_csmaca));
   m_configComplete = true;
 }
 
@@ -163,14 +154,6 @@ BleNetDevice::SetPhy (Ptr<BlePhy> phy)
 {
   NS_LOG_FUNCTION (this);
   m_phy = phy;
-  CompleteConfig ();
-}
-
-void
-BleNetDevice::SetCsmaCa (Ptr<BleCsmaCa> csmaca)
-{
-  NS_LOG_FUNCTION (this);
-  m_csmaca = csmaca;
   CompleteConfig ();
 }
 
@@ -197,12 +180,6 @@ BleNetDevice::GetPhy (void) const
   return m_phy;
 }
 
-Ptr<BleCsmaCa>
-BleNetDevice::GetCsmaCa (void) const
-{
-  NS_LOG_FUNCTION (this);
-  return m_csmaca;
-}
 void
 BleNetDevice::SetIfIndex (const uint32_t index)
 {
@@ -468,7 +445,6 @@ BleNetDevice::AssignStreams (int64_t stream)
 {
   NS_LOG_FUNCTION (stream);
   int64_t streamIndex = stream;
-  streamIndex += m_csmaca->AssignStreams (stream);
   streamIndex += m_phy->AssignStreams (stream);
   NS_LOG_DEBUG ("Number of assigned RV streams:  " << (streamIndex - stream));
   return (streamIndex - stream);

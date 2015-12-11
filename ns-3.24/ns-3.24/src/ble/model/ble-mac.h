@@ -38,7 +38,6 @@
 namespace ns3 {
 
 class Packet;
-class BleCsmaCa;
 
 /**
  * \defgroup ble BLE models
@@ -305,12 +304,6 @@ public:
    */
   void McpsDataRequest (McpsDataRequestParams params, Ptr<Packet> p);
 
-  /**
-   * Set the CSMA/CA implementation to be used by the MAC.
-   *
-   * \param csmaCa the CSMA/CA implementation
-   */
-  void SetCsmaCa (Ptr<BleCsmaCa> csmaCa);
 
   /**
    * Set the underlying PHY for the MAC.
@@ -513,13 +506,6 @@ public:
   bool m_macRxOnWhenIdle;
 
   /**
-   * Get the macAckWaitDuration attribute value.
-   *
-   * \return the maximum number symbols to wait for an acknowledgment frame
-   */
-  uint64_t GetMacAckWaitDuration (void) const;
-
-  /**
    * Get the macMaxFrameRetries attribute value.
    *
    * \return the maximum number of retries
@@ -571,13 +557,6 @@ private:
   };
 
   /**
-   * Send an acknowledgment packet for the given sequence number.
-   *
-   * \param seqno the sequence number for the ACK
-   */
-  void SendAck (uint8_t seqno);
-
-  /**
    * Remove the tip of the transmission queue, including clean up related to the
    * last packet transmission.
    */
@@ -589,12 +568,6 @@ private:
    * \param newState the new state
    */
   void ChangeMacState (BleMacState newState);
-
-  /**
-   * Handle an ACK timeout with a packet retransmission, if there are
-   * retransmission left, or a packet drop.
-   */
-  void AckWaitTimeout (void);
 
   /**
    * Check for remaining retransmissions for the packet currently being sent.
@@ -621,7 +594,7 @@ private:
    *
    * \see class CallBackTraceSource
    */
-  TracedCallback<Ptr<const Packet>, uint8_t, uint8_t > m_sentPktTrace;
+  TracedCallback<Ptr<const Packet>, uint8_t > m_sentPktTrace;
 
   /**
    * The trace source fired when packets come into the "top" of the device
@@ -746,11 +719,6 @@ private:
   Ptr<BlePhy> m_phy;
 
   /**
-   * The CSMA/CA implementation used by this MAC.
-   */
-  Ptr<BleCsmaCa> m_csmaCa;
-
-  /**
    * This callback is used to notify incoming packets to the upper layers.
    * See IEEE 802.15.4-2006, section 7.1.1.3.
    */
@@ -801,17 +769,6 @@ private:
    * packet.
    */
   uint8_t m_retransmission;
-
-  /**
-   * The number of CSMA/CA retries used for sending the current packet.
-   */
-  uint8_t m_numCsmacaRetry;
-
-  /**
-   * Scheduler event for the ACK timeout of the currently transmitted data
-   * packet.
-   */
-  EventId m_ackWaitTimeout;
 
   /**
    * Scheduler event for a deferred MAC state change.

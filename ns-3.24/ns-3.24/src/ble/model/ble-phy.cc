@@ -135,7 +135,7 @@ BlePhy::BlePhy (void)
     {
       m_phyPIBAttributes.phyChannelsSupported[i] = 0x07ffffff;
     }
-  m_phyPIBAttributes.phyCCAMode = 1;
+  m_phyPIBAttributes.phyCCAMode = 0;
 
   SetMyPhyOption ();
 
@@ -594,33 +594,6 @@ BlePhy::PdDataRequest (const uint32_t psduLength, Ptr<Packet> p)
 }
 
 void
-BlePhy::PlmeCcaRequest (void)
-{
-  NS_LOG_FUNCTION (this);
-
-  if (m_trxState == IEEE_802_15_4_PHY_RX_ON || m_trxState == IEEE_802_15_4_PHY_BUSY_RX)
-    {
-      m_ccaPeakPower = 0.0;
-      Time ccaTime = Seconds (8.0 / GetDataOrSymbolRate (false));
-      m_ccaRequest = Simulator::Schedule (ccaTime, &BlePhy::EndCca, this);
-    }
-  else
-    {
-      if (!m_plmeCcaConfirmCallback.IsNull ())
-        {
-          if (m_trxState == IEEE_802_15_4_PHY_TRX_OFF)
-            {
-              m_plmeCcaConfirmCallback (IEEE_802_15_4_PHY_TRX_OFF);
-            }
-          else
-            {
-              m_plmeCcaConfirmCallback (IEEE_802_15_4_PHY_BUSY);
-            }
-        }
-    }
-}
-
-void
 BlePhy::PlmeEdRequest (void)
 {
   NS_LOG_FUNCTION (this);
@@ -716,6 +689,7 @@ BlePhy::PlmeSetTRXStateRequest (BlePhyEnumeration state)
 
   if (state == m_trxState)
     {
+
       if (!m_plmeSetTRXStateConfirmCallback.IsNull ())
         {
           m_plmeSetTRXStateConfirmCallback (state);
@@ -771,16 +745,6 @@ BlePhy::PlmeSetTRXStateRequest (BlePhyEnumeration state)
               //incomplete reception -- force packet discard
               NS_LOG_DEBUG ("force TX_ON, terminate reception");
               m_currentRxPacket.second = true;
-            }
-
-          // If CCA is in progress, cancel CCA and return BUSY.
-          if (!m_ccaRequest.IsExpired ())
-            {
-              m_ccaRequest.Cancel ();
-              if (!m_plmeCcaConfirmCallback.IsNull ())
-                {
-                  m_plmeCcaConfirmCallback (IEEE_802_15_4_PHY_BUSY);
-                }
             }
 
           m_trxStatePending = IEEE_802_15_4_PHY_TX_ON;
@@ -846,6 +810,7 @@ BlePhy::PlmeSetTRXStateRequest (BlePhyEnumeration state)
 
   if (state == IEEE_802_15_4_PHY_RX_ON)
     {
+
       if (m_trxState == IEEE_802_15_4_PHY_TX_ON || m_trxState == IEEE_802_15_4_PHY_TRX_OFF)
         {
           // Turnaround delay
@@ -854,6 +819,7 @@ BlePhy::PlmeSetTRXStateRequest (BlePhyEnumeration state)
           m_trxStatePending = IEEE_802_15_4_PHY_RX_ON;
 
           Time setTime = Seconds ( (double) aTurnaroundTime / GetDataOrSymbolRate (false));
+          NS_LOG_DEBUG ("Setting turnaround delay " << setTime);
           m_setTRXState = Simulator::Schedule (setTime, &BlePhy::EndSetTRXState, this);
           return;
         }
@@ -1106,79 +1072,6 @@ BlePhy::EndEd (void)
     }
 }
 
-void
-BlePhy::EndCca (void)
-{
-  NS_LOG_FUNCTION (this);
-  BlePhyEnumeration sensedChannelState = IEEE_802_15_4_PHY_UNSPECIFIED;
-
-  // Update peak power.
-  double power = BleSpectrumValueHelper::TotalAvgPower (m_signal->GetSignalPsd (), m_phyPIBAttributes.phyCurrentChannel);
-  if (m_ccaPeakPower < power)
-    {
-      m_ccaPeakPower = power;
-    }
-
-  if (PhyIsBusy ())
-    {
-      sensedChannelState = IEEE_802_15_4_PHY_BUSY;
-    }
-  else if (m_phyPIBAttributes.phyCCAMode == 1)
-    { //sec 6.9.9 ED detection
-      // -- ED threshold at most 10 dB above receiver sensitivity.
-      if (10 * log10 (m_ccaPeakPower / m_rxSensitivity) >= 10.0)
-        {
-          sensedChannelState = IEEE_802_15_4_PHY_BUSY;
-        }
-      else
-        {
-          sensedChannelState = IEEE_802_15_4_PHY_IDLE;
-        }
-    }
-  else if (m_phyPIBAttributes.phyCCAMode == 2)
-    {
-      //sec 6.9.9 carrier sense only
-      if (m_trxState == IEEE_802_15_4_PHY_BUSY_RX)
-        {
-          // We currently do not model PPDU reception in detail. Instead we model
-          // packet reception starting with the first bit of the preamble.
-          // Therefore, this code will never be reached, as PhyIsBusy() would
-          // already lead to a channel busy condition.
-          // TODO: Change this, if we also model preamble and SFD detection.
-          sensedChannelState = IEEE_802_15_4_PHY_BUSY;
-        }
-      else
-        {
-          sensedChannelState = IEEE_802_15_4_PHY_IDLE;
-        }
-    }
-  else if (m_phyPIBAttributes.phyCCAMode == 3)
-    { //sect 6.9.9 both
-      if ((10 * log10 (m_ccaPeakPower / m_rxSensitivity) >= 10.0)
-          && m_trxState == IEEE_802_15_4_PHY_BUSY_RX)
-        {
-          // Again, this code will never be reached, if we are already receiving
-          // a packet, as PhyIsBusy() would already lead to a channel busy condition.
-          // TODO: Change this, if we also model preamble and SFD detection.
-          sensedChannelState = IEEE_802_15_4_PHY_BUSY;
-        }
-      else
-        {
-          sensedChannelState = IEEE_802_15_4_PHY_IDLE;
-        }
-    }
-  else
-    {
-      NS_ASSERT_MSG (false, "Invalid CCA mode");
-    }
-
-  NS_LOG_LOGIC (this << "channel sensed state: " << sensedChannelState);
-
-  if (!m_plmeCcaConfirmCallback.IsNull ())
-    {
-      m_plmeCcaConfirmCallback (sensedChannelState);
-    }
-}
 
 void
 BlePhy::EndSetTRXState (void)

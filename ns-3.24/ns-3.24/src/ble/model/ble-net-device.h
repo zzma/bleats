@@ -30,7 +30,6 @@
 namespace ns3 {
 
 class BlePhy;
-class BleCsmaCa;
 class SpectrumChannel;
 class Node;
 
@@ -74,13 +73,6 @@ public:
   void SetPhy (Ptr<BlePhy> phy);
 
   /**
-   * Set the CSMA/CA implementation to be used by the MAC and this NetDevice.
-   *
-   * \param csmaca the CSMA/CA implementation to be used
-   */
-  void SetCsmaCa (Ptr<BleCsmaCa> csmaca);
-
-  /**
    * Set the channel to which the NetDevice, and therefore the PHY, should be
    * attached to.
    *
@@ -101,13 +93,6 @@ public:
    * \return the PHY object
    */
   Ptr<BlePhy> GetPhy (void) const;
-
-  /**
-   * Get the CSMA/CA implementation used by this NetDevice.
-   *
-   * \return the CSMA/CA implementation object
-   */
-  Ptr<BleCsmaCa> GetCsmaCa (void) const;
 
   // From class NetDevice
   virtual void SetIfIndex (const uint32_t index);
@@ -184,7 +169,7 @@ private:
   Ptr<SpectrumChannel> DoGetChannel (void) const;
 
   /**
-   * Configure PHY, MAC and CSMA/CA.
+   * Configure PHY, MAC.
    */
   void CompleteConfig (void);
 
@@ -199,17 +184,12 @@ private:
   Ptr<BlePhy> m_phy;
 
   /**
-   * The CSMA/CA implementation for this NetDevice.
-   */
-  Ptr<BleCsmaCa> m_csmaca;
-
-  /**
    * The node associated with this NetDevice.
    */
   Ptr<Node> m_node;
 
   /**
-   * True if MAC, PHY and CSMA/CA where successfully configured and the
+   * True if MAC, PHY where successfully configured and the
    * NetDevice is ready for being used.
    */
   bool m_configComplete;

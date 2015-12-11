@@ -62,7 +62,6 @@ public:
   {
     BLE_MAC_BEACON = 0,        //!< BLE_MAC_BEACON
     BLE_MAC_DATA = 1,          //!< BLE_MAC_DATA
-    BLE_MAC_ACKNOWLEDGMENT = 2,//!< BLE_MAC_ACKNOWLEDGMENT
     BLE_MAC_COMMAND = 3,       //!< BLE_MAC_COMMAND
     BLE_MAC_RESERVED           //!< BLE_MAC_RESERVED
   };

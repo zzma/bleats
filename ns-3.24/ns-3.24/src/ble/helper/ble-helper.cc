@@ -20,7 +20,6 @@
  *  Tom Henderson <thomas.r.henderson@boeing.com>
  */
 #include "ble-helper.h"
-#include <ns3/ble-csmaca.h>
 #include <ns3/ble-error-model.h>
 #include <ns3/ble-net-device.h>
 #include <ns3/mobility-model.h>
@@ -102,7 +101,6 @@ BleHelper::EnableLogComponents (void)
 {
   LogComponentEnableAll (LOG_PREFIX_TIME);
   LogComponentEnableAll (LOG_PREFIX_FUNC);
-  LogComponentEnable ("BleCsmaCa", LOG_LEVEL_ALL);
   LogComponentEnable ("BleErrorModel", LOG_LEVEL_ALL);
   LogComponentEnable ("BleInterferenceHelper", LOG_LEVEL_ALL);
   LogComponentEnable ("BleMac", LOG_LEVEL_ALL);
