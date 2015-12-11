@@ -45,7 +45,7 @@ NS_LOG_COMPONENT_DEFINE ("BlePhy");
 NS_OBJECT_ENSURE_REGISTERED (BlePhy);
 
 // Table 22 in section 6.4.1 of ieee802.15.4
-const uint32_t BlePhy::aMaxPhyPacketSize = 127; // max PSDU in octets
+const uint32_t BlePhy::aMaxPhyPacketSize = 49; // max PSDU in octets
 const uint32_t BlePhy::aTurnaroundTime = 12;  // RX-to-TX or TX-to-RX in symbol periods
 
 // IEEE802.15.4-2006 Table 2 in section 6.1.2 (kb/s and ksymbol/s)
@@ -57,7 +57,7 @@ BlePhy::dataSymbolRates[7] = { { 20.0, 20.0},
                                   { 250.0, 50.0},
                                   { 100.0, 25.0},
                                   { 250.0, 62.5},
-                                  { 250.0, 62.5}};
+                                  { 1000.0, 1000.0}};
 // IEEE802.15.4-2006 Table 19 and Table 20 in section 6.3.
 // The PHR is 1 octet and it follows phySymbolsPerOctet in Table 23
 // The index follows BlePhyOption
@@ -68,7 +68,7 @@ BlePhy::ppduHeaderSymbolNumbers[7] = { { 32.0, 8.0, 8.0},
                                           { 6.0, 1.0, 1.6},
                                           { 8.0, 2.0, 2.0},
                                           { 8.0, 2.0, 2.0},
-                                          { 8.0, 2.0, 2.0}};
+                                          { 32.0, 8.0, 8.0}};
 
 TypeId
 BlePhy::GetTypeId (void)
@@ -1093,7 +1093,7 @@ BlePhy::EndTx (void)
 {
   NS_LOG_FUNCTION (this);
 
-  NS_ABORT_IF ( (m_trxState != IEEE_802_15_4_PHY_BUSY_TX) && (m_trxState != IEEE_802_15_4_PHY_TRX_OFF));
+  // NS_ABORT_IF ( (m_trxState != IEEE_802_15_4_PHY_BUSY_TX) && (m_trxState != IEEE_802_15_4_PHY_TRX_OFF));
 
   if (m_currentTxPacket.second == false)
     {
@@ -1207,37 +1207,37 @@ BlePhy::SetMyPhyOption (void)
     {
       if (m_phyPIBAttributes.phyCurrentChannel == 0)
         {  // 868 MHz BPSK
-          m_phyOption = IEEE_802_15_4_868MHZ_BPSK;
+          m_phyOption = BLE_2_4GHZ_GFSK;
         }
       else if (m_phyPIBAttributes.phyCurrentChannel <= 10)
         {  // 915 MHz BPSK
-          m_phyOption = IEEE_802_15_4_915MHZ_BPSK;
+          m_phyOption = BLE_2_4GHZ_GFSK;
         }
       else if (m_phyPIBAttributes.phyCurrentChannel <= 26)
         {  // 2.4 GHz MHz O-QPSK
-          m_phyOption = IEEE_802_15_4_2_4GHZ_OQPSK;
+          m_phyOption = BLE_2_4GHZ_GFSK;
         }
     }
   else if (m_phyPIBAttributes.phyCurrentPage == 1)
     {
       if (m_phyPIBAttributes.phyCurrentChannel == 0)
         {  // 868 MHz ASK
-          m_phyOption = IEEE_802_15_4_868MHZ_ASK;
+          m_phyOption = BLE_2_4GHZ_GFSK;
         }
       else if (m_phyPIBAttributes.phyCurrentChannel <= 10)
         {  // 915 MHz ASK
-          m_phyOption = IEEE_802_15_4_915MHZ_ASK;
+          m_phyOption = BLE_2_4GHZ_GFSK;
         }
     }
   else if (m_phyPIBAttributes.phyCurrentPage == 2)
     {
       if (m_phyPIBAttributes.phyCurrentChannel == 0)
         {  // 868 MHz O-QPSK
-          m_phyOption = IEEE_802_15_4_868MHZ_OQPSK;
+          m_phyOption = BLE_2_4GHZ_GFSK;
         }
       else if (m_phyPIBAttributes.phyCurrentChannel <= 10)
         {  // 915 MHz O-QPSK
-          m_phyOption = IEEE_802_15_4_915MHZ_OQPSK;
+          m_phyOption = BLE_2_4GHZ_GFSK;
         }
     }
 }

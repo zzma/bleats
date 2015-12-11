@@ -115,9 +115,9 @@ BleCollisionTestCase::DoRun (void)
 
   dev0->GetMac ()->SetMcpsDataIndicationCallback (MakeCallback (&BleCollisionTestCase::DataIndication, this));
 
-  Ptr<Packet> p0 = Create<Packet> (20);
-  Ptr<Packet> p1 = Create<Packet> (60);
-  Ptr<Packet> p2 = Create<Packet> (100);
+  Ptr<Packet> p0 = Create<Packet> (10);
+  Ptr<Packet> p1 = Create<Packet> (10);
+  Ptr<Packet> p2 = Create<Packet> (20);
 
   McpsDataRequestParams params;
   params.m_srcAddrMode = SHORT_ADDR;
@@ -168,7 +168,7 @@ BleCollisionTestCase::DoRun (void)
 
   std::cout << "m_rxPackets = " << int(m_rxPackets) << std::endl;
   //Both requests collide - NO CARRIER SENSING! 
-  NS_TEST_EXPECT_MSG_EQ (m_rxPackets, 1, "Received a packet (as expected)");
+  NS_TEST_EXPECT_MSG_EQ (m_rxPackets, 0, "Received a packet (as expected)");
 
   // Third case: two non-concurrent tx
   std::cout << "*** Third test " << std::endl;

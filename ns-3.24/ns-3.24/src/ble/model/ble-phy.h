@@ -92,7 +92,7 @@ typedef enum
   IEEE_802_15_4_915MHZ_ASK          = 3,
   IEEE_802_15_4_868MHZ_OQPSK        = 4,
   IEEE_802_15_4_915MHZ_OQPSK        = 5,
-  IEEE_802_15_4_2_4GHZ_OQPSK        = 6,
+  BLE_2_4GHZ_GFSK        = 6,
   IEEE_802_15_4_INVALID_PHY_OPTION  = 7
 } BlePhyOption;
 
