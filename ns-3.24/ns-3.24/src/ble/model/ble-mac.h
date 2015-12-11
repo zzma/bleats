@@ -66,7 +66,7 @@ typedef enum
 typedef enum
 {
   MAC_IDLE,              //!< MAC_IDLE
-  MAC_CSMA,              //!< MAC_CSMA
+  MAC_BEACON,            //!< MAC_BEACON
   MAC_SENDING,           //!< MAC_SENDING
   MAC_ACK_PENDING,       //!< MAC_ACK_PENDING
   CHANNEL_ACCESS_FAILURE,//!< CHANNEL_ACCESS_FAILURE

@@ -399,7 +399,7 @@ BleMac::CheckQueue ()
     {
       TxQueueElement *txQElement = m_txQueue.front ();
       m_txPkt = txQElement->txQPkt;
-      m_setMacState = Simulator::ScheduleNow (&BleMac::SetBleMacState, this, MAC_CSMA);
+      m_setMacState = Simulator::ScheduleNow (&BleMac::SetBleMacState, this, MAC_BEACON);
     }
 }
 
@@ -430,7 +430,7 @@ BleMac::SetMcpsDataConfirmCallback (McpsDataConfirmCallback c)
 void
 BleMac::PdDataIndication (uint32_t psduLength, Ptr<Packet> p, uint8_t lqi)
 {
-  NS_ASSERT (m_bleMacState == MAC_IDLE || m_bleMacState == MAC_ACK_PENDING || m_bleMacState == MAC_CSMA);
+  NS_ASSERT (m_bleMacState == MAC_IDLE || m_bleMacState == MAC_ACK_PENDING || m_bleMacState == MAC_BEACON);
 
   NS_LOG_FUNCTION (this << psduLength << p << lqi);
 
@@ -575,7 +575,7 @@ BleMac::PdDataIndication (uint32_t psduLength, Ptr<Packet> p, uint8_t lqi)
                   else
                     {
                         m_setMacState.Cancel ();
-                        m_setMacState = Simulator::ScheduleNow (&BleMac::SetBleMacState, this, MAC_CSMA);
+                        m_setMacState = Simulator::ScheduleNow (&BleMac::SetBleMacState, this, MAC_BEACON);
                     }
                 }
             }
@@ -702,7 +702,7 @@ BleMac::PlmeSetTRXStateConfirm (BlePhyEnumeration status)
       m_macTxTrace (m_txPkt);
       m_phy->PdDataRequest (m_txPkt->GetSize (), m_txPkt);
     }
-  else if (m_bleMacState == MAC_CSMA && (status == IEEE_802_15_4_PHY_RX_ON || status == IEEE_802_15_4_PHY_SUCCESS))
+  else if (m_bleMacState == MAC_BEACON && (status == IEEE_802_15_4_PHY_RX_ON || status == IEEE_802_15_4_PHY_SUCCESS))
     {
       ChangeMacState (MAC_SENDING);
       m_phy->PlmeSetTRXStateRequest (IEEE_802_15_4_PHY_TX_ON);
@@ -759,20 +759,20 @@ BleMac::SetBleMacState (BleMacState macState)
       ChangeMacState (MAC_ACK_PENDING);
       m_phy->PlmeSetTRXStateRequest (IEEE_802_15_4_PHY_RX_ON);
     }
-  else if (macState == MAC_CSMA)
+  else if (macState == MAC_BEACON)
     {
       NS_ASSERT (m_bleMacState == MAC_IDLE || m_bleMacState == MAC_ACK_PENDING);
 
-      ChangeMacState (MAC_CSMA);
+      ChangeMacState (MAC_BEACON);
       m_phy->PlmeSetTRXStateRequest (IEEE_802_15_4_PHY_RX_ON);
     }
-  else if (m_bleMacState == MAC_CSMA && macState == CHANNEL_IDLE)
+  else if (m_bleMacState == MAC_BEACON && macState == CHANNEL_IDLE)
     {
       // Channel is idle, set transmitter to TX_ON
       ChangeMacState (MAC_SENDING);
       m_phy->PlmeSetTRXStateRequest (IEEE_802_15_4_PHY_TX_ON);
     }
-  else if (m_bleMacState == MAC_CSMA && macState == CHANNEL_ACCESS_FAILURE)
+  else if (m_bleMacState == MAC_BEACON && macState == CHANNEL_ACCESS_FAILURE)
     {
       NS_ASSERT (m_txPkt);
 
