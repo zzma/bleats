@@ -33,6 +33,8 @@
 #include <ns3/random-variable-stream.h>
 #include <ns3/double.h>
 
+#include <ctime> 
+
 #undef NS_LOG_APPEND_CONTEXT
 #define NS_LOG_APPEND_CONTEXT                                   \
   std::clog << "[address " << m_shortAddress << "] ";
@@ -147,6 +149,7 @@ BleMac::BleMac ()
   uniformVar->SetAttribute ("Max", DoubleValue (255.0));
   m_macDsn = SequenceNumber8 (uniformVar->GetValue ());
   m_shortAddress = Mac16Address ("00:00");
+  srand(time(NULL)); // seed random number generator
 }
 
 BleMac::~BleMac ()
@@ -399,7 +402,9 @@ BleMac::CheckQueue ()
     {
       TxQueueElement *txQElement = m_txQueue.front ();
       m_txPkt = txQElement->txQPkt;
-      m_setMacState = Simulator::ScheduleNow (&BleMac::SetBleMacState, this, MAC_BEACON);
+      double delayMicroSeconds = rand() % 10000;
+      Time randomDelay = Seconds (delayMicroSeconds / 1000000);
+      m_setMacState = Simulator::Schedule (randomDelay, &BleMac::SetBleMacState, this, MAC_BEACON);
     }
 }
 

@@ -59,22 +59,58 @@ static uint32_t g_received = 0;
 NS_LOG_COMPONENT_DEFINE ("BleErrorDistancePlot");
 
 static void
-BleErrorDistanceCallback (McpsDataIndicationParams params, Ptr<Packet> p)
+BleErrorCallback (McpsDataIndicationParams params, Ptr<Packet> p)
 {
   g_received++;
+}
+
+std::string 
+decToHexStr(int dec)
+{
+  std::string hexStr;
+  if (dec >= 0 && dec < 10) {
+    hexStr = std::to_string(dec);  
+  } else if (dec == 10) {
+    hexStr = "a";  
+  } else if (dec == 11) {
+    hexStr = "b";  
+  } else if (dec == 12) {
+    hexStr = "c";  
+  } else if (dec == 13) {
+    hexStr = "d";  
+  } else if (dec == 14) {
+    hexStr = "e";  
+  } else if (dec == 15) {
+    hexStr = "f";  
+  }
+  
+  return hexStr;
+}
+
+std::string
+getMacAddressString(int macIntValue)
+{
+  std::string macString;
+
+  for (int i = 3; i >= 0; i--) {
+    macString += decToHexStr((int) pow(16, i));
+    if (i == 2) {
+      macString += ":";
+    }
+  }
+
+  return macString;
 }
 
 int main (int argc, char *argv[])
 {
   std::ostringstream os;
-  std::ofstream berfile ("802.15.4-psr-distance.plt");
+  std::ofstream berfile ("802.15.4-psr-devices.plt");
 
-  int minDistance = 1;
-  int maxDistance = 200;  // meters
-  int increment = 1;
-  int maxPackets = 1000;
+  double intervalLength = 0.01; // length of beacon interval
+  double numIntervals = 1000;
   int packetSize = 20;
-  double txPower = 10; //dBm
+  double txPower = 0;
   uint32_t channelNumber = 11;
 
   CommandLine cmd;
@@ -90,31 +126,39 @@ int main (int argc, char *argv[])
   Gnuplot psrplot = Gnuplot ("802.15.4-psr-distance.eps");
   Gnuplot2dDataset psrdataset ("802.15.4-psr-vs-distance");
 
-  Ptr<Node> n0 = CreateObject <Node> ();
-  Ptr<Node> n1 = CreateObject <Node> ();
-  Ptr<BleNetDevice> dev0 = CreateObject<BleNetDevice> ();
-  Ptr<BleNetDevice> dev1 = CreateObject<BleNetDevice> ();
-  dev0->SetAddress (Mac16Address ("00:01"));
-  dev1->SetAddress (Mac16Address ("00:02"));
+  int devicesCount = 10;
+  Ptr<Node> nodes [10];
+  Ptr<BleNetDevice> netDevices [10];
+  Ptr<ConstantPositionMobilityModel> positions[10];
+
   Ptr<MultiModelSpectrumChannel> channel = CreateObject<MultiModelSpectrumChannel> ();
   Ptr<LogDistancePropagationLossModel> model = CreateObject<LogDistancePropagationLossModel> ();
   channel->AddPropagationLossModel (model);
-  dev0->SetChannel (channel);
-  dev1->SetChannel (channel);
-  n0->AddDevice (dev0);
-  n1->AddDevice (dev1);
-  Ptr<ConstantPositionMobilityModel> mob0 = CreateObject<ConstantPositionMobilityModel> ();
-  dev0->GetPhy ()->SetMobility (mob0);
-  Ptr<ConstantPositionMobilityModel> mob1 = CreateObject<ConstantPositionMobilityModel> ();
-  dev1->GetPhy ()->SetMobility (mob1);
-
   BleSpectrumValueHelper svh;
   Ptr<SpectrumValue> psd = svh.CreateTxPowerSpectralDensity (txPower, channelNumber);
-  dev0->GetPhy ()->SetTxPowerSpectralDensity (psd);
+
+  for (int i = 0; i < devicesCount; i++) {
+    nodes[i] = CreateObject<Node> ();
+    netDevices[i] = CreateObject<BleNetDevice> ();
+    netDevices[i]->SetAddress (Mac16Address (getMacAddressString(i).c_str()));
+    netDevices[i]->SetChannel (channel);
+    nodes[i]->AddDevice (netDevices[i]);
+    positions[i] = CreateObject<ConstantPositionMobilityModel> ();
+    netDevices[i]->GetPhy ()->SetMobility(positions[i]);
+    netDevices[i]->GetPhy ()->SetTxPowerSpectralDensity (psd);
+  } 
+
+  Ptr<Node> nodeReceiver = CreateObject <Node> ();
+  Ptr<BleNetDevice> devReceiver = CreateObject<BleNetDevice> ();
+  devReceiver->SetAddress (Mac16Address ("ee:ee"));
+  devReceiver->SetChannel (channel);
+  nodeReceiver->AddDevice (devReceiver);
+  Ptr<ConstantPositionMobilityModel> mobReceiver = CreateObject<ConstantPositionMobilityModel> ();
+  devReceiver->GetPhy ()->SetMobility (mobReceiver);
 
   McpsDataIndicationCallback cb0;
-  cb0 = MakeCallback (&BleErrorDistanceCallback);
-  dev1->GetMac ()->SetMcpsDataIndicationCallback (cb0);
+  cb0 = MakeCallback (&BleErrorCallback);
+  devReceiver->GetMac ()->SetMcpsDataIndicationCallback (cb0);
 
   McpsDataRequestParams params;
   params.m_srcAddrMode = SHORT_ADDR;
@@ -125,24 +169,28 @@ int main (int argc, char *argv[])
   params.m_txOptions = 0;
 
   Ptr<Packet> p;
-  mob0->SetPosition (Vector (0,0,0));
-  mob1->SetPosition (Vector (minDistance,0,0));
-  for (int j = minDistance; j < maxDistance;  )
+  mobReceiver->SetPosition (Vector (0,0,0));
+
+  //TODO: set the position of all nodes
+  for (int i = 0; i < devicesCount; i++) {
+    positions[i]->SetPosition(Vector(i / 3, i % 3, i % 2));
+  }
+
+  for (int j = 0; j < devicesCount;  j++)
     {
-      for (int i = 0; i < maxPackets; i++)
+      for (int i = 0; i < numIntervals; i++)
         {
           p = Create<Packet> (packetSize);
-          Simulator::Schedule (Seconds (i),
+          Simulator::Schedule (Seconds (i * intervalLength),
                                &BleMac::McpsDataRequest,
-                               dev0->GetMac (), params, p);
+                               netDevices[j]->GetMac (), params, p);
         }
-      Simulator::Run ();
-      NS_LOG_DEBUG ("Received " << g_received << " packets for distance " << j);
-      psrdataset.Add (j, g_received / 1000.0);
-      g_received = 0;
-      j += increment;
-      mob1->SetPosition (Vector (j,0,0));
-    }
+    } 
+
+  Simulator::Run ();
+  NS_LOG_DEBUG ("Received " << g_received << " packets");
+  double totalPackets = (double) (numIntervals * devicesCount);
+  psrdataset.Add ((int) totalPackets, g_received / totalPackets);
 
   psrplot.AddDataset (psrdataset);
 

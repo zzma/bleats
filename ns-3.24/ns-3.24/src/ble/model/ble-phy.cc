@@ -46,7 +46,7 @@ NS_OBJECT_ENSURE_REGISTERED (BlePhy);
 
 // Table 22 in section 6.4.1 of ieee802.15.4
 const uint32_t BlePhy::aMaxPhyPacketSize = 49; // max PSDU in octets
-const uint32_t BlePhy::aTurnaroundTime = 12;  // RX-to-TX or TX-to-RX in symbol periods
+const uint32_t BlePhy::aTurnaroundTime = 2;  // RX-to-TX or TX-to-RX in symbol periods
 
 // IEEE802.15.4-2006 Table 2 in section 6.1.2 (kb/s and ksymbol/s)
 // The index follows BlePhyOption
