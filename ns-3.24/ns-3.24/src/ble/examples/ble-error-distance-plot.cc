@@ -70,11 +70,11 @@ int main (int argc, char *argv[])
   std::ofstream berfile ("802.15.4-psr-distance.plt");
 
   int minDistance = 1;
-  int maxDistance = 200;  // meters
+  int maxDistance = 300;  // meters
   int increment = 1;
   int maxPackets = 1000;
   int packetSize = 20;
-  double txPower = 10; //dBm
+  double txPower = -5; //dBm
   uint32_t channelNumber = 11;
 
   CommandLine cmd;

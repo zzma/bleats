@@ -54,14 +54,20 @@
 using namespace ns3;
 using namespace std;
 
-static uint32_t g_received = 0;
+static uint32_t g_received[400] = {};
 
-NS_LOG_COMPONENT_DEFINE ("BleErrorDistancePlot");
+NS_LOG_COMPONENT_DEFINE ("BleErrorDevicesPlot");
 
 static void
 BleErrorCallback (McpsDataIndicationParams params, Ptr<Packet> p)
 {
-  g_received++;
+  uint8_t *packet = (uint8_t *) malloc(sizeof(uint8_t) * 20);
+  p->CopyData(packet, 20);
+  uint32_t packetIndex = 0;
+  packetIndex += 256 * packet[1];    
+  packetIndex += packet[0];
+  g_received[packetIndex]++;
+  free(packet);
 }
 
 std::string 
@@ -102,16 +108,42 @@ getMacAddressString(int macIntValue)
   return macString;
 }
 
+Vector
+baseTopologyVector(int index) 
+{
+  Vector v;
+  int fixedDistance = 10;
+  int normalizedIndex = index % 6;
+  if (normalizedIndex == 0) {
+    v = Vector(fixedDistance, 0, 0);
+  } else if (normalizedIndex == 1) {
+    v = Vector(-fixedDistance, 0, 0);
+  } else if (normalizedIndex == 2) {
+    v = Vector(0, fixedDistance, 0);
+  } else if (normalizedIndex == 3) {
+    v = Vector(0,-fixedDistance, 0);
+  } else if (normalizedIndex == 4) {
+    v = Vector(0, 0, fixedDistance);
+  } else if (normalizedIndex == 5) {
+    v = Vector(0,0, -fixedDistance);
+  } 
+
+  return v;
+}
+
 int main (int argc, char *argv[])
 {
   std::ostringstream os;
   std::ofstream berfile ("802.15.4-psr-devices.plt");
 
-  double intervalLength = 0.01; // length of beacon interval
-  double numIntervals = 1000;
+  double intervalLength = 0.05; // length of beacon interval
+  double numIntervals = 10;
+  int deviceIncrement = 20;
   int packetSize = 20;
+  uint8_t *packetBuffer;
   double txPower = 0;
   uint32_t channelNumber = 11;
+
 
   CommandLine cmd;
 
@@ -126,10 +158,10 @@ int main (int argc, char *argv[])
   Gnuplot psrplot = Gnuplot ("802.15.4-psr-distance.eps");
   Gnuplot2dDataset psrdataset ("802.15.4-psr-vs-distance");
 
-  int devicesCount = 10;
-  Ptr<Node> nodes [10];
-  Ptr<BleNetDevice> netDevices [10];
-  Ptr<ConstantPositionMobilityModel> positions[10];
+  int devicesCount = 400;
+  Ptr<Node> nodes [400];
+  Ptr<BleNetDevice> netDevices [400];
+  Ptr<ConstantPositionMobilityModel> positions[400];
 
   Ptr<MultiModelSpectrumChannel> channel = CreateObject<MultiModelSpectrumChannel> ();
   Ptr<LogDistancePropagationLossModel> model = CreateObject<LogDistancePropagationLossModel> ();
@@ -171,29 +203,41 @@ int main (int argc, char *argv[])
   Ptr<Packet> p;
   mobReceiver->SetPosition (Vector (0,0,0));
 
-  //TODO: set the position of all nodes
+  // set the position of all nodes & initial delay offset
   for (int i = 0; i < devicesCount; i++) {
-    positions[i]->SetPosition(Vector(i / 3, i % 3, i % 2));
+    // positions[i]->SetPosition(Vector(10, 0, 0));
+    positions[i]->SetPosition(baseTopologyVector(i));
   }
-
-  for (int j = 0; j < devicesCount;  j++)
+  for (int k = 201; k <= devicesCount; k += deviceIncrement) {
+    for (int j = 0; j < k;  j++)
     {
+      double microSecDelay = rand() % (int) (1000000 * intervalLength);
+      double initialDelay = microSecDelay / 1000000.0;
+      packetBuffer = (uint8_t *) malloc(sizeof(uint8_t) * packetSize);
+      packetBuffer[0] = j % 256;
+      packetBuffer[1] = j / 256;
+
       for (int i = 0; i < numIntervals; i++)
         {
-          p = Create<Packet> (packetSize);
-          Simulator::Schedule (Seconds (i * intervalLength),
+          p = Create<Packet> (packetBuffer, packetSize);
+          Simulator::Schedule (Seconds (i * intervalLength + initialDelay),
                                &BleMac::McpsDataRequest,
                                netDevices[j]->GetMac (), params, p);
         }
-    } 
+        free(packetBuffer);
+    }   
 
-  Simulator::Run ();
-  NS_LOG_DEBUG ("Received " << g_received << " packets");
-  double totalPackets = (double) (numIntervals * devicesCount);
-  psrdataset.Add ((int) totalPackets, g_received / totalPackets);
+    Simulator::Run ();
+    NS_LOG_DEBUG ("Ran simulation with " << k << " devices");
+    int successfulDevices = 0;
+    for (int i = 0; i < devicesCount; i++) {
+      if (g_received[i] > 0) successfulDevices++;  
+    }
+    psrdataset.Add (k, successfulDevices / (double) k);    
+  }
 
   psrplot.AddDataset (psrdataset);
-
+  
   psrplot.SetTitle (os.str ());
   psrplot.SetTerminal ("postscript eps color enh \"Times-BoldItalic\"");
   psrplot.SetLegend ("distance (m)", "Packet Success Rate (PSR)");
