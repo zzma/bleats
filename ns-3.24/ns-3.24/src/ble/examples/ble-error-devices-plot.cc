@@ -140,7 +140,6 @@ int main (int argc, char *argv[])
   double numIntervals = 10;
   int deviceIncrement = 20;
   int packetSize = 20;
-  uint8_t *packetBuffer;
   double txPower = 0;
   uint32_t channelNumber = 11;
 
@@ -162,6 +161,7 @@ int main (int argc, char *argv[])
   Ptr<Node> nodes [400];
   Ptr<BleNetDevice> netDevices [400];
   Ptr<ConstantPositionMobilityModel> positions[400];
+  uint8_t *packetBuffers[400];
 
   Ptr<MultiModelSpectrumChannel> channel = CreateObject<MultiModelSpectrumChannel> ();
   Ptr<LogDistancePropagationLossModel> model = CreateObject<LogDistancePropagationLossModel> ();
@@ -213,18 +213,17 @@ int main (int argc, char *argv[])
     {
       double microSecDelay = rand() % (int) (1000000 * intervalLength);
       double initialDelay = microSecDelay / 1000000.0;
-      packetBuffer = (uint8_t *) malloc(sizeof(uint8_t) * packetSize);
-      packetBuffer[0] = j % 256;
-      packetBuffer[1] = j / 256;
+      packetBuffers[j] = (uint8_t *) malloc(sizeof(uint8_t) * packetSize);
+      packetBuffers[j][0] = j % 256;
+      packetBuffers[j][1] = j / 256;
 
       for (int i = 0; i < numIntervals; i++)
         {
-          p = Create<Packet> (packetBuffer, packetSize);
+          p = Create<Packet> (packetBuffers[j], packetSize);
           Simulator::Schedule (Seconds (i * intervalLength + initialDelay),
                                &BleMac::McpsDataRequest,
                                netDevices[j]->GetMac (), params, p);
         }
-        free(packetBuffer);
     }   
 
     Simulator::Run ();
@@ -233,7 +232,12 @@ int main (int argc, char *argv[])
     for (int i = 0; i < devicesCount; i++) {
       if (g_received[i] > 0) successfulDevices++;  
     }
+
     psrdataset.Add (k, successfulDevices / (double) k);    
+
+    for (int i = 0; i < k; i++) {
+      free(packetBuffers[i]);
+    }
   }
 
   psrplot.AddDataset (psrdataset);
