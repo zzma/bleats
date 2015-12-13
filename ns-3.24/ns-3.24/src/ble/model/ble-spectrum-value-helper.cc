@@ -41,13 +41,13 @@ public:
     NS_LOG_FUNCTION (this);
 
     Bands bands;
-    // 1 MHz resolution, with center frequency of 2400, 2401, ... 2483
-    // overall frequency span of 2399.5 MHz through 2483.5 MHz (83 bands)
-    for (int i = -1; i < 83; i++)
+    // 2 MHz resolution, with center frequency of 2400, 2402, ... 2483
+    // overall frequency span of 2399.5 MHz through 2482.5 MHz (40 bands)
+    for (int i = -1; i < 40; i++)
       {
         BandInfo bi;
-        bi.fl = 2400.5e6 + i * 1.0e6;
-        bi.fh = 2400.5e6 + (i + 1) * 1.0e6;
+        bi.fl = 2400.5e6 + i * 2.0e6;
+        bi.fh = 2400.5e6 + (i + 1) * 2.0e6;
         bi.fc = (bi.fl +  bi.fh) / 2;
         bands.push_back (bi);
       }
@@ -131,14 +131,14 @@ BleSpectrumValueHelper::TotalAvgPower (Ptr<const SpectrumValue> psd, uint32_t ch
 
   NS_ASSERT (psd->GetSpectrumModel () == g_BleSpectrumModel);
 
-  // numerically integrate to get area under psd using 1 MHz resolution
+  // numerically integrate to get area under psd using 2 MHz resolution
 
   totalAvgPower += (*psd)[2405 + 5 * (channel - 11) - 2400 - 2];
   totalAvgPower += (*psd)[2405 + 5 * (channel - 11) - 2400 - 1];
   totalAvgPower += (*psd)[2405 + 5 * (channel - 11) - 2400];
   totalAvgPower += (*psd)[2405 + 5 * (channel - 11) - 2400 + 1];
   totalAvgPower += (*psd)[2405 + 5 * (channel - 11) - 2400 + 2];
-  totalAvgPower *= 1.0e6;
+  totalAvgPower *= 2.0e6;
 
   return totalAvgPower;
 }
