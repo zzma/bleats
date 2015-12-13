@@ -1,3 +1,7 @@
+#This program controls the instructor machine in the BLEATS project.
+#This program should run consistently on instructor machine in a while loop to
+#catch input from the student BLE beacons.
+
 from bluetooth.ble import BeaconService, DiscoveryService
 import sqlite3
 import time

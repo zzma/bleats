@@ -1,4 +1,0 @@
-Need to figure out how to input code back to server side
-	Static IP?
-	SSH?
-	Web Server?

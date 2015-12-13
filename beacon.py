@@ -1,3 +1,6 @@
+#This is a single student implementation of the BLEATS project student initial beacon.
+
+
 from bluetooth.ble import BeaconService
 import time
 

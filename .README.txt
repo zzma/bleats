@@ -1,0 +1,3 @@
+BLEATS README
+The beacon_scan.py file is for the intstructor machine.
+The beacon.py and inputCodeBLE.py file is for the student machine.

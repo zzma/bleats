@@ -1,3 +1,5 @@
+#This allows a student to input an SMS code that they received from an instructor as described in the BLEATS project.
+
 from bluetooth.ble import BeaconService
 import sys
 import time
