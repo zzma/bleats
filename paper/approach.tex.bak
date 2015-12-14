@@ -1,0 +1,163 @@
+\section{Approach}
+
+\label{sec:approach}
+
+BLEATS was designed to address the characteristics of speed, deployment ease,
+authentication accuracy, reliability, and scale in CAT systems while providing
+the main functions that are necessary in an attendance tracking solution of
+recording identity, matching location, and noting the time. The basic BLEATS
+functionality involves a student using BLE beaconing on their mobile device to
+communication to a central instructor device which marks the student as
+present. This basic BLEATS implementation addresses the challenges of speed and
+deployment ease by nature of choosing BLE as the platform of communication as
+BLE avoids the need for a lengthy association and is becoming evermore
+ubiquitous. The basic BLEATS functionality also fulfills the first and second
+functions of attendance tracking solutions, recording identity and establishing
+location. By choosing BLE as the platform of communication, BLEATS has a
+limited, but non-restrictive range that can be used to determine with
+confidence that a user is within the classroom and that a beacon belongs to a
+user by observing the beacon’s UUID.
+
+The basic BLEATS functionality described above achieves the desired
+characteristics of speed and deployment ease,  as well as providing the
+identity and locality functions. However, three characteristics and one more
+function are required by BLEATS. The rest of this section will describe how
+these characteristics and functions are addressed through the BLEATS
+authentication scheme and the BLEATS simulation.
+
+\subsection{Authentication Scheme}
+
+The BLEATS system requires an authentication scheme to ensure that a student’s
+identity is as claimed to be. The authentication scheme should address the
+characteristics of authentication accuracy and reliability and the attendance
+tracking functions of recording identity and noting the time. It was determined
+that a dual authentication scheme should be utilized for the BLEATS
+authentication scheme. The reasoning behind this decision was that the basic
+BLEATS implementation provides a single source of authentication through BLE
+beaconing. The BLE beaconing protocol requires a UUID be transmitted with the
+beacon and as such, a unique UUID assigned to each student acts as a first
+source of authentication. However, this source of authentication and function
+of recording identity does not provide optimal authentication accuracy as a
+student could easily transmit a UUID that is not their own. Due to the
+possibility of a spoofed beacon message, dual authentication was determined to
+be the optimal method to ensure identity. 
+
+The BLE beaconing from the basic BLEATS functionality is the first form of
+authentication for the BLEATS authentication scheme, but several varieties of
+authentication were considered for the second form of authentication. The first
+of the alternative forms of authentication was GPS. GPS was considered due to
+the function of GPS to further support identity by locality by ensuring that a
+student is in the classroom. However, this option was discarded due to GPS’s
+property of relatively high power consumption as well as the locality identity
+already being addressed by the first BLEATS BLE beaconing. Additionally, GPS
+coordinates could easily be spoofed by transmitting GPS coordinates that
+correspond to the classroom to the server. The second of the alternative forms
+of authentication was Wi-Fi authentication by requiring that a student connect
+to a nearby access point and then ensuring that the student was in fact
+connected to that access point. However, this was discarded due to a similar
+reason as GPS in that locality identity was already considered by BLE
+beaconing. Also similarly to GPS, Wi-Fi authentication could be spoofed by
+other students in the classroom by connecting an alternate device to the Wi-Fi
+access point that appears to be other students. A third alternative form of
+authentication that was considered was email dual authentication. This was
+discarded due to the reliance on Wi-Fi or mobile data reliability that was a
+detriment described for web based applications previously.  After weighing
+these considerations, it was determined that the optimal second form of
+authentication would be sending a one time code through SMS messaging to the
+student’s mobile device and requiring that they send it back to the server
+through BLE beacon. This method was determined to be optimal due to providing
+an alternate communication channel of SMS that would provide a two distinct
+channels of authentication. Also, a student’s mobile phone could be used for
+both the first and second forms of communication seamlessly. By requiring that
+the student send the code back to the server through BLE beacon communication
+as well, it ensures that the student is still in the classroom for the second
+form of communication. Additionally, a timeout mechanism was implemented to
+ensure that a student could not be outside of the classroom and simply send
+another student in the classroom their code to send with their UUID in a forged
+BLE beacon as this would take a substantial amount of coordination and time
+between the two students that the timeout mechanism would likely catch. Along
+with the timeout mechanism, a forgiveness mechanism was determined to be
+necessary in case a message was lost or a student missed the timeout window
+that generates a new code and sends that code via SMS communication three times
+before determining that the student is not present.
+
+This SMS second factor authentication further ensures the characteristic of
+authentication accuracy and further supports the function of identity recording
+by creating a 1-1 mapping of a student’s mobile phone to their identity.  This
+second factor authentication also supports the characteristic of reliability
+through the forgiveness mechanism. The forgiveness mechanism does not ensure
+reliability but it does make consideration for the possibility of missed or
+dropped messages. In tandem with the forgiveness mechanism is the timeout
+mechanism. This mechanism provides support for the final function of attendance
+tracking solutions of noting of time. This timeout mechanism ensures that the
+time a student checks in is during the time of a course.
+
+The dual authentication scheme for the BLEATS system leverages both BLE beacon
+authentication through UUID as well as a one time code authentication through
+SMS 1-1 mapping of a student to their mobile device. This authentication scheme
+supports the desired attendance tracking characteristics of authentication
+accuracy and reliability  while supporting the attendance tracking functions of
+identity recording and time notation.
+
+\subsection{Simulation} 
+
+The two measures of BLE beaconing that we are most interested in investigating
+for BLEATS are reliability and scale. More specifically, we want to determine:
+
+\begin{enumerate}
+
+\item what scale of device density (i.e. number of attendees in a BLEATS
+system) can be achieved while maintaining reliable transmission
+
+\item what scale of device distance (i.e. size of the room that implements a
+BLEATS system) can be achieved while maintaining reliable transmission 
+
+\end{enumerate}
+
+To quantify these characteristics, we decide to measure the percentage of
+successfully received packets out of total packets transmitted as the metric
+for reliability of the BLEATS system. There are several interrelated variables
+that are of interest. First, the distance between beaconing node and receiver
+affects signal propagation strength and interference patterns. We expect that
+increasing the distance between beacon advertising devices and the central base
+receiving station will affect successful reception by reducing the strength of
+the logarithmically-attenuating received signal and increasing the opportunity
+for interference. Second, the number of devices affects the number of packet
+collisions, since BLE's TDMA beaconing scheme has finite capacity. We thus
+expect that increasing the number of beacon advertising devices will increase
+the likelihood of wireless interference and lost packets. Third, the topology
+of devices relative to the single receiving station will affect interference
+patterns and also dictate the distance of devices. 
+
+Device distance, quantity, and topology are heavily intertwined. In order to
+best evaluate permissible operating ranges for BLEATS we will first evaluate
+the effect of distance on a single device, to get an upper bound for the
+distance that we can expect the devices to work at. We will then evaluate
+different topologies with different numbers of device to determine the
+conditions under which BLEATS will be able to reasonably operate under. 
+
+Beyond distance, number of devices and topology, we can control the beacon
+interval length (anywhere from 20 ms to 10 seconds) and the total number of
+intervals that the receiver listens for. These parameters will affect the
+overall capacity and reliability of the system, but instead of introducing
+additional degrees of complexity and variability, we fix these parameters to
+sane defaults. We note that the product of interval length and number of
+intervals scanned yields the total scan length. Because BLEATS is focused on
+classroom attendance tracking, where we measure the presence of captive,
+immobile users who remain in attendance on the order of 10-100 minutes, we cap
+the total scan length at 1 minute. For studying other, more mobile, or more
+realtime attendance tracking systems it would be useful to investigate the
+effects of modulating beacon interval length and total number of intervals
+listened to by the receiver.
+
+Initial results indicate that for a beacon interval of 10 seconds with 6 total
+intervals, BLEATS can support over 1000 devices with high reliability (i.e. all
+nodes successfully transmit to the central receiver at least once during the
+60-second receiver scan). However, when performing simulations, systems with
+more than 500 devices are extremely resource intensive and slow. This makes it
+diffcult to measure absolute upper-bound numbers for the BLEATS system. Instead
+of simulating a 60 second interval with thousands of devices, we instead focus
+on measuring a microcosm of BLEATS, receiving 6 100 millisecond intervals. This
+allows us to gather much more robust simulation data, while still accurately
+observing device quantity trends and optimal topologies.
+

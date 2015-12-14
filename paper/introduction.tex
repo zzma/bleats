@@ -1,0 +1,66 @@
+\section{Introduction}
+
+\label{sec:introduction}
+
+Classroom attendance tracking (CAT) is an important practice at many
+educational institutions for the purpose of evaluating student participation
+and effort. It is also used as an accountability and security measure for
+monitoring young children. Despite its broad utility and widespread prominence, CAT
+remains a surprisingly time-consuming, manual, and error prone process that
+does not scale well. In typical cases, attendance is tracked by an
+instructor on a student-by-student basis and recorded by hand onto a paper log
+or computer interface. This model is very error prone, and does not scale well
+to large groups and lecture-style classroom environments. To solve these issues, many
+systems have been proposed in recent years to improve the speed, deployment
+ease, authentication accuracy, reliability, and scale of CAT by making use of a
+range of technologies including RFID~\cite{kassim2012web}, biometric
+fingerprint and voice authentication~\cite{reda2011hyke,taxila2009development},
+and simple web application automation~\cite{akhila2013novel}. From our
+evaluation, however, we find that these applications typically improve only one
+or two of the key metrics previously mentioned. 
+
+We propose a new CAT system called Bluetooth Low Energy Attendance Tracking
+System (BLEATS) that uses Bluetooth Low Energy (BLE) beaconing on mobile
+devices to address all five desired characteristics of current CAT systems.  
+
+BLEATS works through individual student mobile devices communicating a unique
+id via BLE beaconing to a central attendance tracker device, which may be
+either mobile or fixed within the room. The central attendance tracker
+automatically registers attendance and then performs additional authentication
+steps to further verify attendance. The system design is straightforward, and
+manages to address  many of the existing challenges typically found in CAT
+systems. Computer automation makes it trivial to register multiple attendances
+at the same time, which improves the speed of attendance tracking and enables
+larger numbers of individuals to be tracked. The growing ubiquity of
+BLE-capable mobile devices makes deployment of BLEATS more and more convenient,
+without the need for additional specialized hardware. Finally, authentication
+accuracy is strengthened through statistically-robust data transmission and the
+addition of second factor authentication schemes.  
+
+In this paper, we implement an prototype version of BLEATS and focus our
+efforts on the investigation of different authentication schemes to provide
+stronger authentication accuracy guarantees than simply receiving the proper
+student-specific id via broadcast, which is easily spoofed. At the same time,
+we simulate a BLEATS classroom environment to measure beacon transmission range
+and device density limits for certain topologies. The simulations only model
+ideal operating conditions for BLEATS, and real deployment environments are
+much more complex and interference rich, so we use simulation as a means of
+determining upper-bounds for the properties of interest. 
+
+More concretely, our work on BLEATS provides the following contributions:
+\begin{itemize}
+
+\item A BLEATS base implementation on a laptop and Raspberry Pi's to track
+classroom attendance.  
+
+\item A dual authentication scheme for use in BLEATS to combat simple spoofing
+attempts and ensure student identity and proximity for attendance tracking.  
+
+\item A proposed authentication scheme to further build confidence in student
+attendance.  
+
+\item An exploration of the feasibility and scale limitations of the BLEATS
+system via NS3 network simulation that suggests scalability over a thousand
+attendees within a large attendance venue. 
+
+\end{itemize}

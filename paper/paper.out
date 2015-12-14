@@ -1,0 +1,27 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Background}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Attendance Tracking Systems}{section.2}% 3
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Biometric}{subsection.2.1}% 4
+\BOOKMARK [3][-]{subsubsection.2.1.2}{iClicker}{subsection.2.1}% 5
+\BOOKMARK [3][-]{subsubsection.2.1.3}{RFID}{subsection.2.1}% 6
+\BOOKMARK [3][-]{subsubsection.2.1.4}{Web Application}{subsection.2.1}% 7
+\BOOKMARK [2][-]{subsection.2.2}{Bluetooth Low Energy}{section.2}% 8
+\BOOKMARK [1][-]{section.3}{Approach}{}% 9
+\BOOKMARK [2][-]{subsection.3.1}{Authentication Scheme}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.2}{Simulation}{section.3}% 11
+\BOOKMARK [1][-]{section.4}{implementation}{}% 12
+\BOOKMARK [2][-]{subsection.4.1}{Functional system}{section.4}% 13
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Student Device}{subsection.4.1}% 14
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Instructor Device}{subsection.4.1}% 15
+\BOOKMARK [3][-]{subsubsection.4.1.3}{Student and Instructor Device Interaction}{subsection.4.1}% 16
+\BOOKMARK [2][-]{subsection.4.2}{Simulation}{section.4}% 17
+\BOOKMARK [1][-]{section.5}{Results}{}% 18
+\BOOKMARK [2][-]{subsection.5.1}{Functional system}{section.5}% 19
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Desired Characteristics and Functions}{subsection.5.1}% 20
+\BOOKMARK [3][-]{subsubsection.5.1.2}{Areas of Improvement}{subsection.5.1}% 21
+\BOOKMARK [2][-]{subsection.5.2}{Simulation Results}{section.5}% 22
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Transmission Range}{subsection.5.2}% 23
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Topology and Device Density}{subsection.5.2}% 24
+\BOOKMARK [1][-]{section.6}{Future Work}{}% 25
+\BOOKMARK [1][-]{section.7}{Conclusion}{}% 26
+\BOOKMARK [1][-]{section.8}{References}{}% 27

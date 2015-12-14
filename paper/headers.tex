@@ -1,0 +1,156 @@
+\documentclass{mobicom}
+
+\usepackage[%
+    breaklinks=true,colorlinks=true,linkcolor=black,%
+     citecolor=black,urlcolor=black,bookmarks=true,bookmarksopen=false,%
+    pdfauthor={Authors}, %
+    pdftitle={Title} %
+    ,pdftex]{hyperref}
+\usepackage{mathptmx}\renewcommand{\ttdefault}{cmtt}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{afterpage}% http://ctan.org/pkg/afterpage
+%\usepackage{lipsum}% http://ctan.org/pkg/lipsum
+\usepackage{color}
+\usepackage{url}\urlstyle{rm}
+\usepackage{wasysym}
+\usepackage{watermark}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{cite}
+\usepackage{paralist}
+\usepackage{balance}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+\usepackage[protrusion=true,expansion=true,kerning]{microtype}
+\SetExtraKerning{encoding=*,font=*}{\textemdash={120,120}} % Add space around emdashes
+\usepackage{multirow}
+\usepackage{placeins}
+\usepackage{colortbl}
+\usepackage{bigstrut}
+%\usepackage{subfigure}
+\usepackage[skip=8pt,font=normalsize]{caption}
+\usepackage{subcaption}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{pifont}
+\usepackage{soul}
+\usepackage{siunitx}
+\usepackage{textcomp}
+
+%\usepackage[symbol]{footmisc}
+%\DefineFNsymbolsTM{authorasterisk}{
+%      \textasteriskcentered *
+%}%
+%\setfnsymbol{authorasterisk}
+%
+%\tolerance=500
+%\hbadness=500
+
+% Make pdflatex use letter size
+\setlength{\pdfpagewidth}{8.5in}
+\setlength{\pdfpageheight}{11in}
+
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\usepackage{float}
+
+% Pretty Good Redaction (AH 4/12)
+% Perform redactions
+    \newif\ifredact\redacttrue
+% Preview redactions with strikethrough:
+    \newif\ifpreviewredact\previewredactfalse
+%
+ 
+\ifredact
+    \newlength\requantum\requantum=.25em
+    \newlength\relen\newlength\reheight\newlength\redepth
+    \newcommand{\re}[1]{%
+        \settoheight{\reheight}{X}%
+        \advance\reheight by 0.5pt%
+        \settodepth{\redepth}{g}%
+        \advance\redepth by -0.5pt%
+        \settowidth{\relen}{#1}%
+        % We redact by replacing the text with \quad-length placeholders
+        % up to at least the width of the original text.
+        \loop\ifnum\relen>0\advance\relen by -1\requantum%
+        %\discretionary{}{}{}\vrule depth0.125pt height0.5pt width\requantum% <- underlines
+        \discretionary{}{}{}\vrule depth\redepth height\reheight width\requantum% <- bars
+        \repeat%
+    }
+\else\ifpreviewredact
+    \usepackage[normalem]{ulem}
+    \newcommand{\re}[1]{{\sout{#1}}}
+\else\newcommand{\re}[1]{#1}
+\fi\fi
+ 
+% Paragraph and subpar
+\renewcommand{\paragraph}[1]{\medskip\noindent\textbf{#1}\quad}
+\newcommand{\subpar}[1]{\medskip\noindent\textsl{#1}\enspace}
+
+% Stop URLs from hyphenating after  "http:" (AH 12/08)
+\def\UrlBreaks{\do-\do\.\do\@\do\\\do\!\do\_\do\|\do\;\do\>\do\]%
+ \do\)\do\,\do\?\do\'\do+\do\=\do\#}
+\def\UrlBigBreaks{\do\:\do\/}%
+
+% TODO, TK, etc. (AH 4/12)
+\usepackage{xspace}
+\newcommand{\todo}[1]{{\color{red}{\textbf{\em [TODO: #1]}}}\xspace}
+\newcommand{\kurt}[1]{{\color{blue}{\textbf{\em [#1 --KT]}}}\xspace}
+\newcommand{\nico}[1]{{\color{green}{\textbf{\em [#1 --NL]}}}\xspace}
+\newcommand{\TODO}[1]{\todo{#1}}
+\newcommand{\tk}{{\color{red}{\bf TK}}\xspace}
+\newcommand{\TK}{\tk}
+\newcommand{\comment}[1]{\relax} % comment out text
+\newcommand{\xcite}[1]{\relax} % comment out citation
+
+\newcommand{\mycaption}[2]{\caption{\textbf{#1.} #2}}
+\newcommand{\hostfont}[1]{\texttt{#1}}
+
+\newcommand{\starttls}{STARTTLS\@\xspace}
+
+\iftrue
+%\iffalse
+\newcommand{\authnote}[2]{{\bf[#1: #2]}}
+\newcommand{\topic}[1]{{\color{blue} #1}}
+\else
+\newcommand{\authnote}[2]{}
+\newcommand{\topic}[1]{#1}
+\fi
+
+\pagenumbering{arabic}
+
+\newfont{\mycrnotice}{ptmr8t at 7pt}
+\newfont{\myconfname}{ptmri8t at 7pt}
+\let\crnotice\mycrnotice%
+\let\confname\myconfname%
+
+\clubpenalty=10000 
+\widowpenalty=10000
+
+\begin{document}
+\title{BLEATS: Bluetooth Low Energy Attendance Tracking System}
+\author{
+  King, Robert\\
+  \texttt{rwking2@illinois.edu}
+  \and
+  Ma, Zane\\
+  \texttt{zanema2@illinois.edu}
+}
+
+\maketitle
+\thispagestyle{empty}
+
+\newcommand{\update}[1]{{\color{black}#1}\xspace}
+
+\newcommand{\twolinecell}[2][r]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+\def\blackI{\ding{202}}
+\def\blackII{\ding{203}}
+\def\blackIII{\ding{204}}
+\def\blackIV{\ding{205}}
+\def\blackV{\ding{206}}
+\def\blackVI{\ding{207}}
+\def\blackVII{\ding{208}}
+
