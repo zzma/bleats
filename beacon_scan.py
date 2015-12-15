@@ -50,6 +50,8 @@ def process_code(uuid, code,cursorAuth,time=0):
         cursorAuth.execute(query)
         query = "update students set timeout = '"+"0"+"'where uuid = '"+uuid+"'"
         cursorAuth.execute(query)
+        query = "update students set codeSent = '"+"0"+"' where uuid = '"+uuid+"'"
+        cursorAuth.execute(query)
         return True,attempts
     else:
         return False,0
